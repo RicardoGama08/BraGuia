@@ -30,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
         });
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener( view -> {
-            Intent intent = new Intent(MainActivity.this, NewUser.class);
+            Intent intent = new Intent(MainActivity.this, NewUserActivity.class);
             startActivityForResult(intent, NEW_USER_ACTIVITY_REQUEST_CODE);
         });
     }
@@ -39,7 +39,7 @@ public class MainActivity extends AppCompatActivity {
         super.onActivityResult(requestCode, resultCode, data);
 
         if (requestCode == NEW_USER_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            User user = new User(data.getStringExtra(NewUser.EXTRA_REPLY));
+            User user = new User(data.getStringExtra(NewUserActivity.EXTRA_REPLY));
             mUserViewModel.insert(user);
         } else {
             Toast.makeText(

@@ -1,16 +1,20 @@
-package com.example.braguia;
+package com.example.braguia.data;
 
 import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
+import com.example.braguia.User;
+import com.example.braguia.UserDao;
+import com.example.braguia.UserDatabase;
+
 import java.util.List;
 
-class UserRepository {
+public class UserRepository {
     private UserDao mUserDao;
     private LiveData<List<User>> mAllUsers;
 
-    UserRepository(Application application) {
+    public UserRepository(Application application) {
         UserDatabase db = UserDatabase.getDatabase(application);
         mUserDao = db.userDao();
         mAllUsers = mUserDao.getAlphabetizedWords();
@@ -18,13 +22,13 @@ class UserRepository {
 
     // Room executes all queries on a separate thread.
     // Observed LiveData will notify the observer when the data has changed.
-    LiveData<List<User>> getAllUsers() {
+    public LiveData<List<User>> getAllUsers() {
         return mAllUsers;
     }
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
-    void insert(User word) {
+    public void insert(User word) {
         UserDatabase.databaseWriteExecutor.execute(() -> {
             mUserDao.insert(word);
         });

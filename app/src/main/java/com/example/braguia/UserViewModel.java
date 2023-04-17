@@ -5,6 +5,8 @@ import android.app.Application;
 import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
+import com.example.braguia.data.UserRepository;
+
 import java.util.List;
 
 public class UserViewModel extends AndroidViewModel {

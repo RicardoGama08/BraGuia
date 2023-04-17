@@ -8,7 +8,7 @@ import android.widget.EditText;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-public class NewUser extends AppCompatActivity {
+public class NewUserActivity extends AppCompatActivity {
 
     public static final String EXTRA_REPLY = "com.example.android.userlistsql.REPLY";
 

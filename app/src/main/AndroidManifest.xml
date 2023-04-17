@@ -12,7 +12,7 @@
         android:theme="@style/Theme.BraGuia"
         tools:targetApi="31">
         <activity
-            android:name=".NewUser"
+            android:name=".NewUserActivity"
             android:exported="false" />
         <activity
             android:name=".MainActivity"
