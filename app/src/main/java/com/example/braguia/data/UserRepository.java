@@ -28,9 +28,9 @@ public class UserRepository {
 
     // You must call this on a non-UI thread or your app will throw an exception. Room ensures
     // that you're not doing any long running operations on the main thread, blocking the UI.
-    public void insert(User word) {
+    public void insert(User user) {
         UserDatabase.databaseWriteExecutor.execute(() -> {
-            mUserDao.insert(word);
+            mUserDao.insert(user);
         });
     }
 }

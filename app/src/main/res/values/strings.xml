@@ -3,5 +3,16 @@
     <string name="add_user" />
     <string name="hint_word">Word...</string>
     <string name="button_save">Save</string>
-    <string name="empty_not_saved">Word not saved because it is empty.</string>
+    <string name="empty_not_saved">Login not saved because it is empty.</string>
+    <string name="user"> Username </string>
+    <string name="email"> Email</string>
+    <string name="password">Password </string>
+    <string name="login">Login</string>
+    <string name="registar">Não tem conta registada? Registe-se já! </string>
+    <string name="fazerLog">Já tem conta registada? Faça login</string>
+    <string name="homescreen">Meter cenas aqui </string>
+    <string name="registarB">Registar</string>
+    <string name="last_name"> Segundo Nome</string>
+    <string name="first_name">Primeiro Nome </string>
+    <string name="voltar"> Voltar </string>
 </resources>
