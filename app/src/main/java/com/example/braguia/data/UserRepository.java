@@ -4,7 +4,7 @@ import android.app.Application;
 
 import androidx.lifecycle.LiveData;
 
-import com.example.braguia.User;
+import com.example.braguia.model.User;
 import com.example.braguia.UserDao;
 import com.example.braguia.UserDatabase;
 

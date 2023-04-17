@@ -6,6 +6,8 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.DiffUtil;
 import androidx.recyclerview.widget.ListAdapter;
 
+import com.example.braguia.model.User;
+
 public class UserListAdapter extends ListAdapter<User, UserViewHolder> {
 
     public UserListAdapter(@NonNull DiffUtil.ItemCallback<User> diffCallback) {

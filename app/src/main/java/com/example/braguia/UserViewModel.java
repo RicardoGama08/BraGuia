@@ -6,6 +6,7 @@ import androidx.lifecycle.AndroidViewModel;
 import androidx.lifecycle.LiveData;
 
 import com.example.braguia.data.UserRepository;
+import com.example.braguia.model.User;
 
 import java.util.List;
 
