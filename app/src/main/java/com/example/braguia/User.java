@@ -16,5 +16,27 @@ public class User {
 
     public User(@NonNull String name) {this.user = name;}
 
+    public User(String user, int id){
+        this.user = user;
+        this.id = id;
+    }
+
+    public User() {
+        this.user = "";
+        this.id = 0;
+    }
+
     public String getUser(){return this.user;}
+
+    public void setUser(@NonNull String user) {
+        this.user = user;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
+
+    public int getId() {
+        return id;
+    }
 }
