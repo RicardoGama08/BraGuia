@@ -7,33 +7,45 @@ import androidx.room.PrimaryKey;
 
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity(tableName = "user_table")
 public class User {
 
-    @PrimaryKey(autoGenerate = true)
-    private int id;
+    @PrimaryKey
     @NonNull
     @ColumnInfo(name = "user")
     private String user;
+    @ColumnInfo(name = "firstname")
     private String firstName;
+    @ColumnInfo(name = "lastname")
     private String lastName;
+    @ColumnInfo(name = "type")
     private String tipoUser;  //Premium or Standard
+    @ColumnInfo(name = "email")
     private String email;
+    @ColumnInfo(name = "password")
     private String password;
-    //private Date last_login;
-    //private Date joined;
+    /*@ColumnInfo(name = "lastlogin")
+    private Date last_login;
+    @ColumnInfo(name = "datejoined")
+    private Date joined;*/
+    @ColumnInfo(name = "superU")
     private Boolean is_superUser;
+    @ColumnInfo(name = "staff")
     private Boolean is_staff;
+    @ColumnInfo(name = "active")
     private Boolean is_active;
-    //private ArrayList groups;
+    /*@ColumnInfo(name = "groups")
+    private List<String> groups;*/
+    @ColumnInfo(name = "perms")
     private int user_permissions;
+
 
     public User(@NonNull String name) {this.user = name;}
 
     public User() {
         this.user = "";
-        this.id = 0;
         this.firstName = "";
         this.lastName = "";
         this.tipoUser = "standard";
@@ -53,14 +65,6 @@ public class User {
 
     public void setUser(@NonNull String user) {
         this.user = user;
-    }
-
-    public void setId(int id) {
-        this.id = id;
-    }
-
-    public int getId() {
-        return id;
     }
 
     public String getFirstName() {
@@ -117,8 +121,8 @@ public class User {
 
     public void setJoined(Date joined) {
         this.joined = joined;
-    }
-*/
+    }*/
+
     public Boolean getIs_superUser() {
         return is_superUser;
     }
@@ -143,14 +147,14 @@ public class User {
         this.is_active = is_active;
     }
 
-    /*public ArrayList getGroups() {
+    /*public List<String> getGroups() {
         return groups;
     }
 
-    public void setGroups(ArrayList groups) {
+    public void setGroups(List<String> groups) {
         this.groups = groups;
-    }
-*/
+    }*/
+
     public int getUser_permissions() {
         return user_permissions;
     }

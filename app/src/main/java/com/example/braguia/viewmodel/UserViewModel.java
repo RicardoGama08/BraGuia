@@ -1,4 +1,4 @@
-package com.example.braguia;
+package com.example.braguia.viewmodel;
 
 import android.app.Application;
 

@@ -4,4 +4,6 @@
     <item name="recyclerview" type="id" />
     <item name="edit_reg" type="id" />
     <item name="edit_login" type="id" />
+    <item name="cardimage" type="id" />
+    <item name="item_number" type="id" />
 </resources>

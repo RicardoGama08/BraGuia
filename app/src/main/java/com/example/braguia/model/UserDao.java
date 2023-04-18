@@ -1,22 +1,27 @@
-package com.example.braguia;
+package com.example.braguia.model;
 
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
-
-import com.example.braguia.model.User;
+import androidx.room.Update;
 
 import java.util.List;
+
 
 @Dao
 public interface UserDao {
 
-    // allowing the insert of the same word multiple times by passing a
-    // conflict resolution strategy
     @Insert(onConflict = OnConflictStrategy.IGNORE)
     void insert(User name);
+
+    // PUT E PATCH MAL FEITOS
+    @Insert
+    void put(User name);
+
+    @Update
+    void patch(User name);
 
     @Query("DELETE FROM user_table")
     void deleteAll();

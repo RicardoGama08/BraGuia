@@ -1,36 +1,143 @@
 package com.example.braguia.data;
 
 import android.app.Application;
+import android.os.AsyncTask;
+import android.util.Log;
 
 import androidx.lifecycle.LiveData;
-
-import com.example.braguia.model.User;
-import com.example.braguia.UserDao;
-import com.example.braguia.UserDatabase;
-
+import retrofit2.Call;
 import java.util.List;
+import retrofit2.Response;
+import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
+
+import com.example.braguia.model.Trail;
+import com.example.braguia.model.User;
+import com.example.braguia.model.UserAPI;
+import com.example.braguia.model.UserDao;
+import com.example.braguia.model.GuideDatabase;
 
 public class UserRepository {
     private UserDao mUserDao;
     private LiveData<List<User>> mAllUsers;
 
     public UserRepository(Application application) {
-        UserDatabase db = UserDatabase.getDatabase(application);
+        GuideDatabase db = GuideDatabase.getDatabase(application);
         mUserDao = db.userDao();
+        init();
         mAllUsers = mUserDao.getAlphabetizedWords();
     }
 
-    // Room executes all queries on a separate thread.
-    // Observed LiveData will notify the observer when the data has changed.
     public LiveData<List<User>> getAllUsers() {
         return mAllUsers;
     }
 
-    // You must call this on a non-UI thread or your app will throw an exception. Room ensures
-    // that you're not doing any long running operations on the main thread, blocking the UI.
+
     public void insert(User user) {
-        UserDatabase.databaseWriteExecutor.execute(() -> {
+        GuideDatabase.databaseWriteExecutor.execute(() -> {
             mUserDao.insert(user);
         });
     }
+
+    /*public void insert(List<User> users){
+        new InsertAsyncTask(mUserDao).execute(users);
+    }*/
+
+
+    public void put(User user) {
+        GuideDatabase.databaseWriteExecutor.execute(() -> {
+            mUserDao.put(user);
+        });
+    }
+
+    public void patch(User user){
+        GuideDatabase.databaseWriteExecutor.execute(() -> {
+            mUserDao.patch(user);
+        });
+    }
+
+    public void init(){
+        // TODO add cache validation strategy
+        if(mAllUsers == null || mAllUsers.getValue() == null || mAllUsers.getValue().isEmpty()){
+            makeRequest();
+        }
+    }
+
+    private void makeRequest() {
+        Retrofit retrofit=new Retrofit.Builder()
+                .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")
+                //.baseUrl("http://192.168.85.186/")
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
+        UserAPI api=retrofit.create(UserAPI.class);
+        Call<List<User>> call=api.getUsers();
+        Call<List<User>> call2=api.putUser();
+        Call<List<User>> call3=api.patchUser();
+
+        call.enqueue(new retrofit2.Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call, Response<List<User>> response) {
+                if(response.isSuccessful()) {
+                    insert((User) response.body());
+                }
+                else{
+                    Log.e("main", "onFailure: "+response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.e("main", "onFailure: " + t.getMessage());
+            }
+        });
+
+        call2.enqueue(new retrofit2.Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call2, Response<List<User>> response) {
+                if(response.isSuccessful()) {
+                    put((User) response.body());
+                }
+                else{
+                    Log.e("main", "onFailure: "+response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call2, Throwable t) {
+                Log.e("main", "onFailure: " + t.getMessage());
+            }
+        });
+
+        call3.enqueue(new retrofit2.Callback<List<User>>() {
+            @Override
+            public void onResponse(Call<List<User>> call3, Response<List<User>> response) {
+                if(response.isSuccessful()) {
+                    patch((User) response.body());
+                }
+                else{
+                    Log.e("main", "onFailure: "+response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<User>> call, Throwable t) {
+                Log.e("main", "onFailure: " + t.getMessage());
+            }
+        });
+    }
+
+    private static class InsertAsyncTask extends AsyncTask<List<User>,Void,Void> {
+        private UserDao userDao;
+
+        public InsertAsyncTask(UserDao catDao) {
+            this.userDao=catDao;
+        }
+
+        @Override
+        protected Void doInBackground(List<User>... lists) {
+            userDao.insert((User) lists[0]);
+            return null;
+        }
+    }
+
 }

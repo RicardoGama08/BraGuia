@@ -1,4 +1,4 @@
-package com.example.braguia;
+package com.example.braguia.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.lifecycle.ViewModelProvider;
@@ -15,36 +15,35 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.braguia.R;
 import com.example.braguia.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
-public class LoginActivity extends AppCompatActivity {
+public class RegisterActivity extends AppCompatActivity {
 
-    public static final String EXTRA_REPLY = "com.example.android.loginlistsql.REPLY";
-    private EditText mEditLoginView;
+    public static final String EXTRA_REPLY = "com.example.android.reglistsql.REPLY";
+    private EditText mEditRegView;
 
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_login);
+        setContentView(R.layout.activity_register);
 
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button btLogin = (Button) findViewById(R.id.btLogin2);
-        btLogin.setOnClickListener(new View.OnClickListener() {
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button btReg = (Button) findViewById(R.id.tReg);
+        btReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 TextView tLogin = (TextView) findViewById(R.id.tLogin);
+                TextView tLastName = (TextView) findViewById(R.id.tLast);
+                TextView tFirstName = (TextView) findViewById(R.id.tFirst);
                 TextView tEmail = (TextView) findViewById(R.id.tEmail);
                 TextView tSenha = (TextView) findViewById(R.id.tSenha);
                 String login = tLogin.getText().toString();
+                String lastName = tLastName.getText().toString();
+                String firstName = tFirstName.getText().toString();
                 String email = tEmail.getText().toString();
                 String pass = tSenha.getText().toString();
-                if(login.equals("premium_user") && pass.equals("paiduser") && email.equals("123")){
-                    alert("Login realizado com sucesso");
-                }
-                else{
-                    alert("Login ou senha incorreta");
-                }
             }
         });
 
@@ -56,20 +55,19 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-        mEditLoginView = findViewById(R.id.edit_login);
-
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Button button = findViewById(R.id.button_save);
+        /*mEditRegView = findViewById(R.id.edit_reg);
+        final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(view -> {
             Intent replyIntent = new Intent();
-            if (TextUtils.isEmpty(mEditLoginView.getText())) {
+            if (TextUtils.isEmpty(mEditRegView.getText())) {
                 setResult(RESULT_CANCELED, replyIntent);
             } else {
-                String user = mEditLoginView.getText().toString();
+                String user = mEditRegView.getText().toString();
                 replyIntent.putExtra(EXTRA_REPLY, user);
                 setResult(RESULT_OK, replyIntent);
             }
             finish();
-        });
+        });*/
     }
 
     private void alert(String a){
