@@ -47,6 +47,7 @@ public class RegisterActivity extends AppCompatActivity {
             }
         });
 
+        //VOLTAR nao está a funcionar
         Button voltar = (Button) findViewById(R.id.voltar);
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
