@@ -29,7 +29,7 @@ public class MainActivity extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_login);
+                startActivity(new Intent(MainActivity.this, LoginActivity.class));
             }
         });
 
@@ -37,23 +37,8 @@ public class MainActivity extends AppCompatActivity {
         btReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_register);
+                startActivity(new Intent(MainActivity.this, RegisterActivity.class));;
             }
         });
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-
-        if (requestCode == LOGIN_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK) {
-            setContentView(R.layout.activity_login);
-        } else if(requestCode == REG_ACTIVITY_REQUEST_CODE && resultCode == RESULT_OK){
-            setContentView(R.layout.activity_register);
-        }else{
-            Toast.makeText(
-                    getApplicationContext(),
-                    R.string.empty_not_saved,
-                    Toast.LENGTH_LONG).show();
-        }
     }
 }

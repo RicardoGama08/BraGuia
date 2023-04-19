@@ -54,23 +54,11 @@ public class LoginActivity extends AppCompatActivity {
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.activity_main);
+                finish();
             }
         });
 
- /*       mEditLoginView = findViewById(R.id.edit_login);
-        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) final Button button = findViewById(R.id.button_save);
-        button.setOnClickListener(view -> {
-            Intent replyIntent = new Intent();
-            if (TextUtils.isEmpty(mEditLoginView.getText())) {
-                setResult(RESULT_CANCELED, replyIntent);
-            } else {
-                String user = mEditLoginView.getText().toString();
-                replyIntent.putExtra(EXTRA_REPLY, user);
-                setResult(RESULT_OK, replyIntent);
-            }
-            finish();
-        });*/
+
     }
 
     private void alert(String a){
