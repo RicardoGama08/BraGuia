@@ -16,7 +16,7 @@ import java.util.List;
 import java.util.Objects;
 
 @Entity(tableName = "trail_table",indices = @Index(value = {"id"},unique = true))
-public class Trail extends RecyclerView.Adapter {
+public class Trail{
 
     @PrimaryKey
     @NonNull
@@ -67,19 +67,4 @@ public class Trail extends RecyclerView.Adapter {
         return Objects.hash(id, image_url);
     }
 
-    @NonNull
-    @Override
-    public RecyclerView.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
-    }
-
-    @Override
-    public void onBindViewHolder(@NonNull RecyclerView.ViewHolder holder, int position) {
-
-    }
-
-    @Override
-    public int getItemCount() {
-        return 0;
-    }
 }

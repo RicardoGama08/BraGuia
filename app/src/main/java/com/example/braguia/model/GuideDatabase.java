@@ -16,11 +16,12 @@ import java.util.concurrent.Executors;
 
 import retrofit2.Converter;
 
-@Database(entities = {User.class,Trail.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class,Trail.class,Pin.class}, version = 1, exportSchema = false)
 public abstract class GuideDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
     public abstract TrailDao trailDao();
+    public abstract PinDao pinDao();
     private static volatile GuideDatabase INSTANCE;
     private static final int NUMBER_OF_THREADS = 4;
     public static final ExecutorService databaseWriteExecutor =
@@ -71,10 +72,11 @@ public abstract class GuideDatabase extends RoomDatabase {
     static  class  PopulateDbAsyn extends AsyncTask<Void,Void,Void>{
         private UserDao userdao;
         private TrailDao traildao;
+        private PinDao pindao;
 
         public PopulateDbAsyn(GuideDatabase catDatabase)
         {
-
+            pindao= catDatabase.pinDao();
             userdao=catDatabase.userDao();
             traildao=catDatabase.trailDao();
         }
@@ -82,6 +84,7 @@ public abstract class GuideDatabase extends RoomDatabase {
         protected Void doInBackground(Void... voids) {
             userdao.deleteAll();
             traildao.deleteAll();
+            pindao.deleteAll();
             return null;
         }
     }
