@@ -8,8 +8,8 @@
 
     <LinearLayout
         android:id="@+id/linearLayout2"
-        android:layout_width="0dp"
-        android:layout_height="0dp"
+        android:layout_width="346dp"
+        android:layout_height="660dp"
         android:layout_marginStart="40dp"
         android:layout_marginTop="76dp"
         android:layout_marginEnd="40dp"
@@ -17,8 +17,10 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.505"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="0.248">
 
         <ImageView
             android:id="@+id/imageView"
@@ -28,9 +30,34 @@
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="236dp"
-            android:layout_height="138dp"
+            android:layout_width="121dp"
+            android:layout_height="81dp"
             android:text="@string/homescreen" />
+
+        <LinearLayout
+            android:layout_width="295dp"
+            android:layout_height="74dp"
+            android:layout_gravity="center"
+            android:orientation="horizontal">
+
+            <Button
+                android:id="@+id/trails"
+                android:layout_width="136dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/trails"
+                android:textColor="#ffffff" />
+
+            <Button
+                android:id="@+id/pins"
+                android:layout_width="132dp"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:text="@string/pins"
+                android:textColor="#ffffff" />
+        </LinearLayout>
 
         <TextView
             android:id="@+id/textView7"
@@ -59,5 +86,6 @@
             android:layout_gravity="center"
             android:text="@string/registarB"
             android:textColor="#ffffff" />
+
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

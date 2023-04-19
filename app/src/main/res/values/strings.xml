@@ -15,4 +15,6 @@
     <string name="last_name"> Segundo Nome</string>
     <string name="first_name">Primeiro Nome </string>
     <string name="voltar"> Voltar </string>
+    <string name="trails"> Roteiros </string>
+    <string name="pins"> Pontos Interesse </string>
 </resources>

@@ -40,5 +40,21 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(new Intent(MainActivity.this, RegisterActivity.class));;
             }
         });
+
+        Button trails = (Button) findViewById(R.id.trails);
+        trails.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.fragment_item_list);
+            }
+        });
+
+        Button pins = (Button) findViewById(R.id.pins);
+        pins.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                setContentView(R.layout.fragment_item_list2);
+            }
+        });
     }
 }
