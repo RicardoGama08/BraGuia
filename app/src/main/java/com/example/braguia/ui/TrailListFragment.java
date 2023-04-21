@@ -17,19 +17,19 @@ import com.example.braguia.viewmodel.TrailViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrailList extends Fragment {
+public class TrailListFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private TrailViewModel trailViewModel;
     private List<Trail> trails = new ArrayList<>();
 
-    public TrailList() {
+    public TrailListFragment() {
     }
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static TrailList newInstance(int columnCount) {
-        TrailList fragment = new TrailList();
+    public static TrailListFragment newInstance(int columnCount) {
+        TrailListFragment fragment = new TrailListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -68,7 +68,7 @@ public class TrailList extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TrailListAdapter(trails));
+            recyclerView.setAdapter(new TrailsRecyclerViewAdapter(trails));
         }
     }
 
