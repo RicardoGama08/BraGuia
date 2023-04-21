@@ -67,4 +67,11 @@ public class Trail{
         return Objects.hash(id, image_url);
     }
 
+    @Override
+    public String toString() {
+        return "Trail{" +
+                "id=" + this.id +
+                '}';
+    }
+
 }

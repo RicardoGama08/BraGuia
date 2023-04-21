@@ -10,6 +10,8 @@ import com.example.braguia.model.Trail;
 import com.example.braguia.model.TrailAPI;
 import com.example.braguia.model.TrailDao;
 import retrofit2.Call;
+
+import java.io.IOException;
 import java.util.List;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -41,7 +43,7 @@ public class TrailRepository {
 
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/trails/")
+                .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")
                 //.baseUrl("http://192.168.85.186/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
@@ -54,7 +56,14 @@ public class TrailRepository {
                     insert(response.body());
                 }
                 else{
-                    Log.e("main", "onFailure: "+response.errorBody());
+                    String contentType = response.headers().get("content-type");
+                    if (contentType != null && contentType.contains("text/html")) {
+                        // handle HTML error response
+                        Log.e("main", "Error response: " + response.code() + " " + response.message());
+                    } else {
+                        // handle other error response
+                        Log.e("main", "Error response: " + response.code() + " " + response.message() + " " + response.errorBody());
+                    }
                 }
             }
 
