@@ -10,4 +10,13 @@
     android:layout_marginRight="16dp"
     app:layoutManager="LinearLayoutManager"
     tools:context=".ui.PinList"
-    tools:listitem="@layout/fragment_item" />
+    tools:listitem="@layout/fragment_item" >
+
+    <com.google.android.material.floatingactionbutton.FloatingActionButton
+        android:id="@+id/floatingActionButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:src="@drawable/baseline_add_24"
+        android:contentDescription="@string/add_pin"/>
+</androidx.recyclerview.widget.RecyclerView>
