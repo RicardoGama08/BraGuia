@@ -1,6 +1,7 @@
 package com.example.braguia.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.lifecycle.ViewModelProvider;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -10,6 +11,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.example.braguia.R;
+import com.example.braguia.viewmodel.TrailViewModel;
 import com.example.braguia.viewmodel.UserViewModel;
 
 public class MainActivity extends AppCompatActivity {
@@ -20,9 +22,14 @@ public class MainActivity extends AppCompatActivity {
     //private UserViewModel mUserViewModel;
     //public static final int NEW_USER_ACTIVITY_REQUEST_CODE = 1;
 
+    private TrailViewModel trailViewModel;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        trailViewModel = new ViewModelProvider(this).get(TrailViewModel.class);
+        //System.out.println(trailViewModel.getAllTrails());
         setContentView(R.layout.activity_main);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button btLogin = (Button) findViewById(R.id.btLogin2);

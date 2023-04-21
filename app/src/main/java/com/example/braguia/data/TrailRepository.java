@@ -41,7 +41,7 @@ public class TrailRepository {
 
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()
-                .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")
+                .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/trails/")
                 //.baseUrl("http://192.168.85.186/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
