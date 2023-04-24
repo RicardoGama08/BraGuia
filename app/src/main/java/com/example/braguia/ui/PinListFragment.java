@@ -16,7 +16,7 @@ import com.example.braguia.viewmodel.PinViewModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PinList extends Fragment {
+public class PinListFragment extends Fragment {
     private static final String ARG_COLUMN_COUNT = "column-count";
     private int mColumnCount = 1;
     private PinViewModel pinViewModel;
@@ -24,8 +24,8 @@ public class PinList extends Fragment {
 
     // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
-    public static PinList newInstance(int columnCount) {
-        PinList fragment = new PinList();
+    public static PinListFragment newInstance(int columnCount) {
+        PinListFragment fragment = new PinListFragment();
         Bundle args = new Bundle();
         args.putInt(ARG_COLUMN_COUNT, columnCount);
         fragment.setArguments(args);
@@ -64,7 +64,7 @@ public class PinList extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new PinListAdapter(pins));
+            recyclerView.setAdapter(new PinRecyclerViewAdapter(pins));
         }
     }
 

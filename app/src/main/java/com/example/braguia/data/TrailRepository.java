@@ -4,6 +4,7 @@ import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 
 import com.example.braguia.model.GuideDatabase;
 import com.example.braguia.model.Trail;
@@ -20,14 +21,24 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class TrailRepository {
 
     public TrailDao trailDao;
-    public LiveData<List<Trail>> allTrails;
+    public MediatorLiveData<List<Trail>> allTrails;
     private GuideDatabase database;
 
     public TrailRepository(Application application){
         database = GuideDatabase.getDatabase(application);
         trailDao = database.trailDao();
         init();
-        allTrails = trailDao.getTrails();
+        allTrails = new MediatorLiveData<>();
+        allTrails.addSource(
+                trailDao.getTrails(), localTrails -> {
+                    // TODO: ADD cache validation logic
+                    if (localTrails != null && localTrails.size() > 0) {
+                        allTrails.setValue(localTrails);
+                    } else {
+                        makeRequest();
+                    }
+                }
+        );
     }
 
     public void insert(List<Trail> trails){

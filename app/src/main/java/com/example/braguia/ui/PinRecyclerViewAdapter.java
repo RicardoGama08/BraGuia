@@ -9,15 +9,14 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.braguia.R;
 import com.example.braguia.model.Pin;
-import com.example.braguia.model.Trail;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
-public class PinListAdapter extends RecyclerView.Adapter<PinListAdapter.ViewHolder> {
+public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerViewAdapter.ViewHolder> {
 
     private final List<Pin> mValues;
 
-    public PinListAdapter(List<Pin> items) {
+    public PinRecyclerViewAdapter(List<Pin> items) {
         mValues = items;
     }
 

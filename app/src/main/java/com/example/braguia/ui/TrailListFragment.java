@@ -52,14 +52,12 @@ public class TrailListFragment extends Fragment {
 
         trailViewModel = new ViewModelProvider(this).get(TrailViewModel.class);
         trailViewModel.getAllTrails().observe(getViewLifecycleOwner(), x -> {
-            this.trails.clear();
-            this.trails.addAll(x);
-            loadRecyclerView(view);
+            loadRecyclerView(view, x);
         });
         return view;
     }
 
-    private void loadRecyclerView(View view){
+    private void loadRecyclerView(View view, List<Trail> x){
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
