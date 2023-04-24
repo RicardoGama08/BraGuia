@@ -34,7 +34,7 @@ public class RegisterActivity extends AppCompatActivity {
         btReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView tLogin = (TextView) findViewById(R.id.tLogin);
+                /*TextView tLogin = (TextView) findViewById(R.id.tLogin);
                 TextView tLastName = (TextView) findViewById(R.id.tLast);
                 TextView tFirstName = (TextView) findViewById(R.id.tFirst);
                 TextView tEmail = (TextView) findViewById(R.id.tEmail);
@@ -43,9 +43,14 @@ public class RegisterActivity extends AppCompatActivity {
                 String lastName = tLastName.getText().toString();
                 String firstName = tFirstName.getText().toString();
                 String email = tEmail.getText().toString();
-                String pass = tSenha.getText().toString();
+                String pass = tSenha.getText().toString();*/
+
+                //startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                setContentView(R.layout.activity_home);
+
             }
         });
+
 
         //VOLTAR nao está a funcionar
         Button voltar = (Button) findViewById(R.id.voltar);

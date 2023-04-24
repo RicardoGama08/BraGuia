@@ -83,13 +83,24 @@
             android:ems="10"
             android:inputType="textPersonName" />
 
+        <TextView
+            android:id="@+id/textView20"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
         <Button
             android:id="@+id/tReg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/registarB"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
 
         <Button
             android:id="@+id/voltar"
@@ -97,6 +108,7 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:text="@string/voltar"
-            android:textColor="#ffffff" />
+            android:textColor="#ffffff"
+            />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

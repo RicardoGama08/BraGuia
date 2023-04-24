@@ -1,6 +1,7 @@
 package com.example.braguia.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -29,12 +30,14 @@ public class LoginActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) Button btLogin = (Button) findViewById(R.id.btLogin2);
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                TextView tLogin = (TextView) findViewById(R.id.tLogin);
+                /*TextView tLogin = (TextView) findViewById(R.id.tLogin);
                 TextView tEmail = (TextView) findViewById(R.id.tEmail);
                 TextView tSenha = (TextView) findViewById(R.id.tSenha);
                 String login = tLogin.getText().toString();
@@ -45,11 +48,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 else{
                     alert("Login ou senha incorreta");
-                }
+                }*/
+                //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                setContentView(R.layout.activity_home);
+
+
             }
         });
 
-        //VOLTAR não está a funcionar
         Button voltar = (Button) findViewById(R.id.voltar);
         voltar.setOnClickListener(new View.OnClickListener() {
             @Override
