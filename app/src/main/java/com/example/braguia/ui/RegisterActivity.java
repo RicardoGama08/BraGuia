@@ -52,15 +52,6 @@ public class RegisterActivity extends AppCompatActivity {
         });
 
 
-        //VOLTAR nao está a funcionar
-        Button voltar = (Button) findViewById(R.id.voltar);
-        voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
         /*mEditRegView = findViewById(R.id.edit_reg);
         final Button button = findViewById(R.id.button_save);
         button.setOnClickListener(view -> {

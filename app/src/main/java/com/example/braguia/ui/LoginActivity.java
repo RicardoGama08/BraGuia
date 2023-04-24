@@ -55,16 +55,6 @@ public class LoginActivity extends AppCompatActivity {
 
             }
         });
-
-        Button voltar = (Button) findViewById(R.id.voltar);
-        voltar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-
     }
 
     private void alert(String a){

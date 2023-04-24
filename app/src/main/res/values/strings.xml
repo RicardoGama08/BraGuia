@@ -21,4 +21,6 @@
     <string name="button_start">Let\'s Start!</string>
     <string name="add_pin" />
     <string name="add_trail" />
+    <string name="action_settings">Definições</string>
+
 </resources>
