@@ -13,6 +13,6 @@ public class ListaPinsActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.fragment_item_list2);
+        setContentView(R.layout.list_pins);
     }
 }
