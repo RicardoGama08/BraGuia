@@ -28,6 +28,20 @@
             android:exported="false" >
         </activity>
         <activity
+            android:name=".ui.ListaTrailsActivity"
+            android:parentActivityName=".ui.HomeActivity"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".ui.ListaPinsActivity"
+            android:parentActivityName=".ui.HomeActivity"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".ui.HomeActivity"
+            android:exported="false">
+        </activity>
+        <activity
             android:name=".ui.MainActivity"
             android:exported="true">
             <intent-filter>

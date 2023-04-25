@@ -1,20 +1,13 @@
 package com.example.braguia.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.lifecycle.ViewModelProvider;
 
-import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
 
 import com.example.braguia.R;
-import com.example.braguia.viewmodel.TrailViewModel;
-import com.example.braguia.viewmodel.UserViewModel;
 
 public class HomeActivity extends AppCompatActivity {
 
@@ -22,14 +15,19 @@ public class HomeActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
+        //Toolbar toolbar = findViewById(R.id.toolbar);
+        //setSupportActionBar(toolbar);
 
         Button trails = (Button) findViewById(R.id.trails);
         trails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.fragment_item_list);
+                //setContentView(R.layout.fragment_item_list);
+                //Fragment trails = new TrailListFragment();
+                //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                //fragmentTransaction.replace(R.id.container,trails).commit();
+                startActivity(new Intent(HomeActivity.this, ListaTrailsActivity.class));;
+
             }
         });
 
@@ -37,7 +35,12 @@ public class HomeActivity extends AppCompatActivity {
         pins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                setContentView(R.layout.fragment_item_list2);
+                //setContentView(R.layout.fragment_item_list2);
+                //Fragment pins = new PinListFragment();
+                //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                //fragmentTransaction.replace(R.id.container,pins).commit();
+                startActivity(new Intent(HomeActivity.this, ListaPinsActivity.class));;
+
             }
         });
     }

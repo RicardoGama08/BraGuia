@@ -49,8 +49,8 @@ public class LoginActivity extends AppCompatActivity {
                 else{
                     alert("Login ou senha incorreta");
                 }*/
-                //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
-                setContentView(R.layout.activity_home);
+                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                //setContentView(R.layout.activity_home);
 
 
             }

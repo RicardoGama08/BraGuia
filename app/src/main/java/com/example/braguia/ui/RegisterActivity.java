@@ -45,8 +45,8 @@ public class RegisterActivity extends AppCompatActivity {
                 String email = tEmail.getText().toString();
                 String pass = tSenha.getText().toString();*/
 
-                //startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                setContentView(R.layout.activity_home);
+                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                //setContentView(R.layout.activity_home);
 
             }
         });
