@@ -3,6 +3,7 @@ package com.example.braguia.model;
 import android.view.textclassifier.SelectionEvent;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -19,4 +20,7 @@ public interface TrailDao {
 
     @Query("DELETE FROM trail_table")
     void deleteAll();
+
+    //@Query("SELECT id FROM trail_table")
+    //LiveData<Trail> getTrail(Integer id);
 }

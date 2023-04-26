@@ -22,13 +22,13 @@ public class Trail{
     @NonNull
     //@SerializedName("id")
     @ColumnInfo(name = "id")
-    String id;
+    Integer id;
 
     @SerializedName("trail_img")
     @ColumnInfo(name = "trail_img")
     String image_url;
 
-    public Trail(@NonNull String id, String image_url) {
+    public Trail(@NonNull Integer id, String image_url) {
         this.id = id;
         this.image_url = image_url;
     }
@@ -37,11 +37,11 @@ public class Trail{
 
     }
 
-    public String getId() {
+    public Integer getId() {
         return id;
     }
 
-    public void setId(String id) {
+    public void setId(Integer id) {
         this.id = id;
     }
 

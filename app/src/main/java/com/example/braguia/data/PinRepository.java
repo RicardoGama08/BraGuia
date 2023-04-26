@@ -4,6 +4,8 @@ import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+
 import com.example.braguia.model.GuideDatabase;
 import com.example.braguia.model.Pin;
 import com.example.braguia.model.PinAPI;
@@ -20,14 +22,34 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class PinRepository {
 
     public PinDao pinDao;
-    public LiveData<List<Pin>> allPins;
+    public MediatorLiveData<List<Pin>> allPins;
     private GuideDatabase database;
+    private MediatorLiveData<Pin> pin;
 
     public PinRepository(Application application){
         database = GuideDatabase.getDatabase(application);
         pinDao = database.pinDao();
-        init();
-        allPins = pinDao.getPins();
+        //init();
+        allPins = new MediatorLiveData<>();
+        allPins.addSource(
+                pinDao.getPins(), localPins -> {
+                    // TODO: ADD cache validation logic
+                    if (localPins != null && localPins.size() > 0) {
+                        allPins.setValue(localPins);
+                    } else {
+                        makeRequest();
+                    }
+                }
+        );
+        /*pin = new MediatorLiveData<>();
+        pin.addSource(
+                pinDao.getPin(pin.getValue().getId()),localPin -> {
+                    if(localPin != null)
+                        pin.setValue(localPin);
+                    else makeRequest();
+                }
+        );*/
+        //pin = pinDao.getPin(pin.getValue().getId());
     }
 
     public void insert(List<Pin> pins){
@@ -62,6 +84,24 @@ public class PinRepository {
 
             @Override
             public void onFailure(Call<List<Pin>> call, Throwable t) {
+                Log.e("main", "onFailure: " + t.getMessage());
+            }
+        });
+
+        Call<Pin> call2=api.getPin();
+        call2.enqueue(new retrofit2.Callback<Pin>() {
+            @Override
+            public void onResponse(Call<Pin> call, Response<Pin> response) {
+                if(response.isSuccessful()) {
+                    insert((List<Pin>) response.body());
+                }
+                else{
+                    Log.e("main", "onFailure: "+response.errorBody());
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Pin> call, Throwable t) {
                 Log.e("main", "onFailure: " + t.getMessage());
             }
         });

@@ -1,6 +1,7 @@
 package com.example.braguia.model;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
@@ -26,6 +27,6 @@ public interface UserDao {
     @Query("DELETE FROM user_table")
     void deleteAll();
 
-    @Query("SELECT * FROM user_table ORDER BY user ASC")
-    LiveData<List<User>> getAlphabetizedWords();
+    @Query("SELECT DISTINCT * FROM user_table")
+    LiveData<List<User>> getUsers();
 }

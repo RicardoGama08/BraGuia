@@ -10,4 +10,7 @@ public interface TrailAPI {
     @GET("trails")
     Call<List<Trail>> getTrails();
 
+    @GET("trail/id")
+    Call<Trail> getTrail();
+
 }

@@ -5,6 +5,8 @@ import android.os.AsyncTask;
 import android.util.Log;
 
 import androidx.lifecycle.LiveData;
+import androidx.lifecycle.MediatorLiveData;
+
 import retrofit2.Call;
 import java.util.List;
 import retrofit2.Response;
@@ -19,13 +21,25 @@ import com.example.braguia.model.GuideDatabase;
 
 public class UserRepository {
     private UserDao mUserDao;
-    private LiveData<List<User>> mAllUsers;
+    private MediatorLiveData<List<User>> mAllUsers;
+    private GuideDatabase database;
+
 
     public UserRepository(Application application) {
-        GuideDatabase db = GuideDatabase.getDatabase(application);
-        mUserDao = db.userDao();
-        init();
-        mAllUsers = mUserDao.getAlphabetizedWords();
+        database = GuideDatabase.getDatabase(application);
+        mUserDao = database.userDao();
+        //init();
+        mAllUsers = new MediatorLiveData<>();
+        mAllUsers.addSource(
+                mUserDao.getUsers(), localUsers -> {
+                    // TODO: ADD cache validation logic
+                    if (localUsers != null && localUsers.size() > 0) {
+                        mAllUsers.setValue(localUsers);
+                    } else {
+                        makeRequest();
+                    }
+                }
+        );
     }
 
     public LiveData<List<User>> getAllUsers() {

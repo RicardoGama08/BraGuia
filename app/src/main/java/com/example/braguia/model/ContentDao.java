@@ -1,22 +1,22 @@
 package com.example.braguia.model;
+
 import androidx.lifecycle.LiveData;
 import androidx.room.Dao;
 import androidx.room.Insert;
 import androidx.room.OnConflictStrategy;
 import androidx.room.Query;
+
 import java.util.List;
 
 @Dao
-public interface PinDao {
+public interface ContentDao {
+
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    void insert(List<Pin> cats);
+    void insert(List<Content> cats);
 
-    @Query("SELECT DISTINCT * FROM pin_table")
-    LiveData<List<Pin>> getPins();
+    @Query("SELECT DISTINCT * FROM content_table")
+    LiveData<List<Content>> getContent();
 
-    @Query("DELETE FROM pin_table")
+    @Query("DELETE FROM content_table")
     void deleteAll();
-
-    //@Query("SELECT id FROM pin_table")
-    //LiveData<Pin> getPin(Integer id);
 }

@@ -10,4 +10,7 @@ public interface PinAPI {
     @GET("pins")
     Call<List<Pin>> getPins();
 
+    @GET("pin/id")
+    Call<Pin> getPin();
+
 }

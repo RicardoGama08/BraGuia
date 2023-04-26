@@ -23,11 +23,12 @@ public class TrailRepository {
     public TrailDao trailDao;
     public MediatorLiveData<List<Trail>> allTrails;
     private GuideDatabase database;
+    private MediatorLiveData<Trail> trail;
 
     public TrailRepository(Application application){
         database = GuideDatabase.getDatabase(application);
         trailDao = database.trailDao();
-        init();
+        //init();
         allTrails = new MediatorLiveData<>();
         allTrails.addSource(
                 trailDao.getTrails(), localTrails -> {
@@ -39,6 +40,15 @@ public class TrailRepository {
                     }
                 }
         );
+        /*trail = new MediatorLiveData<>();
+        trail.addSource(
+                trailDao.getTrail(trail.getValue().getId()),localTrail -> {
+                    if(localTrail != null)
+                        trail.setValue(localTrail);
+                    else makeRequest();
+                }
+        );*/
+        //trail = trailDao.getTrail(trail.getValue().getId());
     }
 
     public void insert(List<Trail> trails){
@@ -80,6 +90,31 @@ public class TrailRepository {
 
             @Override
             public void onFailure(Call<List<Trail>> call, Throwable t) {
+                Log.e("main", "onFailure: " + t.getMessage());
+            }
+        });
+
+        Call<Trail> call2=api.getTrail();
+        call2.enqueue(new retrofit2.Callback<Trail>() {
+            @Override
+            public void onResponse(Call<Trail> call, Response<Trail> response) {
+                if(response.isSuccessful()) {
+                    insert((List<Trail>) response.body());
+                }
+                else{
+                    String contentType = response.headers().get("content-type");
+                    if (contentType != null && contentType.contains("text/html")) {
+                        // handle HTML error response
+                        Log.e("main", "Error response: " + response.code() + " " + response.message());
+                    } else {
+                        // handle other error response
+                        Log.e("main", "Error response: " + response.code() + " " + response.message() + " " + response.errorBody());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<Trail> call, Throwable t) {
                 Log.e("main", "onFailure: " + t.getMessage());
             }
         });
