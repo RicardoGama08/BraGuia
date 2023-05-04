@@ -3,16 +3,15 @@ package com.example.braguia.data;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
+import android.widget.TextView;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-
+import com.example.braguia.R;
 import com.example.braguia.model.GuideDatabase;
 import com.example.braguia.model.Trail;
 import com.example.braguia.model.TrailAPI;
 import com.example.braguia.model.TrailDao;
 import retrofit2.Call;
-
-import java.io.IOException;
 import java.util.List;
 import retrofit2.Response;
 import retrofit2.Retrofit;
@@ -75,6 +74,10 @@ public class TrailRepository {
             public void onResponse(Call<List<Trail>> call, Response<List<Trail>> response) {
                 if(response.isSuccessful()) {
                     insert(response.body());
+
+                    /*List<Trail> trails = response.body();
+                    TextView myTextView = findViewById(R.id.desc);
+                    myTextView.setText(trails.get(0).getId());*/
                 }
                 else{
                     String contentType = response.headers().get("content-type");

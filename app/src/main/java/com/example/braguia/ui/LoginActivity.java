@@ -37,22 +37,20 @@ public class LoginActivity extends AppCompatActivity {
         btLogin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*TextView tLogin = (TextView) findViewById(R.id.tLogin);
-                TextView tEmail = (TextView) findViewById(R.id.tEmail);
+                TextView tLogin = (TextView) findViewById(R.id.tLogin);
                 TextView tSenha = (TextView) findViewById(R.id.tSenha);
                 String login = tLogin.getText().toString();
-                String email = tEmail.getText().toString();
                 String pass = tSenha.getText().toString();
-                if(login.equals("premium_user") && pass.equals("paiduser") && email.equals("123")){
+                if(login.equals("premium_user") && pass.equals("paiduser")){
                     alert("Login realizado com sucesso");
                 }
-                else{
+                else if(login.equals("standard_user") && pass.equals("cheapuser")){
+                    alert("Login realizado com sucesso");
+                }else{
                     alert("Login ou senha incorreta");
-                }*/
+                }
                 startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 //setContentView(R.layout.activity_home);
-
-
             }
         });
     }

@@ -31,54 +31,41 @@
 
         <ImageView
             android:id="@+id/imageView"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
+            android:layout_width="442dp"
+            android:layout_height="230dp"
             android:layout_marginTop="77dp"
             android:layout_marginBottom="18dp"
             app:layout_constraintBottom_toTopOf="@+id/textView6"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="0.439"
-            app:srcCompat="@drawable/ic_launcher_background"
+            app:srcCompat="@drawable/braga"
             tools:ignore="MissingConstraints" />
 
         <TextView
             android:id="@+id/textView6"
-            android:layout_width="0dp"
-            android:layout_height="0dp"
+            android:layout_width="396dp"
+            android:layout_height="372dp"
             android:layout_marginStart="28dp"
             android:layout_marginEnd="28dp"
-            android:layout_marginBottom="151dp"
             android:text="@string/descricao"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/imageView"
             tools:ignore="MissingConstraints" />
 
-        <com.google.android.material.chip.ChipGroup
-            android:id="@+id/chipGroup"
-            android:layout_width="300dp"
-            android:layout_height="62dp"
+        <LinearLayout
+            android:id="@+id/linearLayout5"
+            android:layout_width="312dp"
+            android:layout_height="50dp"
             android:layout_gravity="center"
-            android:layout_marginBottom="70dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.495"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView6"
-            app:layout_constraintVertical_bias="1.0"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="68dp"
+            tools:layout_editor_absoluteY="737dp"
             tools:ignore="MissingConstraints">
-
-            <Button
-                android:id="@+id/trails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ffff0000"
-                android:text="@string/trails"
-                android:textColor="#ffffff" />
 
             <Button
                 android:id="@+id/pins"
@@ -87,7 +74,15 @@
                 android:background="#ffff0000"
                 android:text="@string/pins"
                 android:textColor="#ffffff" />
-        </com.google.android.material.chip.ChipGroup>
+
+            <Button
+                android:id="@+id/trails"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="#ffff0000"
+                android:text="@string/trails"
+                android:textColor="#ffffff" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

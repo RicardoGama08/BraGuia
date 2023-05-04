@@ -1,6 +1,8 @@
 package com.example.braguia.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -23,10 +25,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //setContentView(R.layout.fragment_item_list);
-                //Fragment trails = new TrailListFragment();
-                //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                //fragmentTransaction.replace(R.id.container,trails).commit();
-                startActivity(new Intent(HomeActivity.this, ListaTrailsActivity.class));;
+                Fragment trails = new TrailListFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container,trails).commit();
+                //startActivity(new Intent(HomeActivity.this, ListaTrailsActivity.class));;
 
             }
         });
@@ -36,10 +38,10 @@ public class HomeActivity extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 //setContentView(R.layout.fragment_item_list2);
-                //Fragment pins = new PinListFragment();
-                //FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
-                //fragmentTransaction.replace(R.id.container,pins).commit();
-                startActivity(new Intent(HomeActivity.this, ListaPinsActivity.class));;
+                Fragment pins = new PinListFragment();
+                FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.replace(R.id.container,pins).commit();
+                //startActivity(new Intent(HomeActivity.this, ListaPinsActivity.class));;
 
             }
         });

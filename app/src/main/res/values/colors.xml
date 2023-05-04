@@ -10,6 +10,8 @@
     <color name="buttonLabel">#FFFFFF</color>
     <color name="red">#ffff0000</color>
     <color name="green">#30D158</color>
+    <color name="cyan_dark">#1B434D</color>
+
 
 
 </resources>
