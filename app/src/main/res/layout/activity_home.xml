@@ -8,80 +8,73 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <com.google.android.material.appbar.AppBarLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:theme="@style/Theme.BraGuia.AppBarOverlay">
-
-        <androidx.appcompat.widget.Toolbar
-            android:id="@+id/toolbar"
-            android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.BraGuia.PopupOverlay" />
-
-    </com.google.android.material.appbar.AppBarLayout>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/constraintLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="726dp"
         app:layout_anchor="@+id/constraintLayout"
         app:layout_anchorGravity="center">
 
-        <ImageView
-            android:id="@+id/imageView"
-            android:layout_width="442dp"
-            android:layout_height="230dp"
-            android:layout_marginTop="77dp"
-            android:layout_marginBottom="18dp"
-            app:layout_constraintBottom_toTopOf="@+id/textView6"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.439"
-            app:srcCompat="@drawable/braga"
-            tools:ignore="MissingConstraints" />
-
-        <TextView
-            android:id="@+id/textView6"
-            android:layout_width="396dp"
-            android:layout_height="372dp"
-            android:layout_marginStart="28dp"
-            android:layout_marginEnd="28dp"
-            android:text="@string/descricao"
-            app:layout_constraintBottom_toTopOf="@+id/linearLayout5"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.0"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            tools:ignore="MissingConstraints" />
-
         <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="312dp"
-            android:layout_height="50dp"
-            android:layout_gravity="center"
-            android:orientation="horizontal"
-            tools:layout_editor_absoluteX="68dp"
-            tools:layout_editor_absoluteY="737dp"
-            tools:ignore="MissingConstraints">
+            android:id="@+id/linearLayout7"
+            android:layout_width="357dp"
+            android:layout_height="770dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
 
-            <Button
-                android:id="@+id/pins"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ffff0000"
-                android:text="@string/pins"
-                android:textColor="#ffffff" />
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="431dp"
+                android:layout_height="294dp"
+                app:srcCompat="@drawable/braga"
+                tools:ignore="MissingConstraints" />
 
-            <Button
-                android:id="@+id/trails"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:background="#ffff0000"
-                android:text="@string/trails"
-                android:textColor="#ffffff" />
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:id="@+id/textView6"
+                android:layout_width="match_parent"
+                android:layout_height="251dp"
+                android:text="@string/desc2"
+                tools:ignore="MissingConstraints" />
+
+            <TextView
+                android:id="@+id/textView15"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout5"
+                android:layout_width="315dp"
+                android:layout_height="48dp"
+                android:layout_gravity="center"
+                android:orientation="horizontal"
+                tools:ignore="MissingConstraints">
+
+                <Button
+                    android:id="@+id/pins"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffff0000"
+                    android:text="@string/pins"
+                    android:textColor="#ffffff" />
+
+                <Button
+                    android:id="@+id/trails"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="#ffff0000"
+                    android:text="@string/trails"
+                    android:textColor="#ffffff" />
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

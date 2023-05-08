@@ -43,13 +43,15 @@ public class LoginActivity extends AppCompatActivity {
                 String pass = tSenha.getText().toString();
                 if(login.equals("premium_user") && pass.equals("paiduser")){
                     alert("Login realizado com sucesso");
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }
                 else if(login.equals("standard_user") && pass.equals("cheapuser")){
                     alert("Login realizado com sucesso");
+                    startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }else{
                     alert("Login ou senha incorreta");
                 }
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 //setContentView(R.layout.activity_home);
             }
         });
