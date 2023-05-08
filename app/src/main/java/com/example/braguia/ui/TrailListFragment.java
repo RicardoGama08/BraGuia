@@ -59,7 +59,7 @@ public class TrailListFragment extends Fragment {
         return view;
     }
 
-    private void loadRecyclerView(View view, List<Trail> x){
+    private void loadRecyclerView(View view, List<Trail> t){
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
@@ -68,7 +68,7 @@ public class TrailListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new TrailsRecyclerViewAdapter(trails));
+            recyclerView.setAdapter(new TrailsRecyclerViewAdapter(t));
         }
     }
 

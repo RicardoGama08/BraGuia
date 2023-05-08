@@ -34,20 +34,22 @@ public class RegisterActivity extends AppCompatActivity {
         btReg.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                /*TextView tLogin = (TextView) findViewById(R.id.tLogin);
-                TextView tLastName = (TextView) findViewById(R.id.tLast);
-                TextView tFirstName = (TextView) findViewById(R.id.tFirst);
-                TextView tEmail = (TextView) findViewById(R.id.tEmail);
+                TextView tlogin = (TextView) findViewById(R.id.tLogin);
+                TextView tfirst = (TextView) findViewById(R.id.tFirst);
+                TextView tlast = (TextView) findViewById(R.id.tLast);
+                TextView temail = (TextView) findViewById(R.id.tEmail);
                 TextView tSenha = (TextView) findViewById(R.id.tSenha);
-                String login = tLogin.getText().toString();
-                String lastName = tLastName.getText().toString();
-                String firstName = tFirstName.getText().toString();
-                String email = tEmail.getText().toString();
-                String pass = tSenha.getText().toString();*/
-
-                startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
-                //setContentView(R.layout.activity_home);
-
+                String login = tlogin.getText().toString();
+                String first = tfirst.getText().toString();
+                String last = tlast.getText().toString();
+                String email = temail.getText().toString();
+                String pass = tSenha.getText().toString();
+                if(!login.isEmpty() && !pass.isEmpty() && !email.isEmpty() && !last.isEmpty() && !first.isEmpty()){
+                    alert("Registo realizado com sucesso");
+                    startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
+                }else{
+                    alert("Registo incorreto");
+                }
             }
         });
 

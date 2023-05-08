@@ -50,12 +50,12 @@ public class PinListFragment extends Fragment {
         pinViewModel.getAllPins().observe(getViewLifecycleOwner(), x -> {
             this.pins.clear();
             this.pins.addAll(x);
-            loadRecyclerView(view);
+            loadRecyclerView(view,x);
         });
         return view;
     }
 
-    private void loadRecyclerView(View view){
+    private void loadRecyclerView(View view, List<Pin> p){
         if (view instanceof RecyclerView) {
             Context context = view.getContext();
             RecyclerView recyclerView = (RecyclerView) view;
@@ -64,7 +64,7 @@ public class PinListFragment extends Fragment {
             } else {
                 recyclerView.setLayoutManager(new GridLayoutManager(context, mColumnCount));
             }
-            recyclerView.setAdapter(new PinRecyclerViewAdapter(pins));
+            recyclerView.setAdapter(new PinRecyclerViewAdapter(p));
         }
     }
 

@@ -14,7 +14,7 @@ public class Pin {
     @NonNull
     //@SerializedName("id")
     @ColumnInfo(name = "id")
-    Integer id;
+    String id;
 
     @SerializedName("pin_img")
     @ColumnInfo(name = "pin_img")
@@ -29,7 +29,7 @@ public class Pin {
     @ColumnInfo(name="propriedades")
     String propriedades;
 
-    public Pin(@NonNull Integer id, String image_url, String localizacao, String descricao, String propriedades) {
+    public Pin(@NonNull String id, String image_url, String localizacao, String descricao, String propriedades) {
         this.id = id;
         this.image_url = image_url;
         this.localizacao = localizacao;
@@ -48,11 +48,11 @@ public class Pin {
     }
 
     @NonNull
-    public Integer getId() {
+    public String getId() {
         return id;
     }
 
-    public void setId(@NonNull Integer id) {
+    public void setId(@NonNull String id) {
         this.id = id;
     }
 

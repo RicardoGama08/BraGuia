@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 import retrofit2.Converter;
 
-@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 1, exportSchema = false)
+@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 3, exportSchema = false)
 public abstract class GuideDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
@@ -28,12 +28,26 @@ public abstract class GuideDatabase extends RoomDatabase {
     public static final ExecutorService databaseWriteExecutor =
             Executors.newFixedThreadPool(NUMBER_OF_THREADS);
 
-    public static GuideDatabase getDatabase(final Context context) {
+    /*public static GuideDatabase getDatabase(final Context context) {
         if (INSTANCE == null) {
             synchronized (GuideDatabase.class) {
                 if (INSTANCE == null) {
                     INSTANCE = Room.databaseBuilder(context.getApplicationContext(),
                                     GuideDatabase.class, "guide_database").addCallback(callback)
+                            .build();
+                }
+            }
+        }
+        return INSTANCE;
+    }*/
+
+    public static GuideDatabase getDatabase(Context context) {
+        if (INSTANCE == null) {
+            synchronized (GuideDatabase.class) {
+                if (INSTANCE == null) {
+                    INSTANCE = Room.databaseBuilder(context, GuideDatabase.class, "guide_database")
+                            .fallbackToDestructiveMigration()
+                            .addCallback(callback)
                             .build();
                 }
             }
