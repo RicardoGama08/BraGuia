@@ -14,6 +14,10 @@ import androidx.fragment.app.Fragment;
 
 import com.example.braguia.R;
 import com.example.braguia.model.Trail;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.MapView;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -23,9 +27,9 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SingleTrail extends Fragment {
+public class SingleTrail extends Fragment implements OnMapReadyCallback {
 
-    @BindView(R.id.img2)
+    /*@BindView(R.id.img2)
     ImageView img1;
 
     @BindView(R.id.img3)
@@ -35,18 +39,21 @@ public class SingleTrail extends Fragment {
     ImageView img3;
 
     @BindView(R.id.img4)
-    ImageView img4;
+    ImageView img4;*/
     @BindView(R.id.desc)
     TextView descricao;
 
-    @BindView(R.id.mapa)
-    ImageView mapa;
+    //@BindView(R.id.mapa)
+    //ImageView mapa;
 
     @BindView(R.id.media)
     TextView midia;
 
     private static final String ARG_TRAIL = "trail";
     private Trail trail;
+
+    private GoogleMap mMap;
+    private SupportMapFragment mapFragment;
 
     public SingleTrail() {}
 
@@ -77,8 +84,11 @@ public class SingleTrail extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.single_trail, container, false);
-        TextView nameTextView = view.findViewById(R.id.desc);
-        nameTextView.setText(trail.getName());
+        //TextView nameTextView = view.findViewById(R.id.desc);
+        //nameTextView.setText(trail.getName());
+
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this);
         return view;
     }
 
@@ -119,5 +129,10 @@ public class SingleTrail extends Fragment {
         questionImage.setImageBitmap(BitmapFactory.decodeResource(this.getResources(),
                 quest.getImageId()));
     }*/
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+    }
 
 }
