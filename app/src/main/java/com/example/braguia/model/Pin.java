@@ -1,5 +1,8 @@
 package com.example.braguia.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import androidx.annotation.NonNull;
 import androidx.room.ColumnInfo;
 import androidx.room.Entity;
@@ -9,7 +12,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 @Entity(tableName = "pin_table",indices = @Index(value = {"id"},unique = true))
-public class Pin {
+public class Pin implements Parcelable {
     @PrimaryKey
     @NonNull
     //@SerializedName("id")
@@ -49,6 +52,13 @@ public class Pin {
     }
 
     public Pin(List<Pin> pins) {
+    }
+
+    protected Pin(Parcel in) {
+        id = in.readString();
+        name = in.readString();
+        //image_url = in.read();
+        //in.readStringArray(alternatives);
     }
 
     @NonNull
@@ -99,4 +109,42 @@ public class Pin {
     public void setPropriedades(String propriedades) {
         this.propriedades = propriedades;
     }
+
+    public static Parcelable.Creator<Pin> getCREATOR() {
+        return CREATOR;
+    }
+
+    /*public String getAnswer() {
+        return this.alternatives.length > 0 ? this.alternatives[0] : null;
+    }*/
+
+    public static final Parcelable.Creator<Pin> CREATOR = new Parcelable.Creator<Pin>() {
+
+        @Override
+        public Pin createFromParcel(Parcel in) {
+            return new Pin(in);
+        }
+
+        @Override
+        public Pin[] newArray(int size) {
+            return new Pin[size];
+        }
+    };
+
+    @Override
+    public String toString() {
+        return name + id;
+    }
+
+    public int describeContents() {
+        return 0;
+    }
+
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeString(id);
+        parcel.writeString(name);
+        //parcel.writeInt(imageId);
+        //parcel.writeStringArray(alternatives);
+    }
+
 }

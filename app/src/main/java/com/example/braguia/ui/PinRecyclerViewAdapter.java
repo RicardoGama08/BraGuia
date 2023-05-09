@@ -1,7 +1,10 @@
 package com.example.braguia.ui;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -9,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.braguia.R;
 import com.example.braguia.model.Pin;
+import com.example.braguia.model.Trail;
 import com.squareup.picasso.Picasso;
 import java.util.List;
 
@@ -33,6 +37,23 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
         holder.mIdView.setText(mValues.get(position).getId());
         holder.nameView.setText(mValues.get(position).getName());
         //Picasso.get().load(mValues.get(position).getImage_url().replace("http", "https")).into(holder.imageView);
+
+        final Context context = holder.mView.getContext();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    Pin selectedPin = mValues.get(position);
+                    SinglePin fragment = SinglePin.newInstance(selectedPin);
+                    FragmentTransaction transaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.container, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            }
+        });
+
     }
 
     @Override
@@ -50,7 +71,7 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = (TextView) view.findViewById(R.id.item_number);
+            mIdView = view.findViewById(R.id.item_number);
             //imageView = view.findViewById(R.id.cardimage);
             nameView = view.findViewById(R.id.nameP);
         }

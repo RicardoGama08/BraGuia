@@ -14,6 +14,9 @@ import androidx.fragment.app.Fragment;
 import com.example.braguia.R;
 import com.example.braguia.model.Pin;
 import com.example.braguia.model.Trail;
+import com.google.android.gms.maps.GoogleMap;
+import com.google.android.gms.maps.OnMapReadyCallback;
+import com.google.android.gms.maps.SupportMapFragment;
 
 import org.w3c.dom.Text;
 
@@ -25,7 +28,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class SinglePin extends Fragment {
+public class SinglePin extends Fragment implements OnMapReadyCallback {
 
     @BindView(R.id.pin1)
     ImageView img1;
@@ -54,14 +57,46 @@ public class SinglePin extends Fragment {
     //@BindView(R.id.button_bottom_right)
     //CustomButton buttonBottomRight;
 
+    private static final String ARG_PIN = "pin";
     Pin pin;
+    private GoogleMap mMap;
+    private SupportMapFragment mapFragment;
 
-    @Override
+    public SinglePin() {}
+
+    public static SinglePin newInstance(Pin pin) {
+        SinglePin fragment = new SinglePin();
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_PIN, pin);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            pin = getArguments().getParcelable(ARG_PIN);
+        }
+    }
+
+    /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.single_pin, container, false);
         ButterKnife.bind(this, v);
         return v;
+    }*/
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.single_pin, container, false);
+        //TextView nameTextView = view.findViewById(R.id.desc);
+        //nameTextView.setText(trail.getName());
+
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this);
+        return view;
     }
 
     /*@OnClick({ R.id.button_top_left, R.id.button_top_right, R.id.button_bottom_left,
@@ -100,5 +135,10 @@ public class SinglePin extends Fragment {
         questionImage.setImageBitmap(BitmapFactory.decodeResource(this.getResources(),
                 quest.getImageId()));
     }*/
+
+    @Override
+    public void onMapReady(GoogleMap googleMap) {
+        mMap = googleMap;
+    }
 
 }
