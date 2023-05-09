@@ -23,5 +23,6 @@
     <string name="add_pin" />
     <string name="add_trail" />
     <string name="action_settings">Definições</string>
+    <string name="first_fragment_label" />
 
 </resources>

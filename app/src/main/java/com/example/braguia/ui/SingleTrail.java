@@ -2,6 +2,7 @@ package com.example.braguia.ui;
 
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -44,17 +45,43 @@ public class SingleTrail extends Fragment {
     @BindView(R.id.media)
     TextView midia;
 
-    //@BindView(R.id.button_top_left)
-    //CustomButton buttonTopLeft;
-    Trail trail;
+    private static final String ARG_TRAIL = "trail";
+    private Trail trail;
 
-    @Override
+    public SingleTrail() {}
+
+    public static SingleTrail newInstance(Trail trail) {
+        SingleTrail fragment = new SingleTrail();
+        Bundle args = new Bundle();
+        args.putParcelable(ARG_TRAIL, trail);
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    public void onCreate(Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        if (getArguments() != null) {
+            trail = getArguments().getParcelable(ARG_TRAIL);
+        }
+    }
+
+    /*@Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View v = inflater.inflate(R.layout.single_trail, container, false);
         ButterKnife.bind(this, v);
         return v;
+    }*/
+
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container,
+                             Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.single_trail, container, false);
+        TextView nameTextView = view.findViewById(R.id.desc);
+        nameTextView.setText(trail.getName());
+        return view;
     }
+
 
     /*@OnClick({ R.id.button_top_left, R.id.button_top_right, R.id.button_bottom_left,
             R.id.button_bottom_right })

@@ -1,7 +1,14 @@
 package com.example.braguia.ui;
 
+import androidx.fragment.app.FragmentActivity;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
+import android.os.Bundle;
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -36,6 +43,29 @@ public class TrailsRecyclerViewAdapter extends RecyclerView.Adapter<TrailsRecycl
         Picasso.get().load(mValues.get(position)
                         .getUrl().replace("http", "https"))
                 .into(holder.imageView);
+
+        final Context context = holder.mView.getContext();
+        holder.itemView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                int position = holder.getAdapterPosition();
+                if (position != RecyclerView.NO_POSITION) {
+                    Trail selectedTrail = mValues.get(position);
+                    SingleTrail fragment = SingleTrail.newInstance(selectedTrail);
+                    FragmentTransaction transaction = ((FragmentActivity) context).getSupportFragmentManager().beginTransaction();
+                    transaction.replace(R.id.container, fragment);
+                    transaction.addToBackStack(null);
+                    transaction.commit();
+                }
+            }
+        });
+
+        /*holder.itemView.setOnClickListener( view -> {
+            Bundle bundle = new Bundle();
+            bundle.putParcelable("trail", (Parcelable) mValues.get(position));
+            Navigation.findNavController(view).navigate(R.id.select_trail, bundle);
+        });*/
+
     }
 
     @Override
