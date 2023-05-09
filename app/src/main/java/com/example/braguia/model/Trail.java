@@ -28,6 +28,10 @@ public class Trail{
     @ColumnInfo(name = "trail_img")
     String image_url;
 
+    @ColumnInfo(name = "trail_name")
+    @SerializedName("trail_name")
+    String name;
+
     public Trail(@NonNull String id, String image_url) {
         this.id = id;
         this.image_url = image_url;
@@ -35,6 +39,14 @@ public class Trail{
 
     public Trail(List<Trail> trails) {
 
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getId() {

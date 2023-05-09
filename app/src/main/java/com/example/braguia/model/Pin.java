@@ -20,6 +20,10 @@ public class Pin {
     @ColumnInfo(name = "pin_img")
     String image_url;
 
+    @SerializedName("pin_name")
+    @ColumnInfo(name = "pin_name")
+    String name;
+
     @ColumnInfo(name="localização")
     String localizacao;
 
@@ -54,6 +58,14 @@ public class Pin {
 
     public void setId(@NonNull String id) {
         this.id = id;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public String getImage_url() {

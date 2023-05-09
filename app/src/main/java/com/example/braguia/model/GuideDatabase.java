@@ -16,7 +16,7 @@ import java.util.concurrent.Executors;
 
 import retrofit2.Converter;
 
-@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 3, exportSchema = false)
+@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 6, exportSchema = false)
 public abstract class GuideDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();

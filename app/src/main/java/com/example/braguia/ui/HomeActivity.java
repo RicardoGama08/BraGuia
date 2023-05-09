@@ -1,6 +1,7 @@
 package com.example.braguia.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
@@ -8,6 +9,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.RelativeLayout;
 
 import com.example.braguia.R;
 
@@ -24,11 +26,11 @@ public class HomeActivity extends AppCompatActivity {
         trails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //setContentView(R.layout.fragment_item_list);
+                //setContentView(R.layout.list_trails);
                 Fragment trails = new TrailListFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container,trails).commit();
-                //startActivity(new Intent(HomeActivity.this, ListaTrailsActivity.class));;
+                //startActivity(new Intent(HomeActivity.this, ListaTrailsActivity.class));
 
             }
         });
@@ -37,7 +39,7 @@ public class HomeActivity extends AppCompatActivity {
         pins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //setContentView(R.layout.fragment_item_list2);
+                //setContentView(R.layout.list_pins);
                 Fragment pins = new PinListFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.replace(R.id.container,pins).commit();

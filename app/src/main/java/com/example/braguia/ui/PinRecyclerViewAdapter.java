@@ -23,7 +23,7 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
     @Override
     public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.fragment_item, parent, false);
+                .inflate(R.layout.fragment_item_pins, parent, false);
         return new ViewHolder(view);
     }
 
@@ -31,7 +31,8 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
     public void onBindViewHolder(final ViewHolder holder, int position) {
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getId());
-        Picasso.get().load(mValues.get(position).getImage_url().replace("http", "https")).into(holder.imageView);
+        holder.nameView.setText(mValues.get(position).getName());
+        //Picasso.get().load(mValues.get(position).getImage_url().replace("http", "https")).into(holder.imageView);
     }
 
     @Override
@@ -42,14 +43,16 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
     public class ViewHolder extends RecyclerView.ViewHolder {
         public final View mView;
         public final TextView mIdView;
-        public final ImageView imageView;
+        //public final ImageView imageView;
+        public final TextView nameView;
         public Pin mItem;
 
         public ViewHolder(View view) {
             super(view);
             mView = view;
             mIdView = (TextView) view.findViewById(R.id.item_number);
-            imageView = view.findViewById(R.id.cardimage);
+            //imageView = view.findViewById(R.id.cardimage);
+            nameView = view.findViewById(R.id.nameP);
         }
 
         @Override
