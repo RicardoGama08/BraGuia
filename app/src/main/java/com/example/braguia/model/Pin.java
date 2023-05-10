@@ -18,43 +18,40 @@ public class Pin implements Parcelable {
     //@SerializedName("id")
     @ColumnInfo(name = "id")
     String id;
-
     @SerializedName("pin_img")
     @ColumnInfo(name = "pin_img")
     String image_url;
-
     @SerializedName("pin_name")
     @ColumnInfo(name = "pin_name")
     String name;
-
     @SerializedName("pin_desc")
     @ColumnInfo(name = "pin_desc")
     String desc;
-
     @SerializedName("pin_lat")
     @ColumnInfo(name = "pin_lat")
     Double lat;
-
     @SerializedName("pin_lng")
     @ColumnInfo(name = "pin_lng")
     Double lng;
-
     @SerializedName("pin_alt")
     @ColumnInfo(name = "pin_alt")
     float alt;
 
-    @ColumnInfo(name="propriedades")
-    String propriedades;
+    @SerializedName("rel_pin")
+    @ColumnInfo(name = "rel_pin")
+    List<Property> rel_pin;
+
+    @SerializedName("media")
+    @ColumnInfo(name = "media")
+    List<Content> media;
 
     public Pin(@NonNull String id, String image_url, String propriedades) {
         this.id = id;
         this.image_url = image_url;
-        this.propriedades = propriedades;
     }
 
     public Pin(){
         this.image_url = "";
-        this.propriedades = "";
     }
 
     public Pin(List<Pin> pins) {
@@ -124,12 +121,12 @@ public class Pin implements Parcelable {
         this.desc = descricao;
     }
 
-    public String getPropriedades() {
-        return propriedades;
+    public List<Content> getMedia() {
+        return media;
     }
 
-    public void setPropriedades(String propriedades) {
-        this.propriedades = propriedades;
+    public void setMedia(List<Content> media) {
+        this.media = media;
     }
 
     public static Parcelable.Creator<Pin> getCREATOR() {
@@ -169,4 +166,12 @@ public class Pin implements Parcelable {
         //parcel.writeStringArray(alternatives);
     }
 
+    public String createMapLink() {
+        String link = "https://www.google.com/maps/@"
+                + this.lat + ","
+                + this.lng + ","
+                + "18z" + ","
+                + this.alt + "m";
+        return link;
+    }
 }

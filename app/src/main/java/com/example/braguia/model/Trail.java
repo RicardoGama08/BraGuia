@@ -36,6 +36,26 @@ public class Trail implements Parcelable{
     @SerializedName("trail_name")
     String name;
 
+    @ColumnInfo(name = "trail_desc")
+    @SerializedName("trail_desc")
+    String desc;
+
+    @ColumnInfo(name = "trail_duration")
+    @SerializedName("trail_duration")
+    Double duration;
+
+    @ColumnInfo(name = "trail_difficulty")
+    @SerializedName("trail_difficulty")
+    String difficulty;
+
+    @ColumnInfo(name = "rel_trail")
+    @SerializedName("rel_trail")
+    List<Property> rel_trail;
+
+    @ColumnInfo(name = "edges")
+    @SerializedName("edges")
+    List<Edges> edges;
+
     //public String [] alternatives;
 
     public Trail(@NonNull String id, String image_url) {
@@ -52,8 +72,33 @@ public class Trail implements Parcelable{
     protected Trail(Parcel in) {
         id = in.readString();
         name = in.readString();
+        difficulty = in.readString();
         //image_url = in.read();
         //in.readStringArray(alternatives);
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String desc) {
+        this.desc = desc;
+    }
+
+    public Double getDuration() {
+        return duration;
+    }
+
+    public void setDuration(Double duration) {
+        this.duration = duration;
+    }
+
+    public String getDifficulty() {
+        return difficulty;
+    }
+
+    public void setDifficulty(String difficulty) {
+        this.difficulty = difficulty;
     }
 
     public String getName() {
@@ -78,6 +123,14 @@ public class Trail implements Parcelable{
 
     public void setUrl(String url) {
         this.image_url = url;
+    }
+
+    public List<Edges> getEdges() {
+        return edges;
+    }
+
+    public void setEdges(List<Edges> edges) {
+        this.edges = edges;
     }
 
     @Override
@@ -135,6 +188,7 @@ public class Trail implements Parcelable{
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeString(id);
         parcel.writeString(name);
+        parcel.writeString(difficulty);
         //parcel.writeInt(imageId);
         //parcel.writeStringArray(alternatives);
     }

@@ -32,33 +32,6 @@ import butterknife.ButterKnife;
 import butterknife.OnClick;
 
 public class SinglePin extends Fragment implements OnMapReadyCallback {
-
-    @BindView(R.id.pin1)
-    ImageView img1;
-
-    @BindView(R.id.pin2)
-    ImageView img2;
-
-    @BindView(R.id.pin3)
-    ImageView img3;
-
-    @BindView(R.id.pin4)
-    ImageView img4;
-
-    @BindView(R.id.desc)
-    TextView descricao;
-
-    @BindView(R.id.localizacao)
-    TextView localizacao;
-
-    @BindView(R.id.media)
-    TextView midia;
-
-    @BindView(R.id.propriedades)
-    TextView props;
-
-
-
     private static final String ARG_PIN = "pin";
     Pin pin;
     private GoogleMap mMap;
@@ -96,8 +69,13 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
         //TextView nameTextView = view.findViewById(R.id.desc);
         //nameTextView.setText(trail.getName());
 
-        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
-        mapFragment.getMapAsync(this);
+        TextView mapLinkTextView = view.findViewById(R.id.map_link_textview);
+        String mapLink = pin.createMapLink();
+        mapLinkTextView.setText(mapLink);
+
+        //mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        //mapFragment.getMapAsync(this);
+
         return view;
     }
 
@@ -149,8 +127,6 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
                 .zIndex(altitude);
         googleMap.addMarker(markerOptions);
         googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
-
-
     }
 
 }

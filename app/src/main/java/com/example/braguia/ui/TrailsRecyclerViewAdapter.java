@@ -40,6 +40,7 @@ public class TrailsRecyclerViewAdapter extends RecyclerView.Adapter<TrailsRecycl
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getId());
         holder.nameView.setText(mValues.get(position).getName());
+        holder.difView.setText(mValues.get(position).getDifficulty());
         Picasso.get().load(mValues.get(position)
                         .getUrl().replace("http", "https"))
                 .into(holder.imageView);
@@ -78,6 +79,7 @@ public class TrailsRecyclerViewAdapter extends RecyclerView.Adapter<TrailsRecycl
         public final TextView mIdView;
         public final ImageView imageView;
         public  final TextView nameView;
+        public  final TextView difView;
         public Trail mItem;
 
         public ViewHolder(View view) {
@@ -86,6 +88,7 @@ public class TrailsRecyclerViewAdapter extends RecyclerView.Adapter<TrailsRecycl
             mIdView = view.findViewById(R.id.item_number);
             imageView = view.findViewById(R.id.cardimage);
             nameView = view.findViewById(R.id.nameP);
+            difView = view.findViewById(R.id.dif);
         }
 
         @Override

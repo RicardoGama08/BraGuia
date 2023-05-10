@@ -29,29 +29,8 @@ import butterknife.OnClick;
 
 public class SingleTrail extends Fragment implements OnMapReadyCallback {
 
-    /*@BindView(R.id.img2)
-    ImageView img1;
-
-    @BindView(R.id.img3)
-    ImageView img2;
-
-    @BindView(R.id.img1)
-    ImageView img3;
-
-    @BindView(R.id.img4)
-    ImageView img4;*/
-    @BindView(R.id.desc)
-    TextView descricao;
-
-    //@BindView(R.id.mapa)
-    //ImageView mapa;
-
-    @BindView(R.id.media)
-    TextView midia;
-
     private static final String ARG_TRAIL = "trail";
     private Trail trail;
-
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
 
@@ -89,6 +68,7 @@ public class SingleTrail extends Fragment implements OnMapReadyCallback {
 
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         mapFragment.getMapAsync(this);
+
         return view;
     }
 
