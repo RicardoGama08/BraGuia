@@ -14,9 +14,12 @@ import androidx.fragment.app.Fragment;
 import com.example.braguia.R;
 import com.example.braguia.model.Pin;
 import com.example.braguia.model.Trail;
+import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
+import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.w3c.dom.Text;
 
@@ -54,8 +57,7 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
     @BindView(R.id.propriedades)
     TextView props;
 
-    //@BindView(R.id.button_bottom_right)
-    //CustomButton buttonBottomRight;
+
 
     private static final String ARG_PIN = "pin";
     Pin pin;
@@ -139,6 +141,16 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        LatLng coordinates = new LatLng(pin.getLat(), pin.getLng()); // replace with your desired coordinates
+        float altitude = pin.getAlt(); // set the altitude in meters
+        MarkerOptions markerOptions = new MarkerOptions()
+                .position(coordinates)
+                .title("My Marker")
+                .zIndex(altitude);
+        googleMap.addMarker(markerOptions);
+        googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
+
+
     }
 
 }

@@ -24,5 +24,6 @@
     <string name="add_trail" />
     <string name="action_settings">Definições</string>
     <string name="first_fragment_label" />
+    <string name="ver_perfil">Perfil</string>
 
 </resources>

@@ -88,7 +88,7 @@ public class PinRepository {
             }
         });
 
-        Call<Pin> call2=api.getPin();
+        /*Call<Pin> call2=api.getPin();
         call2.enqueue(new retrofit2.Callback<Pin>() {
             @Override
             public void onResponse(Call<Pin> call, Response<Pin> response) {
@@ -104,7 +104,7 @@ public class PinRepository {
             public void onFailure(Call<Pin> call, Throwable t) {
                 Log.e("main", "onFailure: " + t.getMessage());
             }
-        });
+        });*/
     }
 
 

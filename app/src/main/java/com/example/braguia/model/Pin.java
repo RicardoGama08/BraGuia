@@ -27,27 +27,33 @@ public class Pin implements Parcelable {
     @ColumnInfo(name = "pin_name")
     String name;
 
-    @ColumnInfo(name="localização")
-    String localizacao;
+    @SerializedName("pin_desc")
+    @ColumnInfo(name = "pin_desc")
+    String desc;
 
-    @ColumnInfo(name="descricao")
-    String descricao;
+    @SerializedName("pin_lat")
+    @ColumnInfo(name = "pin_lat")
+    Double lat;
+
+    @SerializedName("pin_lng")
+    @ColumnInfo(name = "pin_lng")
+    Double lng;
+
+    @SerializedName("pin_alt")
+    @ColumnInfo(name = "pin_alt")
+    float alt;
 
     @ColumnInfo(name="propriedades")
     String propriedades;
 
-    public Pin(@NonNull String id, String image_url, String localizacao, String descricao, String propriedades) {
+    public Pin(@NonNull String id, String image_url, String propriedades) {
         this.id = id;
         this.image_url = image_url;
-        this.localizacao = localizacao;
-        this.descricao = descricao;
         this.propriedades = propriedades;
     }
 
     public Pin(){
         this.image_url = "";
-        this.localizacao = "";
-        this.descricao = "";
         this.propriedades = "";
     }
 
@@ -86,20 +92,36 @@ public class Pin implements Parcelable {
         this.image_url = image_url;
     }
 
-    public String getLocalizacao() {
-        return localizacao;
+    public Double getLat() {
+        return lat;
     }
 
-    public void setLocalizacao(String localizacao) {
-        this.localizacao = localizacao;
+    public void setLat(Double lat) {
+        this.lat = lat;
     }
 
-    public String getDescricao() {
-        return descricao;
+    public Double getLng() {
+        return lng;
     }
 
-    public void setDescricao(String descricao) {
-        this.descricao = descricao;
+    public void setLng(Double lng) {
+        this.lng = lng;
+    }
+
+    public float getAlt() {
+        return alt;
+    }
+
+    public void setAlt(float alt) {
+        this.alt = alt;
+    }
+
+    public String getDesc() {
+        return desc;
+    }
+
+    public void setDesc(String descricao) {
+        this.desc = descricao;
     }
 
     public String getPropriedades() {
