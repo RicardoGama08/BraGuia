@@ -34,6 +34,14 @@
             android:exported="false" >
         </activity>
         <activity
+            android:name=".ui.ProfileActivity"
+            android:exported="false" >
+        </activity>
+        <activity
+            android:name=".ui.DefinitionsActivity"
+            android:exported="false" >
+        </activity>
+        <activity
             android:name=".ui.ListaPinsActivity"
             android:parentActivityName=".ui.HomeActivity"
             android:exported="false" >
