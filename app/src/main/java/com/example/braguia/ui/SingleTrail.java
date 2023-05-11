@@ -1,5 +1,6 @@
 package com.example.braguia.ui;
 
+import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.os.Parcelable;
@@ -66,8 +67,12 @@ public class SingleTrail extends Fragment implements OnMapReadyCallback {
         //TextView nameTextView = view.findViewById(R.id.desc);
         //nameTextView.setText(trail.getName());
 
-        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
-        mapFragment.getMapAsync(this);
+        TextView mapLinkTextView = view.findViewById(R.id.map_pin);
+        String mapLink = trail.getEdges().get(1).getEdge_start().createMapLink();
+        mapLinkTextView.setText(mapLink);
+
+        //mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        //mapFragment.getMapAsync(this);
 
         return view;
     }
