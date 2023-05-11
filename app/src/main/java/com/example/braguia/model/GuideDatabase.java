@@ -7,16 +7,12 @@ import androidx.annotation.NonNull;
 import androidx.room.Database;
 import androidx.room.Room;
 import androidx.room.RoomDatabase;
-import androidx.room.TypeConverter;
-import androidx.room.TypeConverters;
 import androidx.sqlite.db.SupportSQLiteDatabase;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-import retrofit2.Converter;
-
-@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 8, exportSchema = false)
+@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 9, exportSchema = false)
 public abstract class GuideDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();

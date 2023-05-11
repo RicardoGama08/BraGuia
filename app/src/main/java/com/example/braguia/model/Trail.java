@@ -1,25 +1,21 @@
 package com.example.braguia.model;
 
-
 import android.os.Parcel;
 import android.os.Parcelable;
-import android.view.ViewGroup;
-
 import androidx.annotation.NonNull;
-import androidx.recyclerview.widget.RecyclerView;
 import androidx.room.ColumnInfo;
-import androidx.room.Embedded;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
 import androidx.room.TypeConverters;
-
+import com.example.braguia.utils.EdgesTypeConverter;
+import com.example.braguia.utils.PropertyListConverter;
 import com.google.gson.annotations.SerializedName;
-
 import java.util.List;
 import java.util.Objects;
 
 @Entity(tableName = "trail_table",indices = @Index(value = {"id"},unique = true))
+@TypeConverters({PropertyListConverter.class, EdgesTypeConverter.class})
 public class Trail implements Parcelable{
 
     @PrimaryKey
@@ -62,7 +58,6 @@ public class Trail implements Parcelable{
         this.id = id;
         this.image_url = image_url;
         //this.alternatives = new String[4];
-
     }
 
     public Trail(List<Trail> trails) {

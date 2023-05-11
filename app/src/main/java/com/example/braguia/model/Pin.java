@@ -8,10 +8,15 @@ import androidx.room.ColumnInfo;
 import androidx.room.Entity;
 import androidx.room.Index;
 import androidx.room.PrimaryKey;
+import androidx.room.TypeConverters;
+
+import com.example.braguia.utils.ContentTypeConverter;
+import com.example.braguia.utils.PropertyListConverter;
 import com.google.gson.annotations.SerializedName;
 import java.util.List;
 
 @Entity(tableName = "pin_table",indices = @Index(value = {"id"},unique = true))
+@TypeConverters({PropertyListConverter.class, ContentTypeConverter.class})
 public class Pin implements Parcelable {
     @PrimaryKey
     @NonNull
