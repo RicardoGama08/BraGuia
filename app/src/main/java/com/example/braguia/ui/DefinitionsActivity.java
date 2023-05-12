@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.example.braguia.R;
 
 public class DefinitionsActivity extends AppCompatActivity {
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

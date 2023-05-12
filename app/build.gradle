@@ -36,7 +36,7 @@ dependencies {
 
     // Room components
     implementation "androidx.room:room-runtime:$rootProject.roomVersion"
-    implementation 'androidx.preference:preference:1.2.0'
+    implementation 'androidx.preference:preference:1.1.1'
     annotationProcessor "androidx.room:room-compiler:$rootProject.roomVersion"
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 

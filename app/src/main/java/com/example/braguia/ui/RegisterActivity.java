@@ -6,7 +6,9 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.view.View;
@@ -50,6 +52,14 @@ public class RegisterActivity extends AppCompatActivity {
                 }else{
                     alert("Registo incorreto");
                 }
+
+                SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", login);
+                editor.putString("email", email);
+                editor.putString("firstname", first);
+                editor.putString("lastname", last);
+                editor.apply();
             }
         });
 

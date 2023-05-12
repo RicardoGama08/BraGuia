@@ -3,7 +3,9 @@ package com.example.braguia.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import android.annotation.SuppressLint;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -129,6 +131,14 @@ public class LoginActivity extends AppCompatActivity {
                 }
                 LoginTask loginTask = new LoginTask(cookieManager);
                 loginTask.execute(login, pass);
+
+                /*SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+                SharedPreferences.Editor editor = sharedPreferences.edit();
+                editor.putString("username", login);
+                //editor.putString("email", email);
+                //editor.putString("firstname", first);
+                //editor.putString("lastname", last);
+                editor.apply();*/
             }
         });
     }
