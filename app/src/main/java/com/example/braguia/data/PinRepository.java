@@ -78,8 +78,14 @@ public class PinRepository {
                     insert(response.body());
                 }
                 else{
-                    Log.e("main", "onFailure: "+response.errorBody());
-                }
+                    String contentType = response.headers().get("content-type");
+                    if (contentType != null && contentType.contains("text/html")) {
+                        // handle HTML error response
+                        Log.e("main", "Error response: " + response.code() + " " + response.message());
+                    } else {
+                        // handle other error response
+                        Log.e("main", "Error response: " + response.code() + " " + response.message() + " " + response.errorBody());
+                    }                }
             }
 
             @Override
