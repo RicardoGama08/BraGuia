@@ -41,7 +41,9 @@ dependencies {
     androidTestImplementation "androidx.room:room-testing:$rootProject.roomVersion"
 
     // Lifecycle components
-    implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion"
+    implementation "androidx.lifecycle:lifecycle-viewmodel:2.5.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:2.5.1"
+    //implementation "androidx.lifecycle:lifecycle-viewmodel:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-livedata:$rootProject.lifecycleVersion"
     implementation "androidx.lifecycle:lifecycle-common-java8:$rootProject.lifecycleVersion"
 
@@ -73,7 +75,5 @@ dependencies {
 
     implementation 'com.google.android.gms:play-services-maps:17.0.0'
 
-    implementation 'androidx.preference:preference:1.1.1'
-
-
+    implementation 'com.squareup.okhttp3:okhttp-urlconnection:4.9.0'
 }

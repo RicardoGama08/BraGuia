@@ -12,7 +12,7 @@ import androidx.sqlite.db.SupportSQLiteDatabase;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 9, exportSchema = false)
+@Database(entities = {User.class,Trail.class,Pin.class,Content.class}, version = 10, exportSchema = false)
 public abstract class GuideDatabase extends RoomDatabase {
 
     public abstract UserDao userDao();
