@@ -5,7 +5,9 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
@@ -47,21 +49,21 @@ public class HomeActivity extends AppCompatActivity {
             String sessionid = intent.getStringExtra("sessionid");
 
             // Use the cookies as needed
-            cookieManager.getCookieStore().add(null, HttpCookie.parse(csrftoken).get(0));
-            cookieManager.getCookieStore().add(null, HttpCookie.parse(sessionid).get(0));
+            //cookieManager.getCookieStore().add(null, HttpCookie.parse(csrftoken).get(0));
+            //cookieManager.getCookieStore().add(null, HttpCookie.parse(sessionid).get(0));
+
+            if (csrftoken != null) {
+                cookieManager.getCookieStore().add(null, HttpCookie.parse(csrftoken).get(0));
+            }
+
+            if (sessionid != null) {
+                cookieManager.getCookieStore().add(null, HttpCookie.parse(sessionid).get(0));
+            }
         }
 
         mOkHttpClient = new OkHttpClient.Builder()
                 .cookieJar(new JavaNetCookieJar(cookieManager))
                 .build();
-
-        /*Button logoutButton = findViewById(R.id.logout_button);
-        logoutButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                new LogoutTask().execute();
-            }
-        });*/
 
         Button trails = (Button) findViewById(R.id.trails);
         trails.setOnClickListener(new View.OnClickListener() {
@@ -142,6 +144,10 @@ public class HomeActivity extends AppCompatActivity {
             return true;
         }else if(id == R.id.logout){
             new LogoutTask().execute();
+            SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.clear();
+            editor.apply();
             return true;
         }
         return super.onOptionsItemSelected(item);

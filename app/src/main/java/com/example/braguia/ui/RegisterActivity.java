@@ -48,18 +48,17 @@ public class RegisterActivity extends AppCompatActivity {
                 String pass = tSenha.getText().toString();
                 if(!login.isEmpty() && !pass.isEmpty() && !email.isEmpty() && !last.isEmpty() && !first.isEmpty()){
                     alert("Registo realizado com sucesso");
+                    SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+                    editor.putString("username", login);
+                    editor.putString("email", email);
+                    editor.putString("firstname", first);
+                    editor.putString("lastname", last);
+                    editor.apply();
                     startActivity(new Intent(RegisterActivity.this, HomeActivity.class));
                 }else{
                     alert("Registo incorreto");
                 }
-
-                SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
-                SharedPreferences.Editor editor = sharedPreferences.edit();
-                editor.putString("username", login);
-                editor.putString("email", email);
-                editor.putString("firstname", first);
-                editor.putString("lastname", last);
-                editor.apply();
             }
         });
 

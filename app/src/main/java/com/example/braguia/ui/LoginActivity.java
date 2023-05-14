@@ -138,13 +138,13 @@ public class LoginActivity extends AppCompatActivity {
                 LoginTask loginTask = new LoginTask(cookieManager);
                 loginTask.execute(login, pass);
 
-                /*SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
+                SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", login);
                 //editor.putString("email", email);
                 //editor.putString("firstname", first);
                 //editor.putString("lastname", last);
-                editor.apply();*/
+                editor.apply();
             }
         });
     }
