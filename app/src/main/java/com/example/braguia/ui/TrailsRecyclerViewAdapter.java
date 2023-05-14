@@ -2,13 +2,9 @@ package com.example.braguia.ui;
 
 import androidx.fragment.app.FragmentActivity;
 import androidx.fragment.app.FragmentTransaction;
-import androidx.navigation.Navigation;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.annotation.SuppressLint;
 import android.content.Context;
-import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -85,9 +81,9 @@ public class TrailsRecyclerViewAdapter extends RecyclerView.Adapter<TrailsRecycl
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
+            mIdView = view.findViewById(R.id.item_id);
             imageView = view.findViewById(R.id.cardimage);
-            nameView = view.findViewById(R.id.nameP);
+            nameView = view.findViewById(R.id.namePin);
             difView = view.findViewById(R.id.dif);
         }
 

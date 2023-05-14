@@ -5,17 +5,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-
 import com.example.braguia.model.Content;
 import com.example.braguia.model.ContentAPI;
 import com.example.braguia.model.ContentDao;
 import com.example.braguia.model.GuideDatabase;
-import com.example.braguia.model.Pin;
-import com.example.braguia.model.PinAPI;
-import com.example.braguia.model.PinDao;
-import com.example.braguia.model.Trail;
-import com.example.braguia.model.TrailAPI;
-import com.example.braguia.model.TrailDao;
 import retrofit2.Call;
 import java.util.List;
 import retrofit2.Response;
@@ -49,12 +42,11 @@ public class ContentRepository {
         new InsertAsyncTask(contentDao).execute(content);
     }
 
-    public void init(){
-        // TODO add cache validation strategy
+    /*public void init(){
         if(allContent == null || allContent.getValue() == null || allContent.getValue().isEmpty()){
             makeRequest();
         }
-    }
+    }*/
 
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()

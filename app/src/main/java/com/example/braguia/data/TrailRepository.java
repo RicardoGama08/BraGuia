@@ -3,10 +3,8 @@ package com.example.braguia.data;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
-import android.widget.TextView;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-import com.example.braguia.R;
 import com.example.braguia.model.GuideDatabase;
 import com.example.braguia.model.Trail;
 import com.example.braguia.model.TrailAPI;
@@ -22,7 +20,7 @@ public class TrailRepository {
     public TrailDao trailDao;
     public MediatorLiveData<List<Trail>> allTrails;
     private GuideDatabase database;
-    private MediatorLiveData<Trail> trail;
+    //private MediatorLiveData<Trail> trail;
 
     public TrailRepository(Application application){
         database = GuideDatabase.getDatabase(application);
@@ -54,12 +52,12 @@ public class TrailRepository {
         new InsertAsyncTask(trailDao).execute(trails);
     }
 
-    public void init(){
+    /*public void init(){
         // TODO add cache validation strategy
         if(allTrails == null || allTrails.getValue() == null || allTrails.getValue().isEmpty()){
             makeRequest();
         }
-    }
+    }*/
 
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()

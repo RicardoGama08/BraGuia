@@ -15,9 +15,7 @@
         <meta-data
             android:name="com.google.android.geo.API_KEY"
             android:value="AIzaSyB23oeY40UHZkRw-iuuj2_uaXjOomANd3s"/>
-        <activity
-            android:name=".ui.NewUserActivity"
-            android:exported="false" />
+
         <activity
             android:name=".ui.LoginActivity"
             android:parentActivityName=".ui.MainActivity"

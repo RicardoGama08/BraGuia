@@ -5,14 +5,10 @@ import android.os.AsyncTask;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-
 import com.example.braguia.model.GuideDatabase;
 import com.example.braguia.model.Pin;
 import com.example.braguia.model.PinAPI;
 import com.example.braguia.model.PinDao;
-import com.example.braguia.model.Trail;
-import com.example.braguia.model.TrailAPI;
-import com.example.braguia.model.TrailDao;
 import retrofit2.Call;
 import java.util.List;
 import retrofit2.Response;
@@ -24,7 +20,7 @@ public class PinRepository {
     public PinDao pinDao;
     public MediatorLiveData<List<Pin>> allPins;
     private GuideDatabase database;
-    private MediatorLiveData<Pin> pin;
+    //private MediatorLiveData<Pin> pin;
 
     public PinRepository(Application application){
         database = GuideDatabase.getDatabase(application);
@@ -56,12 +52,12 @@ public class PinRepository {
         new InsertAsyncTask(pinDao).execute(pins);
     }
 
-    public void init(){
+    /*public void init(){
         // TODO add cache validation strategy
         if(allPins == null || allPins.getValue() == null || allPins.getValue().isEmpty()){
             makeRequest();
         }
-    }
+    }*/
 
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()

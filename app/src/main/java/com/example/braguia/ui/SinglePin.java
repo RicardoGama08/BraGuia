@@ -33,7 +33,7 @@ import butterknife.OnClick;
 
 public class SinglePin extends Fragment implements OnMapReadyCallback {
     private static final String ARG_PIN = "pin";
-    Pin pin;
+    private Pin pin;
     private GoogleMap mMap;
     private SupportMapFragment mapFragment;
 

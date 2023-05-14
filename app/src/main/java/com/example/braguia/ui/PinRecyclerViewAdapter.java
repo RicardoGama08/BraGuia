@@ -8,12 +8,10 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
 import android.widget.TextView;
 import com.example.braguia.R;
 import com.example.braguia.model.Pin;
-import com.example.braguia.model.Trail;
-import com.squareup.picasso.Picasso;
+
 import java.util.List;
 
 public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerViewAdapter.ViewHolder> {
@@ -71,9 +69,9 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
         public ViewHolder(View view) {
             super(view);
             mView = view;
-            mIdView = view.findViewById(R.id.item_number);
+            mIdView = view.findViewById(R.id.item_id);
             //imageView = view.findViewById(R.id.cardimage);
-            nameView = view.findViewById(R.id.nameP);
+            nameView = view.findViewById(R.id.namePin);
         }
 
         @Override
