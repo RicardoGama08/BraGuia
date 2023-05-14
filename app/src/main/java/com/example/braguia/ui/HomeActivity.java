@@ -8,6 +8,7 @@ import androidx.fragment.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -20,22 +21,36 @@ import com.example.braguia.R;
 import java.io.IOException;
 import java.net.CookieManager;
 import java.net.CookiePolicy;
+import java.net.HttpCookie;
 
 import okhttp3.JavaNetCookieJar;
 import okhttp3.OkHttpClient;
 import okhttp3.Request;
+import okhttp3.RequestBody;
 import okhttp3.Response;
 
 public class HomeActivity extends AppCompatActivity {
     private OkHttpClient mOkHttpClient;
+    private CookieManager cookieManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        CookieManager cookieManager = new CookieManager();
+        cookieManager = new CookieManager();
         cookieManager.setCookiePolicy(CookiePolicy.ACCEPT_ALL);
+
+        Intent intent = getIntent();
+        if (intent != null) {
+            String csrftoken = intent.getStringExtra("csrftoken");
+            String sessionid = intent.getStringExtra("sessionid");
+
+            // Use the cookies as needed
+            cookieManager.getCookieStore().add(null, HttpCookie.parse(csrftoken).get(0));
+            cookieManager.getCookieStore().add(null, HttpCookie.parse(sessionid).get(0));
+        }
+
         mOkHttpClient = new OkHttpClient.Builder()
                 .cookieJar(new JavaNetCookieJar(cookieManager))
                 .build();
@@ -80,13 +95,18 @@ public class HomeActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
             Request request = new Request.Builder()
                     .url("https://c5a2-193-137-92-29.eu.ngrok.io/logout")
+                    .header("Cookie", cookieManager.getCookieStore().getCookies().toString())
+                    .post(RequestBody.create(null, new byte[0])) // Use POST method
                     .build();
 
             try (Response response = mOkHttpClient.newCall(request).execute()) {
                 if (response.isSuccessful()) {
                     return true;
+                }else{
+                    Log.e("LogoutTask FAILEDDDDDDDDDDD", "Error response: " + response.code() + " " + response.message());
                 }
             } catch (IOException e) {
+
                 e.printStackTrace();
             }
             return false;

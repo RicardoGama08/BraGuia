@@ -85,7 +85,8 @@ public class PinRepository {
                     } else {
                         // handle other error response
                         Log.e("main", "Error response: " + response.code() + " " + response.message() + " " + response.errorBody());
-                    }                }
+                    }
+                }
             }
 
             @Override

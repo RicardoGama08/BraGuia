@@ -37,6 +37,9 @@ public class LoginActivity extends AppCompatActivity {
         private ProgressDialog progressDialog;
         private final CookieManager cookieManager;
 
+        private String csrftoken;
+        private String sessionid;
+
         public LoginTask(CookieManager cookieManager) {
             this.cookieManager = cookieManager;
         }
@@ -70,11 +73,11 @@ public class LoginActivity extends AppCompatActivity {
                     List<String> cookies = headers.values("Set-Cookie");
                     for (String cookie : cookies) {
                         if (cookie.startsWith("csrftoken")) {
-                            String csrftoken = cookie.split(";")[0];
+                            csrftoken = cookie.split(";")[0];
                             cookieManager.getCookieStore().add(null, HttpCookie.parse(csrftoken).get(0));
                         }
                         if (cookie.startsWith("sessionid")) {
-                            String sessionid = cookie.split(";")[0];
+                            sessionid = cookie.split(";")[0];
                             cookieManager.getCookieStore().add(null, HttpCookie.parse(sessionid).get(0));
                         }
                     }
@@ -91,7 +94,10 @@ public class LoginActivity extends AppCompatActivity {
             progressDialog.dismiss();
             if (success) {
                 alert("Login realizado com sucesso");
-                startActivity(new Intent(LoginActivity.this, HomeActivity.class));
+                Intent intent = new Intent(LoginActivity.this, HomeActivity.class);
+                intent.putExtra("csrftoken", csrftoken);
+                intent.putExtra("sessionid", sessionid);
+                startActivity(intent);
             } else {
                 alert("Login ou senha incorreta");
             }
