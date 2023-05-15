@@ -72,6 +72,14 @@ public class Trail implements Parcelable{
         //in.readStringArray(alternatives);
     }
 
+    public List<Property> getRel_trail() {
+        return rel_trail;
+    }
+
+    public void setRel_trail(List<Property> rel_trail) {
+        this.rel_trail = rel_trail;
+    }
+
     public String getDesc() {
         return desc;
     }

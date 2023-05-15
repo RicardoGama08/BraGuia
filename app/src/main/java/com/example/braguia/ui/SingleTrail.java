@@ -3,8 +3,10 @@ package com.example.braguia.ui;
 import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.graphics.Color;
+import android.media.Image;
 import android.os.Bundle;
 import android.os.Parcelable;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -27,6 +29,8 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.maps.model.PolylineOptions;
+
+import org.w3c.dom.Text;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -78,6 +82,29 @@ public class SingleTrail extends Fragment implements OnMapReadyCallback {
         //TextView mapLinkTextView = view.findViewById(R.id.map_pin);
         //String mapLink = trail.createMapLink();
         //mapLinkTextView.setText(mapLink);
+
+        //ImageView imagemView = view.findViewById(R.id.trail_img);
+        //imagemView.setImageResource(trail.getUrl());
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView headerView = view.findViewById(R.id.header_trail);
+        String header = trail.getName();
+        headerView.setText(header);
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView descView = view.findViewById(R.id.trail_desc);
+        String desc = trail.getDesc();
+        descView.setText("Descrição: " + desc);
+
+        TextView diffView = view.findViewById(R.id.difficulty);
+        String diff = trail.getDifficulty();
+        diffView.setText("Dificuldade: " + diff);
+
+        TextView durView = view.findViewById(R.id.duration);
+        Double dur = trail.getDuration();
+        durView.setText("Duração: " + dur.toString());
+
+        /*TextView relView = view.findViewById(R.id.reltrail);
+        String rel = trail.getRel_trail().get(0).getAttrib();
+        relView.setText(rel);*/
 
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         if (mapFragment == null) {
