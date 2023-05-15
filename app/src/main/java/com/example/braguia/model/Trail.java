@@ -188,4 +188,22 @@ public class Trail implements Parcelable{
         //parcel.writeStringArray(alternatives);
     }
 
+    public String createMapLink() {
+        StringBuilder linkBuilder = new StringBuilder("https://www.google.com/maps/dir/?api=1");
+
+        for (int i = 0; i < edges.size(); i++) {
+            Pin pin = edges.get(i).getEdge_start();
+            linkBuilder.append("&waypoints=").append(pin.getLat()).append(",").append(pin.getLng()).append(",").append(pin.getAlt());
+        }
+
+        return linkBuilder.toString();
+    }
+
+    public String createMapEdges() {
+        for (int i = 0; i < edges.size(); i++) {
+            return edges.get(i).createMapLink();
+        }
+        return null;
+    }
+
 }
