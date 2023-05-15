@@ -1,5 +1,6 @@
 package com.example.braguia.ui;
 
+import android.annotation.SuppressLint;
 import android.graphics.BitmapFactory;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -66,15 +67,15 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.single_pin, container, false);
-        //TextView nameTextView = view.findViewById(R.id.desc);
-        //nameTextView.setText(trail.getName());
 
-        TextView mapLinkTextView = view.findViewById(R.id.map_link_textview);
-        String mapLink = pin.createMapLink();
-        mapLinkTextView.setText(mapLink);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView nameTextView = view.findViewById(R.id.header_pin);
+        nameTextView.setText(pin.getName());
 
-        //mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
-        //mapFragment.getMapAsync(this);
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView descTextView = view.findViewById(R.id.pin_desc);
+        descTextView.setText(pin.getDesc());
+
+        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        mapFragment.getMapAsync(this);
 
         return view;
     }
