@@ -19,10 +19,23 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/register"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
+
+        <TextView
+            android:id="@+id/textView2"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/user" />
+            android:text="@string/user"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="36dp" />
 
         <EditText
             android:id="@+id/tLogin"
@@ -35,7 +48,10 @@
             android:id="@+id/textView9"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/first_name" />
+            android:text="@string/first_name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
 
         <EditText
             android:id="@+id/tFirst"
@@ -48,7 +64,10 @@
             android:id="@+id/textView10"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/last_name" />
+            android:text="@string/last_name"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
 
         <EditText
             android:id="@+id/tLast"
@@ -61,7 +80,10 @@
             android:id="@+id/textView11"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/email" />
+            android:text="@string/email"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
 
         <EditText
             android:id="@+id/tEmail"
@@ -71,17 +93,20 @@
             android:inputType="textEmailAddress" />
 
         <TextView
-            android:id="@+id/textView12"
+            android:id="@+id/textView4"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@string/password" />
+            android:text="@string/password"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            android:layout_marginTop="16dp" />
 
         <EditText
             android:id="@+id/tSenha"
-            android:layout_width="304dp"
+            android:layout_width="325dp"
             android:layout_height="wrap_content"
-            android:ems="10"
-            android:inputType="textPersonName" />
+            android:ems="14"
+            android:inputType="textPassword" />
 
         <TextView
             android:id="@+id/textView20"

@@ -27,6 +27,17 @@
             android:text="Informações do Utilizador" />-->
 
         <TextView
+            android:id="@+id/header_text"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/profile"
+            android:textSize="24sp"
+            android:textStyle="bold"
+            android:layout_marginTop="10dp"
+            android:layout_gravity="center" />
+        <!--android:textColor="@color/"-->
+
+        <TextView
             android:id="@+id/textView16"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -96,7 +107,7 @@
             android:id="@+id/profile_image"
             android:layout_width="120dp"
             android:layout_height="120dp"
-            android:src="@mipmap/profile_icon"
+            android:src="@drawable/profile_icon"
             android:contentDescription="@string/profile_image" />
     </LinearLayout>
 

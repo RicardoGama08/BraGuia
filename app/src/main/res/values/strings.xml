@@ -8,6 +8,7 @@
     <string name="email"> Email</string>
     <string name="password">Password </string>
     <string name="login">Login</string>
+    <string name="register">Registar</string>
     <string name="registar">Não tem conta registada? Registe-se já! </string>
     <string name="fazerLog">Já tem conta registada? Faça login</string>
     <string name="homescreen">Meter cenas aqui </string>
@@ -19,6 +20,7 @@
     <string name="pins"> Pontos Interesse </string>
     <string name="descricao">Welcome to the BraGuia! Whether you\'re a local looking for new places to explore or a visitor, this app has everything you need to make the most of your experience in Braga. From historic sites like the Braga Cathedral to modern landmarks as the Bom Jesus do Monte staircase, we\'ve got you covered. Our app features walking tours that take you through the neighborhoods and hidden gems of the city. Each tour is accompanied by detailed maps, insider tips, and historical background information, making it easy to navigate the city\'s rich culture and history. With BraGuia, you can explore Braga like a local and create unforgettable memories.</string>
     <string name="button_start">Let\'s Start!</string>
+    <string name="button_go">Go!</string>
     <string name="desc2"> Welcome to BraGuia! The app where you cand find all you need to make the most out of your visit to the city of Braga.</string>
     <string name="add_pin" />
     <string name="add_trail" />
@@ -27,6 +29,7 @@
     <string name="ver_perfil">Perfil</string>
     <string name="logout">Logout</string>
     <string name="descStor">Discover the hidden gems of Braga with our virtual guide app! Explore the city\'s rich history, stunning architecture, and vibrant culture from the palm of your hand. With personalized recommendations and insider tips, you\'ll experience the best of Braga like a local. Download the app now and start your adventure!</string>
+    <string name="profile">My Profile</string>
     <string name="profile_image">profile_image</string>
     <string-array name="language_entries">
         <item>English</item>
