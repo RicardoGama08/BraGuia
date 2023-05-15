@@ -36,7 +36,7 @@
             android:exported="false" >
         </activity>
         <activity
-            android:name=".ui.DefinitionsActivity"
+            android:name=".ui.SettingsActivity"
             android:exported="false" >
         </activity>
         <activity

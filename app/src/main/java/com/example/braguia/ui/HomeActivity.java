@@ -1,9 +1,7 @@
 package com.example.braguia.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
@@ -16,7 +14,6 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.example.braguia.R;
@@ -140,7 +137,7 @@ public class HomeActivity extends AppCompatActivity {
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.action_settings) {
-            startActivity(new Intent(HomeActivity.this, DefinitionsActivity.class));
+            startActivity(new Intent(HomeActivity.this, SettingsActivity.class));
             return true;
         }else if(id == R.id.ver_perfil){
             startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
