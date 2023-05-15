@@ -26,6 +26,7 @@
     <string name="first_fragment_label" />
     <string name="ver_perfil">Perfil</string>
     <string name="logout">Logout</string>
+    <string name="descStor">Discover the hidden gems of Braga with our virtual guide app! Explore the city\'s rich history, stunning architecture, and vibrant culture from the palm of your hand. With personalized recommendations and insider tips, you\'ll experience the best of Braga like a local. Download the app now and start your adventure!</string>
     <string-array name="language_entries">
         <item>English</item>
         <item>Spanish</item>
