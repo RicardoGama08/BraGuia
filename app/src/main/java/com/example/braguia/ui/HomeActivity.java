@@ -3,6 +3,7 @@ package com.example.braguia.ui;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Context;
@@ -72,6 +73,7 @@ public class HomeActivity extends AppCompatActivity {
                 //setContentView(R.layout.list_trails);
                 Fragment trails = new TrailListFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.container,trails).commit();
                 //startActivity(new Intent(HomeActivity.this, ListaTrailsActivity.class));
 
@@ -85,6 +87,7 @@ public class HomeActivity extends AppCompatActivity {
                 //setContentView(R.layout.list_pins);
                 Fragment pins = new PinListFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
+                fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.container,pins).commit();
                 //startActivity(new Intent(HomeActivity.this, ListaPinsActivity.class));;
 
