@@ -12,8 +12,8 @@
     <string name="fazerLog">Já tem conta registada? Faça login</string>
     <string name="homescreen">Meter cenas aqui </string>
     <string name="registarB">Registar</string>
-    <string name="last_name"> Segundo Nome</string>
-    <string name="first_name">Primeiro Nome </string>
+    <string name="last_name"> Apelido</string>
+    <string name="first_name">Nome </string>
     <string name="voltar"> Voltar </string>
     <string name="trails"> Roteiros </string>
     <string name="pins"> Pontos Interesse </string>
@@ -27,6 +27,7 @@
     <string name="ver_perfil">Perfil</string>
     <string name="logout">Logout</string>
     <string name="descStor">Discover the hidden gems of Braga with our virtual guide app! Explore the city\'s rich history, stunning architecture, and vibrant culture from the palm of your hand. With personalized recommendations and insider tips, you\'ll experience the best of Braga like a local. Download the app now and start your adventure!</string>
+    <string name="profile_image">profile_image</string>
     <string-array name="language_entries">
         <item>English</item>
         <item>Spanish</item>
