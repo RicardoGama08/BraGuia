@@ -15,11 +15,13 @@ import androidx.fragment.app.Fragment;
 import com.example.braguia.R;
 import com.example.braguia.model.Pin;
 import com.example.braguia.model.Trail;
+import com.google.android.gms.maps.CameraUpdate;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.LatLngBounds;
 import com.google.android.gms.maps.model.MarkerOptions;
 
 import org.w3c.dom.Text;
@@ -75,8 +77,13 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
         descTextView.setText(pin.getDesc());
 
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        if (mapFragment == null) {
+            mapFragment = SupportMapFragment.newInstance();
+            getChildFragmentManager().beginTransaction()
+                    .replace(R.id.map_fragment, mapFragment)
+                    .commit();
+        }
         mapFragment.getMapAsync(this);
-
         return view;
     }
 
@@ -127,7 +134,11 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
                 .title("My Marker")
                 .zIndex(altitude);
         googleMap.addMarker(markerOptions);
-        googleMap.moveCamera(CameraUpdateFactory.newLatLng(coordinates));
-    }
+        LatLngBounds.Builder builder = new LatLngBounds.Builder();
+        builder.include(coordinates);
+
+        LatLngBounds bounds = builder.build();
+        CameraUpdate cameraUpdate = CameraUpdateFactory.newLatLngBounds(bounds, 100); // 100 is the padding in pixels
+        googleMap.moveCamera(cameraUpdate);    }
 
 }
