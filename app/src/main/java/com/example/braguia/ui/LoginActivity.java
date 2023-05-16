@@ -81,6 +81,14 @@ public class LoginActivity extends AppCompatActivity {
                             cookieManager.getCookieStore().add(null, HttpCookie.parse(sessionid).get(0));
                         }
                     }
+
+                    SharedPreferences sharedPreferences = getSharedPreferences("cookies", Context.MODE_PRIVATE);
+                    SharedPreferences.Editor editor = sharedPreferences.edit();
+
+                    editor.putString("csrftoken", csrftoken);
+                    editor.putString("sessionid", sessionid);
+                    editor.apply();
+
                     return true;
                 }
             } catch (IOException e) {

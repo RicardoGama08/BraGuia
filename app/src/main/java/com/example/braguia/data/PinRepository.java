@@ -1,6 +1,8 @@
 package com.example.braguia.data;
 
 import android.app.Application;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.AsyncTask;
 import android.util.Log;
 import androidx.lifecycle.LiveData;
@@ -9,6 +11,9 @@ import com.example.braguia.model.GuideDatabase;
 import com.example.braguia.model.Pin;
 import com.example.braguia.model.PinAPI;
 import com.example.braguia.model.PinDao;
+
+import okhttp3.Request;
+import okhttp3.RequestBody;
 import retrofit2.Call;
 import java.util.List;
 import retrofit2.Response;
@@ -23,6 +28,12 @@ public class PinRepository {
     //private MediatorLiveData<Pin> pin;
 
     public PinRepository(Application application){
+
+
+        SharedPreferences sharedPreferences = application.getSharedPreferences("cookies", Context.MODE_PRIVATE);
+        String csrftoken = sharedPreferences.getString("csrftoken", null);
+        String sessionid = sharedPreferences.getString("sessionid", null);
+
         database = GuideDatabase.getDatabase(application);
         pinDao = database.pinDao();
         //init();
@@ -33,7 +44,7 @@ public class PinRepository {
                     if (localPins != null && localPins.size() > 0) {
                         allPins.setValue(localPins);
                     } else {
-                        makeRequest();
+                        makeRequest(csrftoken, sessionid);
                     }
                 }
         );
@@ -59,14 +70,17 @@ public class PinRepository {
         }
     }*/
 
-    private void makeRequest() {
+    private void makeRequest(String csrftoken, String sessionid) {
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")
-                //.baseUrl("http://192.168.85.186/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+
+        // Build the cookie header with sessionid and csrftoken
+        String cookieHeader = csrftoken + "; " + sessionid;
+
         PinAPI api=retrofit.create(PinAPI.class);
-        Call<List<Pin>> call=api.getPins();
+        Call<List<Pin>> call=api.getPins(cookieHeader);
         call.enqueue(new retrofit2.Callback<List<Pin>>() {
             @Override
             public void onResponse(Call<List<Pin>> call, Response<List<Pin>> response) {
