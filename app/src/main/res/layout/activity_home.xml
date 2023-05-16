@@ -39,28 +39,22 @@
             <TextView
                 android:id="@+id/textView6"
                 android:layout_width="326dp"
-                android:layout_height="250dp"
+                android:layout_height="203dp"
                 android:layout_gravity="center"
                 android:text="@string/descStor" />
 
-            <TextView
-                android:id="@+id/textView15"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
-
             <LinearLayout
                 android:id="@+id/linearLayout5"
-                android:layout_width="315dp"
-                android:layout_height="48dp"
+                android:layout_width="wrap_content"
+                android:layout_height="123dp"
                 android:layout_gravity="center"
-                android:orientation="horizontal"
+                android:orientation="vertical"
                 tools:ignore="MissingConstraints">
 
                 <Button
                     android:id="@+id/pins"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#ffff0000"
                     android:text="@string/pins"
                     android:textColor="#ffffff" />
 
@@ -68,7 +62,7 @@
                     android:id="@+id/trails"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:background="#ffff0000"
+                    android:layout_gravity="center"
                     android:text="@string/trails"
                     android:textColor="#ffffff" />
 
