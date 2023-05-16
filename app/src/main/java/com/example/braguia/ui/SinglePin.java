@@ -68,14 +68,18 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView descTextView = view.findViewById(R.id.pin_desc);
         descTextView.setText(pin.getDesc());
 
-        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        /*mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         if (mapFragment == null) {
             mapFragment = SupportMapFragment.newInstance();
             getChildFragmentManager().beginTransaction()
                     .replace(R.id.map_fragment, mapFragment)
                     .commit();
         }
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);*/
+
+        TextView linkMapa = view.findViewById(R.id.link_mapa);
+        linkMapa.setText("Map Link: " + pin.createMapLink());
+
         return view;
     }
 
