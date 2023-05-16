@@ -22,10 +22,6 @@ import com.example.braguia.model.User;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 public class RegisterActivity extends AppCompatActivity {
-
-    public static final String EXTRA_REPLY = "com.example.android.reglistsql.REPLY";
-    private EditText mEditRegView;
-
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -61,21 +57,6 @@ public class RegisterActivity extends AppCompatActivity {
                 }
             }
         });
-
-
-        /*mEditRegView = findViewById(R.id.edit_reg);
-        final Button button = findViewById(R.id.button_save);
-        button.setOnClickListener(view -> {
-            Intent replyIntent = new Intent();
-            if (TextUtils.isEmpty(mEditRegView.getText())) {
-                setResult(RESULT_CANCELED, replyIntent);
-            } else {
-                String user = mEditRegView.getText().toString();
-                replyIntent.putExtra(EXTRA_REPLY, user);
-                setResult(RESULT_OK, replyIntent);
-            }
-            finish();
-        });*/
     }
 
     private void alert(String a){

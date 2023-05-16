@@ -22,13 +22,6 @@ import com.example.braguia.viewmodel.TrailViewModel;
 import com.example.braguia.viewmodel.UserViewModel;
 
 public class MainActivity extends AppCompatActivity {
-
-    private static final int LOGIN_ACTIVITY_REQUEST_CODE = 1;
-    private static final int REG_ACTIVITY_REQUEST_CODE = 1;
-
-    //private UserViewModel mUserViewModel;
-    //public static final int NEW_USER_ACTIVITY_REQUEST_CODE = 1;
-
     private TrailViewModel trailViewModel;
     private PinViewModel pinViewModel;
 
@@ -36,13 +29,10 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        //Toolbar toolbar = findViewById(R.id.toolbar);
-        //setSupportActionBar(toolbar);
 
         SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
         String username = sharedPreferences.getString("username", "");
         if (!username.isEmpty()) {
-            // The user is already logged in, so navigate to the main activity
             Intent intent = new Intent(this, HomeActivity.class);
             startActivity(intent);
             finish();

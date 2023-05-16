@@ -42,12 +42,6 @@ public class ContentRepository {
         new InsertAsyncTask(contentDao).execute(content);
     }
 
-    /*public void init(){
-        if(allContent == null || allContent.getValue() == null || allContent.getValue().isEmpty()){
-            makeRequest();
-        }
-    }*/
-
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")

@@ -26,7 +26,6 @@ public class TrailListFragment extends Fragment {
     public TrailListFragment() {
     }
 
-    // TODO: Customize parameter initialization
     @SuppressWarnings("unused")
     public static TrailListFragment newInstance(int columnCount) {
         TrailListFragment fragment = new TrailListFragment();

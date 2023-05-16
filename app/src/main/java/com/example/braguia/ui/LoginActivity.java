@@ -28,9 +28,6 @@ import java.net.CookieManager;
 import java.net.CookiePolicy;
 
 public class LoginActivity extends AppCompatActivity {
-
-    //public static final String EXTRA_REPLY = "com.example.android.loginlistsql.REPLY";
-    //private EditText mEditLoginView;
     private OkHttpClient mOkHttpClient;
 
     private class LoginTask extends AsyncTask<String, Void, Boolean> {
@@ -134,11 +131,9 @@ public class LoginActivity extends AppCompatActivity {
                 String pass = tSenha.getText().toString();
                 if(login.equals("premium_user") && pass.equals("paiduser")){
                     alert("Login realizado com sucesso");
-                    //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }
                 else if(login.equals("standard_user") && pass.equals("cheapuser")){
                     alert("Login realizado com sucesso");
-                    //startActivity(new Intent(LoginActivity.this, HomeActivity.class));
                 }else{
                     alert("Login ou senha incorreta");
                     return;
@@ -149,9 +144,6 @@ public class LoginActivity extends AppCompatActivity {
                 SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);
                 SharedPreferences.Editor editor = sharedPreferences.edit();
                 editor.putString("username", login);
-                //editor.putString("email", email);
-                //editor.putString("firstname", first);
-                //editor.putString("lastname", last);
                 editor.apply();
             }
         });

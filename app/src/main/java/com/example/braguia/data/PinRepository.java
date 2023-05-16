@@ -11,9 +11,6 @@ import com.example.braguia.model.GuideDatabase;
 import com.example.braguia.model.Pin;
 import com.example.braguia.model.PinAPI;
 import com.example.braguia.model.PinDao;
-
-import okhttp3.Request;
-import okhttp3.RequestBody;
 import retrofit2.Call;
 import java.util.List;
 import retrofit2.Response;
@@ -36,7 +33,6 @@ public class PinRepository {
 
         database = GuideDatabase.getDatabase(application);
         pinDao = database.pinDao();
-        //init();
         allPins = new MediatorLiveData<>();
         allPins.addSource(
                 pinDao.getPins(), localPins -> {
@@ -63,20 +59,12 @@ public class PinRepository {
         new InsertAsyncTask(pinDao).execute(pins);
     }
 
-    /*public void init(){
-        // TODO add cache validation strategy
-        if(allPins == null || allPins.getValue() == null || allPins.getValue().isEmpty()){
-            makeRequest();
-        }
-    }*/
-
     private void makeRequest(String csrftoken, String sessionid) {
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
 
-        // Build the cookie header with sessionid and csrftoken
         String cookieHeader = csrftoken + "; " + sessionid;
 
         PinAPI api=retrofit.create(PinAPI.class);

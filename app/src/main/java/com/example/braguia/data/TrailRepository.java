@@ -25,7 +25,6 @@ public class TrailRepository {
     public TrailRepository(Application application){
         database = GuideDatabase.getDatabase(application);
         trailDao = database.trailDao();
-        //init();
         allTrails = new MediatorLiveData<>();
         allTrails.addSource(
                 trailDao.getTrails(), localTrails -> {
@@ -52,17 +51,9 @@ public class TrailRepository {
         new InsertAsyncTask(trailDao).execute(trails);
     }
 
-    /*public void init(){
-        // TODO add cache validation strategy
-        if(allTrails == null || allTrails.getValue() == null || allTrails.getValue().isEmpty()){
-            makeRequest();
-        }
-    }*/
-
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")
-                //.baseUrl("http://192.168.85.186/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         TrailAPI api=retrofit.create(TrailAPI.class);
@@ -72,10 +63,6 @@ public class TrailRepository {
             public void onResponse(Call<List<Trail>> call, Response<List<Trail>> response) {
                 if(response.isSuccessful()) {
                     insert(response.body());
-
-                    /*List<Trail> trails = response.body();
-                    TextView myTextView = findViewById(R.id.desc);
-                    myTextView.setText(trails.get(0).getId());*/
                 }
                 else{
                     String contentType = response.headers().get("content-type");

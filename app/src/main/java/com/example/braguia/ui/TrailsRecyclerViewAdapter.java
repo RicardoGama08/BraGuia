@@ -56,13 +56,6 @@ public class TrailsRecyclerViewAdapter extends RecyclerView.Adapter<TrailsRecycl
                 }
             }
         });
-
-        /*holder.itemView.setOnClickListener( view -> {
-            Bundle bundle = new Bundle();
-            bundle.putParcelable("trail", (Parcelable) mValues.get(position));
-            Navigation.findNavController(view).navigate(R.id.select_trail, bundle);
-        });*/
-
     }
 
     @Override

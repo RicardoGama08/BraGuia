@@ -3,17 +3,13 @@ package com.example.braguia.data;
 import android.app.Application;
 import android.os.AsyncTask;
 import android.util.Log;
-
 import androidx.lifecycle.LiveData;
 import androidx.lifecycle.MediatorLiveData;
-
 import retrofit2.Call;
 import java.util.List;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
-
-import com.example.braguia.model.Trail;
 import com.example.braguia.model.User;
 import com.example.braguia.model.UserAPI;
 import com.example.braguia.model.UserDao;
@@ -28,7 +24,6 @@ public class UserRepository {
     public UserRepository(Application application) {
         database = GuideDatabase.getDatabase(application);
         mUserDao = database.userDao();
-        //init();
         mAllUsers = new MediatorLiveData<>();
         mAllUsers.addSource(
                 mUserDao.getUsers(), localUsers -> {
@@ -46,17 +41,11 @@ public class UserRepository {
         return mAllUsers;
     }
 
-
     public void insert(User user) {
         GuideDatabase.databaseWriteExecutor.execute(() -> {
             mUserDao.insert(user);
         });
     }
-
-    /*public void insert(List<User> users){
-        new InsertAsyncTask(mUserDao).execute(users);
-    }*/
-
 
     public void put(User user) {
         GuideDatabase.databaseWriteExecutor.execute(() -> {
@@ -70,17 +59,9 @@ public class UserRepository {
         });
     }
 
-    public void init(){
-        // TODO add cache validation strategy
-        if(mAllUsers == null || mAllUsers.getValue() == null || mAllUsers.getValue().isEmpty()){
-            makeRequest();
-        }
-    }
-
     private void makeRequest() {
         Retrofit retrofit=new Retrofit.Builder()
                 .baseUrl("https://c5a2-193-137-92-29.eu.ngrok.io/")
-                //.baseUrl("http://192.168.85.186/")
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
         UserAPI api=retrofit.create(UserAPI.class);

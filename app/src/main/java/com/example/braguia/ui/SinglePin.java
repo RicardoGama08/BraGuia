@@ -57,14 +57,6 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    /*@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.single_pin, container, false);
-        ButterKnife.bind(this, v);
-        return v;
-    }*/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -86,43 +78,6 @@ public class SinglePin extends Fragment implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
         return view;
     }
-
-    /*@OnClick({ R.id.button_top_left, R.id.button_top_right, R.id.button_bottom_left,
-            R.id.button_bottom_right })
-    public void onClickOnButtons(View view) {
-        if (view instanceof CustomButton) {
-            String txt = ((CustomButton) view).getText().toString();
-            if (txt.equals(question.getAnswer())) {
-                Toast.makeText(getContext(), "Your answer is correct!",
-                        Toast.LENGTH_LONG).show();
-                this.getParentFragmentManager().popBackStack();
-            } else {
-                Toast.makeText(getContext(), "Your answer is wrong!",
-                        Toast.LENGTH_SHORT).show();
-                ((CustomButton) view).setWrong(true);
-                view.invalidate();
-            }
-        }
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Pin p = getArguments().getParcelable("pin");
-        setPin(p);
-    }
-
-    public void setPin(Pin pin) {
-        pin = pin;
-        List<String> l = new ArrayList<>(Arrays.asList(question.alternatives));
-        Collections.shuffle(l);
-        buttonTopLeft.setText(l.get(0));
-        buttonTopRight.setText(l.get(1));
-        buttonBottomLeft.setText(l.get(2));
-        buttonBottomRight.setText(l.get(3));
-        textViewQuestion.setText(question.getQuestion());
-        questionImage.setImageBitmap(BitmapFactory.decodeResource(this.getResources(),
-                quest.getImageId()));
-    }*/
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

@@ -46,10 +46,6 @@ public class HomeActivity extends AppCompatActivity {
             String csrftoken = intent.getStringExtra("csrftoken");
             String sessionid = intent.getStringExtra("sessionid");
 
-            // Use the cookies as needed
-            //cookieManager.getCookieStore().add(null, HttpCookie.parse(csrftoken).get(0));
-            //cookieManager.getCookieStore().add(null, HttpCookie.parse(sessionid).get(0));
-
             if (csrftoken != null) {
                 cookieManager.getCookieStore().add(null, HttpCookie.parse(csrftoken).get(0));
             }
@@ -67,13 +63,10 @@ public class HomeActivity extends AppCompatActivity {
         trails.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //setContentView(R.layout.list_trails);
                 Fragment trails = new TrailListFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.container,trails).commit();
-                //startActivity(new Intent(HomeActivity.this, ListaTrailsActivity.class));
-
             }
         });
 
@@ -81,13 +74,10 @@ public class HomeActivity extends AppCompatActivity {
         pins.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //setContentView(R.layout.list_pins);
                 Fragment pins = new PinListFragment();
                 FragmentTransaction fragmentTransaction = getSupportFragmentManager().beginTransaction();
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.container,pins).commit();
-                //startActivity(new Intent(HomeActivity.this, ListaPinsActivity.class));;
-
             }
         });
     }

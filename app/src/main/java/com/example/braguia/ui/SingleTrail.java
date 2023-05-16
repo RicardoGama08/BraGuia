@@ -64,27 +64,10 @@ public class SingleTrail extends Fragment implements OnMapReadyCallback {
         }
     }
 
-    /*@Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        View v = inflater.inflate(R.layout.single_trail, container, false);
-        ButterKnife.bind(this, v);
-        return v;
-    }*/
-
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.single_trail, container, false);
-        //TextView nameTextView = view.findViewById(R.id.desc);
-        //nameTextView.setText(trail.getName());
-
-        //TextView mapLinkTextView = view.findViewById(R.id.map_pin);
-        //String mapLink = trail.createMapLink();
-        //mapLinkTextView.setText(mapLink);
-
-        //ImageView imagemView = view.findViewById(R.id.trail_img);
-        //imagemView.setImageResource(trail.getUrl());
 
         @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView headerView = view.findViewById(R.id.header_trail);
         String header = trail.getName();
@@ -102,10 +85,6 @@ public class SingleTrail extends Fragment implements OnMapReadyCallback {
         Double dur = trail.getDuration();
         durView.setText("Duração: " + dur.toString());
 
-        /*TextView relView = view.findViewById(R.id.reltrail);
-        String rel = trail.getRel_trail().get(0).getAttrib();
-        relView.setText(rel);*/
-
         mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         if (mapFragment == null) {
             mapFragment = SupportMapFragment.newInstance();
@@ -116,44 +95,6 @@ public class SingleTrail extends Fragment implements OnMapReadyCallback {
         mapFragment.getMapAsync(this);
         return view;
     }
-
-
-    /*@OnClick({ R.id.button_top_left, R.id.button_top_right, R.id.button_bottom_left,
-            R.id.button_bottom_right })
-    public void onClickOnButtons(View view) {
-        if (view instanceof CustomButton) {
-            String txt = ((CustomButton) view).getText().toString();
-            if (txt.equals(question.getAnswer())) {
-                Toast.makeText(getContext(), "Your answer is correct!",
-                        Toast.LENGTH_LONG).show();
-                this.getParentFragmentManager().popBackStack();
-            } else {
-                Toast.makeText(getContext(), "Your answer is wrong!",
-                        Toast.LENGTH_SHORT).show();
-                ((CustomButton) view).setWrong(true);
-                view.invalidate();
-            }
-        }
-    }
-
-    public void onViewCreated(@NonNull View view, Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        Trail t = getArguments().getParcelable("trail");
-        setTrail(t);
-    }
-
-    public void setTrail(Trail trail) {
-        trail = trail;
-        List<String> l = new ArrayList<>(Arrays.asList(question.alternatives));
-        Collections.shuffle(l);
-        buttonTopLeft.setText(l.get(0));
-        buttonTopRight.setText(l.get(1));
-        buttonBottomLeft.setText(l.get(2));
-        buttonBottomRight.setText(l.get(3));
-        textViewQuestion.setText(question.getQuestion());
-        questionImage.setImageBitmap(BitmapFactory.decodeResource(this.getResources(),
-                quest.getImageId()));
-    }*/
 
     @Override
     public void onMapReady(GoogleMap googleMap) {

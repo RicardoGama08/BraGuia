@@ -34,7 +34,6 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
         holder.mItem = mValues.get(position);
         holder.mIdView.setText(mValues.get(position).getId());
         holder.nameView.setText(mValues.get(position).getName());
-        //Picasso.get().load(mValues.get(position).getImage_url().replace("http", "https")).into(holder.imageView);
 
         final Context context = holder.mView.getContext();
         holder.itemView.setOnClickListener(new View.OnClickListener() {
@@ -70,7 +69,6 @@ public class PinRecyclerViewAdapter extends RecyclerView.Adapter<PinRecyclerView
             super(view);
             mView = view;
             mIdView = view.findViewById(R.id.item_id);
-            //imageView = view.findViewById(R.id.cardimage);
             nameView = view.findViewById(R.id.namePin);
         }
 

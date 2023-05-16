@@ -27,21 +27,11 @@
             android:exported="false" >
         </activity>
         <activity
-            android:name=".ui.ListaTrailsActivity"
-            android:parentActivityName=".ui.HomeActivity"
-            android:exported="false" >
-        </activity>
-        <activity
             android:name=".ui.ProfileActivity"
             android:exported="false" >
         </activity>
         <activity
             android:name=".ui.SettingsActivity"
-            android:exported="false" >
-        </activity>
-        <activity
-            android:name=".ui.ListaPinsActivity"
-            android:parentActivityName=".ui.HomeActivity"
             android:exported="false" >
         </activity>
         <activity
