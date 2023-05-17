@@ -13,11 +13,8 @@ jobs:
       - name: Configurar ambiente
         uses: actions/checkout@v2
 
-      - name: Get permissions
-        run: powershell.exe -Command "Set-ExecutionPolicy Bypass -Scope Process"
-
       - name: Construir APK
-        run: ./gradlew.bat assembleRelease
+        run: sh gradlew assembleRelease
 
       - name: Publicar release
         uses: actions/create-release@v1
