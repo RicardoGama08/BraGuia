@@ -30,9 +30,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 import java.util.List;
-import butterknife.BindView;
-import butterknife.ButterKnife;
-import butterknife.OnClick;
+
 
 public class SinglePin extends Fragment implements OnMapReadyCallback {
     private static final String ARG_PIN = "pin";
