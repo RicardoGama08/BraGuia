@@ -7,4 +7,5 @@
     <item name="cardimage" type="id" />
     <item name="item_id" type="id" />
     <item name="singletrail" type="id" />
+    <item name="spinner" type="id" />
 </resources>

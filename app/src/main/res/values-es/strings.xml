@@ -1,0 +1,46 @@
+<resources>
+    <string name="app_name">BraGuia</string>
+    <string name="add_user" />
+    <string name="hint_word">Palabra...</string>
+    <string name="button_save">Guardar</string>
+    <string name="empty_not_saved">Login no guardado porque está vacío.</string>
+    <string name="user"> Username </string>
+    <string name="email"> Email</string>
+    <string name="password">Password </string>
+    <string name="login">Login</string>
+    <string name="register">Registro</string>
+    <string name="registar">¿No tienes una cuenta? ¡Regístrese ahora mismo!</string>
+    <string name="fazerLog">¿Ya tienes una cuenta? Conéctese</string>
+    <string name="homescreen">Meter cenas aqui </string>
+    <string name="registarB">Registro</string>
+    <string name="last_name"> Apellido</string>
+    <string name="first_name">Nombre </string>
+    <string name="voltar"> Volver </string>
+    <string name="trails"> Itinerarios </string>
+    <string name="pins"> Lugares de interés </string>
+    <string name="descricao">¡Bienvenido a BraGuia! Tanto si eres un local en busca de nuevos lugares para explorar o un visitante, esta aplicación tiene todo lo que necesita para sacar el máximo provecho de su experiencia en Braga. Desde lugares históricos, como la Catedral de Braga, hasta lugares de interés moderno, como la escalinata del Bom Jesus do Monte. Nuestra aplicación incluye recorridos a pie que le llevarán por los barrios y las joyas ocultas de la ciudad. Cada recorrido va acompañado de mapas detallados, consejos e información histórica, lo que facilita la navegación por la rica cultura e historia de la ciudad. Con BraGuia, puede explorar Braga como un lugareño y crear recuerdos inolvidables.</string>
+    <string name="button_start">¡Empecemos!</string>
+    <string name="button_go">Vamos!</string>
+    <string name="desc2"> ¡Bienvenido a BraGuia! La aplicación donde encontrará todo lo que necesita para aprovechar al máximo su visita a la ciudad de Braga.</string>
+    <string name="add_pin" />
+    <string name="add_trail" />
+    <string name="action_settings">Ajustes</string>
+    <string name="first_fragment_label" />
+    <string name="ver_perfil">Perfil</string>
+    <string name="logout">Cierre de sesión</string>
+    <string name="descStor">Descubra las joyas ocultas de Braga con nuestra guía virtual. Explore la rica historia de la ciudad, su impresionante arquitectura y su vibrante cultura desde la palma de su mano. Con recomendaciones personalizadas y consejos de expertos, experimentará lo mejor de Braga como un lugareño más. Descárguese la aplicación ahora y comience su aventura.</string>
+    <string name="profile">Mi Perfil</string>
+    <string name="profile_image">profile_image</string>
+    <string-array name="language_entries">
+        <item>English</item>
+        <item>Español</item>
+        <item>Português</item>
+    </string-array>
+
+    <string-array name="language_values">
+        <item>en</item>
+        <item>es</item>
+        <item>pt</item>
+    </string-array>
+
+</resources>
