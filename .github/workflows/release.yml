@@ -25,5 +25,5 @@ jobs:
           release_name: Release v1.0.0
           draft: false
           prerelease: false
-          files: |
-            app/build/outputs/apk/release
+          #files: |
+          #  app/build/outputs/apk/release
