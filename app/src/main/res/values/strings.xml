@@ -31,6 +31,19 @@
     <string name="descStor">Descobre as jóias escondidas de Braga com a nossa aplicação de guia virtual! Explore a rica história da cidade, a arquitectura deslumbrante e a cultura vibrante na palma da sua mão. Com recomendações personalizadas e dicas privilegiadas, irá experienciar o melhor de Braga como um local. Descarregue a aplicação agora e comece a sua aventura!</string>
     <string name="profile">O meu Perfil</string>
     <string name="profile_image">profile_image</string>
+    <string name="contactos">Contacte-nos</string>
+    <string name="historico">Histórico</string>
+    <string name="contact_name">Customer Support</string>
+    <string name="contact_phone">924567891</string>
+    <string name="contact_url">http://braguiacustomersupport.com</string>
+    <string name="contact_mail">braguia@support.com</string>
+
+    <string name="emergency_name">Medical Emergency Service</string>
+    <string name="emergency_phone">112</string>
+    <string name="emergency_url">http://www.112.pt</string>
+    <string name="emergency_mail">112@gmail.com</string>
+
+
     <string-array name="language_entries">
         <item>English</item>
         <item>Español</item>

@@ -132,6 +132,9 @@ public class HomeActivity extends AppCompatActivity {
         }else if(id == R.id.ver_perfil){
             startActivity(new Intent(HomeActivity.this, ProfileActivity.class));
             return true;
+        }else if(id == R.id.contactos){
+            startActivity(new Intent(HomeActivity.this, ContactosActivity.class));
+            return true;
         }else if(id == R.id.logout){
             new LogoutTask().execute();
             SharedPreferences sharedPreferences = getSharedPreferences("user_prefs", Context.MODE_PRIVATE);

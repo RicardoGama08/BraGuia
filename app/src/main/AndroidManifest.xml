@@ -31,6 +31,10 @@
             android:exported="false" >
         </activity>
         <activity
+            android:name=".ui.ContactosActivity"
+            android:exported="false" >
+        </activity>
+        <activity
             android:name=".ui.SettingsActivity"
             android:exported="false" >
         </activity>

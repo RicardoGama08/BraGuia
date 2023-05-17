@@ -15,18 +15,18 @@ import com.example.braguia.R;
 
 import java.util.Locale;
 
-public class SettingsActivity<Cofiguration> extends AppCompatActivity {
+public class SettingsActivity<Configuration> extends AppCompatActivity {
 
-    Spinner spinner;
+    //Spinner spinner;
 
-    public static final String[] languages = {"Select Languages", "English", "Español", "Portugûes"};
+    //public static final String[] languages = {"Select Languages", "English", "Español", "Português"};
     @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_settings);
 
-        spinner = findViewById(R.id.spinner);
+       /* spinner = findViewById(R.id.spinner);
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(this, android.R.layout.simple_spinner_item, languages);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         spinner.setAdapter(adapter);
@@ -59,7 +59,7 @@ public class SettingsActivity<Cofiguration> extends AppCompatActivity {
             public void onNothingSelected(AdapterView<?> parent) {
 
             }
-        });
+        });*/
 
         getSupportFragmentManager()
                 .beginTransaction()
@@ -67,12 +67,12 @@ public class SettingsActivity<Cofiguration> extends AppCompatActivity {
                 .commit();
     }
 
-    public void setLocal(Activity activity, String langCode){
+    /*public void setLocal(Activity activity, String langCode){
         Locale locale = new Locale(langCode);
         Locale.setDefault(locale);
         Resources resources = activity.getResources();
-        Configuration config = resources.getConfiguration();
+        Configuration config = (Configuration) resources.getConfiguration();
         config.setLocale(locale);
-        resources.updateConfiguration(config, resources.getDisplayMetrics());
-    }
+        resources.updateConfiguration((android.content.res.Configuration) config, resources.getDisplayMetrics());
+    }*/
 }
