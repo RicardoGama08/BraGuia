@@ -93,11 +93,4 @@ public class Edges {
     public void setEdge_end(Pin edge_end) {
         this.edge_end = edge_end;
     }
-
-    public String createMapLink() {
-        String link = "https://www.google.com/maps/dir/?api=1&origin="
-                + this.edge_start.getLat() + "," + this.edge_start.getLng() + "," + this.edge_start.getAlt()
-                + "&destination=" + this.edge_end.getLat() + "," + this.edge_end.getLng() + "," + this.edge_end.getAlt();
-        return link;
-    }
 }

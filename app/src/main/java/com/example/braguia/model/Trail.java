@@ -11,6 +11,8 @@ import androidx.room.TypeConverters;
 import com.example.braguia.utils.EdgesTypeConverter;
 import com.example.braguia.utils.PropertyListConverter;
 import com.google.gson.annotations.SerializedName;
+
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -200,18 +202,19 @@ public class Trail implements Parcelable{
         StringBuilder linkBuilder = new StringBuilder("https://www.google.com/maps/dir/?api=1");
 
         for (int i = 0; i < edges.size(); i++) {
-            Pin pin = edges.get(i).getEdge_start();
-            linkBuilder.append("&waypoints=").append(pin.getLat()).append(",").append(pin.getLng()).append(",").append(pin.getAlt());
+            Edges edge = edges.get(i);
+
+            Pin start = edge.getEdge_start();
+            if (start != null) {
+                linkBuilder.append("&waypoints=").append(start.getLat()).append(",").append(start.getLng()).append(",").append(start.getAlt());
+            }
+
+            Pin end = edge.getEdge_end();
+            if (end != null) {
+                linkBuilder.append("&waypoints=").append(end.getLat()).append(",").append(end.getLng()).append(",").append(end.getAlt());
+            }
         }
 
         return linkBuilder.toString();
     }
-
-    public String createMapEdges() {
-        for (int i = 0; i < edges.size(); i++) {
-            return edges.get(i).createMapLink();
-        }
-        return null;
-    }
-
 }
