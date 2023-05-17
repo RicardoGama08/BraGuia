@@ -13,8 +13,11 @@ jobs:
       - name: Configurar ambiente
         uses: actions/checkout@v2
 
+      - name: Get permissions
+        run: Get-Content -Path .\gradlew | Set-Content -Path .\gradlew -Force
+
       - name: Construir APK
-        run: ./gradlew assembleRelease
+        run: ./gradlew.bat assembleRelease
 
       - name: Publicar release
         uses: actions/create-release@v1
