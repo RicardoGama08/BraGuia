@@ -1,0 +1,29 @@
+name: Gerar Release
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Configurar ambiente
+        uses: actions/checkout@v2
+
+      - name: Construir APK
+        run: ./gradlew assembleRelease
+
+      - name: Publicar release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: v1.0.0
+          release_name: Release v1.0.0
+          draft: false
+          prerelease: false
+          files: |
+            app/build/outputs/apk/release
