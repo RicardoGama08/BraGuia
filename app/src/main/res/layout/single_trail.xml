@@ -34,12 +34,13 @@
         android:layout_width="match_parent"
         android:layout_height="8dp" />
 
-    <FrameLayout
-        android:id="@+id/map_fragment"
-        android:layout_width="match_parent"
-        android:layout_height="248dp">
+    <TextView
+        android:id="@+id/link_mapa_trail"
+        android:layout_width="322dp"
+        android:layout_gravity="center"
+        android:autoLink="web"
+        android:layout_height="wrap_content" />
 
-    </FrameLayout>
 
     <TextView
         android:id="@+id/textView24"

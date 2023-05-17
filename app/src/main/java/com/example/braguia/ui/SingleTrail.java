@@ -85,14 +85,18 @@ public class SingleTrail extends Fragment implements OnMapReadyCallback {
         Double dur = trail.getDuration();
         durView.setText("Duração: " + dur.toString());
 
-        mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
+        /*mapFragment = (SupportMapFragment) getChildFragmentManager().findFragmentById(R.id.map_fragment);
         if (mapFragment == null) {
             mapFragment = SupportMapFragment.newInstance();
             getChildFragmentManager().beginTransaction()
                     .replace(R.id.map_fragment, mapFragment)
                     .commit();
         }
-        mapFragment.getMapAsync(this);
+        mapFragment.getMapAsync(this);*/
+
+        @SuppressLint({"MissingInflatedId", "LocalSuppress"}) TextView linkMapa = view.findViewById(R.id.link_mapa_trail);
+        linkMapa.setText("Link Mapa: " + trail.createMapLink());
+
         return view;
     }
 
