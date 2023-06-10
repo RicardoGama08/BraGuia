@@ -19,6 +19,7 @@ type SectionProps = PropsWithChildren<{
 }>;
 import LoginScreen from './screens/login';
 import RegisterScreen from './screens/register';
+import FirstPage from './screens/firstpage';
 import Navigator from './routes/homeStack';
 
 /*function Section({children, title}: SectionProps): JSX.Element {

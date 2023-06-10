@@ -1,11 +1,12 @@
-import { createStackNavigator } from 'react-navigation-stack';
-import { createAppContainer } from 'react-navigation';
-import LoginScreen from '../screens/login';
-import RegisterScreen from '../screens/register';
-import Home from '../screens/home';
 import React from 'react';
 import {StyleSheet, View,Text,Image,Button} from 'react-native';
 
+import { createStackNavigator } from 'react-navigation-stack';
+import { createAppContainer } from 'react-navigation';
+import Home from '../screens/home';
+import LoginScreen from '../screens/login';
+import RegisterScreen from '../screens/register';
+import FirstPage from '../screens/firstpage'; //pagina depois do login/registo
 
 const screens = {
     BraGuia:{
@@ -16,6 +17,9 @@ const screens = {
     },
     RegisterScreen: {
         screen: RegisterScreen
+    },
+    FirstPage:{
+        screen: FirstPage
     }
 }
 

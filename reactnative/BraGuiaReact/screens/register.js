@@ -1,10 +1,16 @@
 import React from 'react';
 import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
-export default function RegisterScreen() {
+export default function RegisterScreen({navigation}) {
+
+  const first_page_button_handler = () => {
+    navigation.navigate('FirstPage')
+  }
+
   return (
-        <View style={styles.container}>
+        <SafeAreaView style={styles.container}>
           <Text style={styles.title}>Register</Text>
         {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
           <View style={styles.logoContainer}>       
@@ -38,8 +44,8 @@ export default function RegisterScreen() {
             />
           </View>
         {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
-        <Button title="Go" onPress={() => {}} />
-      </View>
+        <Button title="Go" onPress={() => {(first_page_button_handler) }} />
+      </SafeAreaView>
 );
 
 }
@@ -50,9 +56,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
+    backgroundColor: '#E6E6FA', //Pastel Lavender
   },
   title: {
-    fontSize: 24,
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
   },

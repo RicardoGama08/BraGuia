@@ -1,10 +1,16 @@
 import React from 'react';
 import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
-export default function LoginScreen() {
+export default function LoginScreen({navigation}) {
+
+  const first_page_button_handler = () => {
+    navigation.navigate('FirstPage')
+  }
+
   return (
   // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
-  <View style={styles.container}>
+  <SafeAreaView style={styles.container}>
        {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
        <Text style={styles.title}>Login</Text>
        <View style={styles.logoContainer}>       
@@ -25,8 +31,8 @@ export default function LoginScreen() {
         />
     </View>
     {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
-    <Button title="Go" onPress={() => {}} />
-  </View>
+    <Button title="Go" onPress={() => {(first_page_button_handler) }} />
+  </SafeAreaView>
   );
 }
 
@@ -36,9 +42,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     alignItems: 'center',
     paddingHorizontal: 20,
+    backgroundColor: '#E6E6FA', //Pastel Lavender
   },
   title: {
-    fontSize: 24,
+    fontFamily:'DMSans-Bold',
+    fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
   },

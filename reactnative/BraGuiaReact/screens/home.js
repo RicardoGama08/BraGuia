@@ -1,5 +1,6 @@
 import React from 'react';
 import {StyleSheet, View,Text,Image,Button} from 'react-native';
+import { SafeAreaView } from 'react-native-safe-area-context';
 
 
 export default function Home({ navigation }){
@@ -14,7 +15,7 @@ export default function Home({ navigation }){
 
 
     return (
-        <View style={{ flex: 1 }}>
+      <SafeAreaView style={styles.container}>
           <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <Image
               source={require('../assets/images/braga2.jpg')}
@@ -26,15 +27,16 @@ export default function Home({ navigation }){
             <Button title="Login" onPress={(login_button_handler) }/> 
             {/* => navigation.navigate('Login')}  */}
             <Text style={{ marginTop: 16, marginBottom: 16 }}>Não tem conta registada? Registe-se já!</Text>
-            <Button title="Registar" onPress={(register_button_handler) } />
+            <Button title="Register" onPress={(register_button_handler) } />
           </View>
-        </View>
+        </SafeAreaView>
       );
 }
 
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    backgroundColor: '#E6E6FA', //Pastel Lavender
   },
   image: {
     alignSelf: 'flex-start',
