@@ -2,7 +2,6 @@ import React from 'react';
 import {StyleSheet, View,Text,Image,Button} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
-
 export default function Home({ navigation }){
 
     const login_button_handler = () => {

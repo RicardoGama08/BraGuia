@@ -31,7 +31,7 @@ export default function LoginScreen({navigation}) {
         />
     </View>
     {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
-    <Button title="Go" onPress={() => {(first_page_button_handler) }} />
+    <Button title="Go" onPress={(first_page_button_handler)} />
   </SafeAreaView>
   );
 }
