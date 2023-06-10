@@ -8,7 +8,7 @@ import {name as appName} from './app.json';
 
 AppRegistry.registerComponent(appName, () => App);
 
-import {useState} from 'react';
+/* import {useState} from 'react';
 import {View, ScrollView, SafeAreaView} from 'react-native';
 // import {Stack, useRouter} from 'expo-router';
 
@@ -24,11 +24,8 @@ const Home = () => {
             <Stack.Screen
                 options={{
                     headerStyle:{backgroundColor:COLORS.lightWhite},
-                    headerTitle: "BraGuia"
                 }}
             />
         </SafeAreaView>
     )
-}
-
-// export default Home
+} */

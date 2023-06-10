@@ -16,5 +16,3 @@ rootProject.name = "BraGuia"
 include ':app'
 include ':reactnative'
 project(':reactnative').projectDir = new File(rootProject.projectDir, 'reactnative/BraGuiaReact')
-include ':braguiareact'
-include ':myapplication'
