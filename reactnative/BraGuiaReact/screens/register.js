@@ -1,10 +1,16 @@
 import React from 'react';
-import {StyleSheet, View,Text,TextInput,Button} from 'react-native';
+import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
 
 
 export default function RegisterScreen() {
   return (
       <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
+        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <Image
+              source={require('../assets/images/register.png')}
+              style={styles.image_icon}
+            /> 
+        </View> 
         <Text style={{ fontSize: 24, fontWeight: 'bold', marginTop: 10 }}>Register</Text>
         <Text style={{ fontSize: 20, fontWeight: 'bold', marginTop: 36 }}>User</Text>
         <TextInput style={{ width: 299, height: 48 }} placeholder="Enter username" />
@@ -24,5 +30,10 @@ export default function RegisterScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+  },
+  image_icon:{
+    width: 100,
+    height: 100,
+    resizeMode: 'contain',
   }
 });
