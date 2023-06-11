@@ -15,7 +15,15 @@ const SECTIONS = [
           icon: 'globe',
           color: '#fe9400',
           label: 'Language',
-          type: 'link' },
+          type: 'link' 
+        },
+
+        { icon: 'bell',
+          color: '#fd2d54',
+          label: 'Notifications',
+          type: 'boolean' 
+        },
+
         {
           icon: 'moon',
           color: '#007afe',
@@ -23,32 +31,11 @@ const SECTIONS = [
           value: false,
           type: 'boolean',
         },
-        {
-          icon: 'wifi',
-          color: '#007afe',
-          label: 'Use Wi-Fi',
-          value: true,
-          type: 'boolean',
-        },
         { 
           icon: 'navigation',
           color: '#32c759', 
           label: 'Location', 
           type: 'link' },
-        {
-          icon: 'users',
-          color: '#32c759',
-          label: 'Show collaborators',
-          value: true,
-          type: 'boolean',
-        },
-        {
-          icon: 'airplay',
-          color: '#fd2d54',
-          label: 'Accessibility mode',
-          value: false,
-          type: 'boolean',
-        },
       ],
     },
     {
@@ -156,42 +143,6 @@ const styles = StyleSheet.create({
       fontWeight: 'bold',
       marginBottom: 20,
     },
-    title2: {
-      fontSize: 28,
-      fontWeight: 'bold',
-      marginBottom: 16,
-      fontFamily: 'Roboto',
-      color: '#333333',
-      textAlign: 'center',
-    },
-    logoContainer: {
-      alignItems: 'center',
-      marginBottom: 40,
-    },
-    image_icon:{
-      width: 70,
-      height: 70,
-      resizeMode: 'contain',
-    },
-    inputContainer: {
-      width: '100%',
-    },
-    input: {
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 5,
-      paddingHorizontal: 10,
-      paddingVertical: 8,
-      marginBottom: 10,
-    },
-    description: {
-      fontSize: 14,
-      lineHeight: 20,
-      fontFamily: 'OpenSans',
-      color: '#666666',
-      textAlign: 'justify',
-    },
-
     containter2:{
         paddingVertical: 24,
         backgroundColor: '#E6E6FA', //Pastel Lavender
