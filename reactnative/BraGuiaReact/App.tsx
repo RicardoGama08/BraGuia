@@ -22,6 +22,21 @@ import RegisterScreen from './screens/register';
 import FirstPage from './screens/firstpage';
 import Navigator from './routes/homeStack';
 
+
+//const MainActivity = ({ navigation }) => {
+  export default function App(){
+    //const [name, setName] = useState('main');
+    return (
+      <Navigator />
+    );
+  };
+  
+  const styles = StyleSheet.create({
+    container: {
+      flex: 1,
+    }
+  });
+
 /*function Section({children, title}: SectionProps): JSX.Element {
   const isDarkMode = useColorScheme() === 'dark';
   return (
@@ -120,19 +135,7 @@ import Navigator from './routes/homeStack';
 );*/
 
 
-//const MainActivity = ({ navigation }) => {
-export default function App(){
-  //const [name, setName] = useState('main');
-  return (
-    <Navigator />
-  );
-};
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  }
-});
 
 
 

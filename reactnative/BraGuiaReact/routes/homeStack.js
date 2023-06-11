@@ -1,5 +1,6 @@
 import React from 'react';
-import {StyleSheet, View,Text,Image,Button} from 'react-native';
+import {StyleSheet, View,Text,Image,Button} from 'react-native'
+import { withNavigation } from 'react-navigation';
 
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
@@ -9,10 +10,21 @@ import RegisterScreen from '../screens/register';
 import FirstPage from '../screens/firstpage'; //pagina depois do login/registo
 import TrailsScreen from '../screens/trails'
 import PinsScreen from '../screens/pins'
+import SettingsScreen from '../screens/SettingsScreen';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const screens = {
-    BraGuia:{
-        screen: Home
+    BraGuia: {
+        screen: Home,
+        navigationOptions: ({ navigation }) => ({
+          headerTitle: 'BraGuia',
+          headerRight: () => (
+            <Button
+              onPress={() => navigation.navigate('SettingsScreen')}
+              title="Settings"
+            />
+          ),
+        }),
     },
     LoginScreen: {
         screen: LoginScreen
@@ -28,6 +40,9 @@ const screens = {
     },
     TrailsScreen:{
         screen: TrailsScreen
+    },
+    SettingsScreen:{
+        screen: SettingsScreen
     }
 }
 
