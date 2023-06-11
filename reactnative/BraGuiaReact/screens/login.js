@@ -1,12 +1,42 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import axios from 'axios';
 
 export default function LoginScreen({navigation}) {
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
 
   const first_page_button_handler = () => {
     navigation.navigate('FirstPage')
   }
+
+  const handleLogin = () => {
+  const credentials = [{username: 'premium_user',password: 'paiduser'},
+                {username: 'standard_user',password: 'cheapuser'}];
+
+  const user = credentials.find((cred) => cred.username === username && cred.password === password);
+
+  if (user) {
+      const data = {
+        username: user.username,
+        password: user.password
+      };
+    axios.post("https://c5a2-193-137-92-29.eu.ngrok.io/login",data,{
+         withCredentials: false,
+        headers: {
+            "Content-Type": "application/json",},})
+        .then((response) => {
+            console.log(response.data);
+            first_page_button_handler();
+            })
+        .catch((error) => {
+            console.error(error.response.data);
+        });
+  }else{
+     console.log("Invalid password or username");
+    }
+  };
 
   return (
   // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
@@ -23,15 +53,19 @@ export default function LoginScreen({navigation}) {
         <TextInput
           style={styles.input}
           placeholder="Username"
+          value={username}
+          onChangeText={text => setUsername(text)}
         />
         <TextInput
           style={styles.input}
           placeholder="Password"
           secureTextEntry
+          value={password}
+          onChangeText={text => setPassword(text)}
         />
     </View>
     {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
-    <Button title="Go" onPress={(first_page_button_handler)} />
+    <Button title="Go" onPress={(handleLogin)} />
   </SafeAreaView>
   );
 }
