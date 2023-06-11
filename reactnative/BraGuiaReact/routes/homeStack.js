@@ -16,15 +16,6 @@ import { TouchableOpacity } from 'react-native-gesture-handler';
 const screens = {
     BraGuia: {
         screen: Home,
-        navigationOptions: ({ navigation }) => ({
-          headerTitle: 'BraGuia',
-          headerRight: () => (
-            <Button
-              onPress={() => navigation.navigate('SettingsScreen')}
-              title="Settings"
-            />
-          ),
-        }),
     },
     LoginScreen: {
         screen: LoginScreen
@@ -33,7 +24,16 @@ const screens = {
         screen: RegisterScreen
     },
     FirstPage:{
-        screen: FirstPage
+        screen: FirstPage,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'BraGuia',
+            headerRight: () => (
+              <Button
+                onPress={() => navigation.navigate('SettingsScreen')}
+                title="Settings"
+              />
+            ),
+          }),
     },
     PinsScreen:{
         screen: PinsScreen
