@@ -23,11 +23,13 @@ export default function LoginScreen({navigation}) {
         password: user.password
       };
     axios.post("https://c5a2-193-137-92-29.eu.ngrok.io/login",data,{
-         withCredentials: false,
+         withCredentials: true,
         headers: {
             "Content-Type": "application/json",},})
         .then((response) => {
             console.log(response.data);
+            const sessionid = response.headers['set-cookie'][0].split(';')[0];
+            const csrftoken = response.headers['set-cookie'][1].split(';')[0];
             first_page_button_handler();
             })
         .catch((error) => {

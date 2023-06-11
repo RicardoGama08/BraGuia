@@ -4,10 +4,32 @@ import React, {useEffect,useState} from 'react';
 import {StyleSheet, View,Text,Image,Button,FlatList,TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function PinsScreen({ navigation }){
 
    const [pins, setPins] = useState([]);
+
+   const getSessionId = async () => {
+     try {
+       const sessionid = await AsyncStorage.getItem('sessionid');
+       return sessionid;
+     } catch (error) {
+       console.error('Error retrieving session ID:', error);
+       return null;
+     }
+   };
+
+   const getCsrfToken = async () => {
+     try {
+       const csrftoken = await AsyncStorage.getItem('csrftoken');
+       return csrftoken;
+     } catch (error) {
+       console.error('Error retrieving CSRF token:', error);
+       return null;
+     }
+   };
 
          useEffect(() => {
            fetchPins();
@@ -15,8 +37,20 @@ export default function PinsScreen({ navigation }){
 
          const fetchPins = async () => {
              try {
-               const response = await axios.get('https://c5a2-193-137-92-29.eu.ngrok.io/pins');
-               setPins(response.data);
+               const sessionid = await getSessionId();
+               const csrftoken = await getCsrfToken();
+                   if (!sessionid || !csrftoken) {
+                        console.error('Session ID or CSRF token not found in storage');
+                        return;
+                      }
+               const response = await axios.get('https://c5a2-193-137-92-29.eu.ngrok.io/pins',{
+               headers: {
+                         Cookie: `${sessionid}; ${csrftoken}`,
+                         'X-CSRFToken': csrftoken
+                       }});
+               if(response && response.data)
+                    setPins(response.data);
+               else console.error('Invalid responde: ', response);
              } catch (error) {
                console.error(error);
              }
