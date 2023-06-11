@@ -43,6 +43,12 @@ const screens = {
     },
     SettingsScreen:{
         screen: SettingsScreen
+    },
+    TrailDetails:{
+            screen: TrailsScreen
+    },
+    PinDetails:{
+            screen: PinsScreen
     }
 }
 

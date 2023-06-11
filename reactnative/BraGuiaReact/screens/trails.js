@@ -1,23 +1,48 @@
 //pagina de trails
 
-import React from 'react';
-import {StyleSheet, View,Text,Image,Button} from 'react-native';
-import { SafeAreaView } from 'react-native-safe-area-context';
 import { Card } from 'react-native-paper';
+import React, { useEffect, useState } from 'react';
+import {StyleSheet,Text,Image,Button,View, FlatList,TouchableOpacity} from 'react-native';
+import { useNavigation } from '@react-navigation/native';
+import axios from 'axios';
 
+export default function TrailsScreen({navigation}){
+    //const navigation = useNavigation();
+    const [trails, setTrails] = useState([]);
 
-export default function TrailsScreen({ navigation }){
+      useEffect(() => {
+        fetchTrails();
+      }, []);
 
-    return (
-        <View style={styles.container}>
-          <View style={styles.card}>
-            <View style={styles.innerContainer}>
-              <View style={styles.leftContainer}>
-                <Text style={styles.itemId}>Item ID</Text>
-                <Text style={styles.nameTrail}>Name Trail</Text>
-              </View>
-            </View>
+      const fetchTrails = async () => {
+          try {
+            const response = await axios.get('https://c5a2-193-137-92-29.eu.ngrok.io/trails');
+            setTrails(response.data);
+          } catch (error) {
+            console.error(error);
+          }
+        };
+
+      const handleTrailPress = (trail) => {
+        navigation.navigate('SingleTrail', { trail });
+      };
+
+      const renderTrailItem = ({ item }) => (
+        <TouchableOpacity onPress={() => handleTrailPress(item)}>
+          <View style={styles.trailItem}>
+            <Text style={styles.trailName}>{item.name}</Text>
+            <Text style={styles.trailDescription}>{item.description}</Text>
           </View>
+        </TouchableOpacity>
+      );
+
+      return (
+        <View style={styles.container}>
+          <FlatList
+            data={trails}
+            renderItem={renderTrailItem}
+            keyExtractor={(item) => item.id.toString()}
+          />
         </View>
       );
 }
@@ -106,4 +131,18 @@ card: {
     margin: 8,
     // Add text styles
   },
+  trailItem: {
+      marginBottom: 16,
+      padding: 16,
+      backgroundColor: '#fff',
+      borderRadius: 8,
+    },
+    trailName: {
+      fontSize: 16,
+      fontWeight: 'bold',
+    },
+    trailDescription: {
+      fontSize: 14,
+      color: '#888',
+    },
 });

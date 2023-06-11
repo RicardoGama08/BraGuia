@@ -1,25 +1,52 @@
 //pagina de pins
 
-import React from 'react';
-import {StyleSheet, View,Text,Image,Button} from 'react-native';
+import React, {useEffect,useState} from 'react';
+import {StyleSheet, View,Text,Image,Button,FlatList,TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import axios from 'axios';
 
 export default function PinsScreen({ navigation }){
 
-   return (
-           <View style={styles.container}>
-             <View style={styles.card}>
-               <View style={styles.innerContainer}>
-                 <View style={styles.leftContainer}>
-                   <Text style={styles.itemId}>Item ID</Text>
-                   <Text style={styles.namePin}>Name Pin</Text>
-                 </View>
-               </View>
+   const [pins, setPins] = useState([]);
+
+         useEffect(() => {
+           fetchPins();
+         }, []);
+
+         const fetchPins = async () => {
+             try {
+               const response = await axios.get('https://c5a2-193-137-92-29.eu.ngrok.io/pins');
+               setPins(response.data);
+             } catch (error) {
+               console.error(error);
+             }
+           };
+
+         const handlePinPress = (pin) => {
+           navigation.navigate('SinglePin', { pin });
+         };
+
+         const renderPinItem = ({ item }) => (
+           <TouchableOpacity onPress={() => handlePinPress(item)}>
+             <View style={styles.pinItem}>
+               <Text style={styles.pinName}>{item.name}</Text>
+               <Text style={styles.pinDescription}>{item.description}</Text>
              </View>
+           </TouchableOpacity>
+         );
+
+         return (
+           <View style={styles.container}>
+             <FlatList
+               data={pins}
+               renderItem={renderPinItem}
+               keyExtractor={(item) => item.id.toString()}
+             />
            </View>
          );
 
 }
+
 const styles = StyleSheet.create({
     container: {
       flex: 1,
@@ -99,8 +126,22 @@ const styles = StyleSheet.create({
         fontSize: 16,
         // Add other text styles if needed
       },
-      nameTrail: {
+      namePin: {
         margin: 8,
         // Add text styles
       },
+      pinItemItem: {
+            marginBottom: 16,
+            padding: 16,
+            backgroundColor: '#fff',
+            borderRadius: 8,
+          },
+          pinNameName: {
+            fontSize: 16,
+            fontWeight: 'bold',
+          },
+          pinDescription: {
+            fontSize: 14,
+            color: '#888',
+          },
   });

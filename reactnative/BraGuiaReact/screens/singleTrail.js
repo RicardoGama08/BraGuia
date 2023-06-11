@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
-const TrailDetails = () => {
+export default function TrailDetails({navigation}){
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Header Trail</Text>
@@ -45,4 +45,3 @@ const styles = {
   },
 };
 
-export default TrailDetails;
