@@ -12,7 +12,7 @@ export default function LoginScreen({navigation}) {
   // <View style={{ flex: 1, alignItems: 'center', justifyContent: 'center' }}>
   <SafeAreaView style={styles.container}>
        {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
-       <Text style={styles.title}>Login</Text>
+       <Text style={styles.title2}>Login</Text>
        <View style={styles.logoContainer}>       
             <Image
               source={require('../assets/images/login.png')}
@@ -49,6 +49,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  title2: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    fontFamily: 'Roboto',
+    color: '#333333',
+    textAlign: 'center',
   },
   logoContainer: {
     alignItems: 'center',

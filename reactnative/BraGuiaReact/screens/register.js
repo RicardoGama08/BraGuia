@@ -11,7 +11,7 @@ export default function RegisterScreen({navigation}) {
 
   return (
         <SafeAreaView style={styles.container}>
-          <Text style={styles.title}>Register</Text>
+          <Text style={styles.title2}>Register</Text>
         {/* <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}> */}
           <View style={styles.logoContainer}>       
               <Image
@@ -62,6 +62,14 @@ const styles = StyleSheet.create({
     fontSize: 30,
     fontWeight: 'bold',
     marginBottom: 20,
+  },
+  title2: {
+    fontSize: 28,
+    fontWeight: 'bold',
+    marginBottom: 16,
+    fontFamily: 'Roboto',
+    color: '#333333',
+    textAlign: 'center',
   },
   logoContainer: {
     alignItems: 'center',

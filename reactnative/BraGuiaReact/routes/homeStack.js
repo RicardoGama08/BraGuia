@@ -7,6 +7,8 @@ import Home from '../screens/home';
 import LoginScreen from '../screens/login';
 import RegisterScreen from '../screens/register';
 import FirstPage from '../screens/firstpage'; //pagina depois do login/registo
+import TrailsScreen from '../screens/trails'
+import PinsScreen from '../screens/pins'
 
 const screens = {
     BraGuia:{
@@ -20,6 +22,12 @@ const screens = {
     },
     FirstPage:{
         screen: FirstPage
+    },
+    PinsScreen:{
+        screen: PinsScreen
+    },
+    TrailsScreen:{
+        screen: TrailsScreen
     }
 }
 

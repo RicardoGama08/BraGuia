@@ -26,7 +26,7 @@ export default function Home({ navigation }){
             <Button title="Login" onPress={(login_button_handler) }/> 
             {/* => navigation.navigate('Login')}  */}
             <Text style={{ marginTop: 16, marginBottom: 16 }}>Não tem conta registada? Registe-se já!</Text>
-            <Button title="Register" onPress={(register_button_handler) } />
+            <Button title="Registo" onPress={(register_button_handler) } />
           </View>
         </SafeAreaView>
       );
