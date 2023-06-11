@@ -11,6 +11,7 @@ import FirstPage from '../screens/firstpage'; //pagina depois do login/registo
 import TrailsScreen from '../screens/trails'
 import PinsScreen from '../screens/pins'
 import SettingsScreen from '../screens/SettingsScreen';
+import EditProfile from '../screens/EditProfile';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
 const screens = {
@@ -41,15 +42,19 @@ const screens = {
     TrailsScreen:{
         screen: TrailsScreen
     },
+    TrailDetails:{
+        screen: TrailsScreen
+    },
+    PinDetails:{
+        screen: PinsScreen
+    },
     SettingsScreen:{
         screen: SettingsScreen
     },
-    TrailDetails:{
-            screen: TrailsScreen
+    EditProfile:{
+        screen: EditProfile
     },
-    PinDetails:{
-            screen: PinsScreen
-    }
+    
 }
 
 const HomeStack = createStackNavigator(screens);

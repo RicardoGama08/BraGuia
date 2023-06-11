@@ -72,7 +72,8 @@ export default function SettingsScreen({ navigation }){
                 <View style={styles.profile}>
                     <TouchableOpacity 
                     onPress={() =>{
-                        // edit
+                        // edit profile
+                        navigation.navigate('EditProfile')
                     }}>
                         <View>
                             <Image
@@ -85,6 +86,7 @@ export default function SettingsScreen({ navigation }){
                         </View>
                     </TouchableOpacity>
                     <Text style={styles.profileName}>Username</Text>
+                    <Text style={styles.profileEmail}>username@gmail.com</Text>
                 </View>
 
 
@@ -162,6 +164,14 @@ const styles = StyleSheet.create({
         fontWeight: '600',
         textAlign: 'center',
     },
+
+    profileEmail:{
+        marginTop: 6,
+        fontSize: 16,
+        color: "#a9a9a9",
+        textAlign: 'center',
+    },
+
     profilePicture:{
         width: 90,
         height: 90,
@@ -179,6 +189,8 @@ const styles = StyleSheet.create({
         alignItems: 'center',
         justifyContent: 'center',
     },
+
+    
 
     section:{
         paddingHorizontal: 24,
