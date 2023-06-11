@@ -35,7 +35,7 @@ const SECTIONS = [
           icon: 'navigation',
           color: '#32c759', 
           label: 'Location', 
-          type: 'link' },
+          type: 'boolean' },
       ],
     },
     {
@@ -68,20 +68,23 @@ export default function SettingsScreen({ navigation }){
     return(
         <SafeAreaView style={{flex:1}}>
             <ScrollView contentContainerStyle={styles.container2}>
+
                 <View style={styles.profile}>
                     <TouchableOpacity 
                     onPress={() =>{
-                        // handle press
+                        // edit
                     }}>
                         <View>
-                        <Image
-                            source={require('../assets/images/kemal.jpg')}
-                            style={styles.profilePicture}
-                        />
+                            <Image
+                                source={require('../assets/images/kemal.jpg')}
+                                style={styles.profilePicture}
+                            />
+                            <View style={styles.profileEdit}>
+                                <FeatherIcon name="edit" size={15} color="#fff" ></FeatherIcon>
+                            </View>
                         </View>
                     </TouchableOpacity>
                     <Text style={styles.profileName}>Username</Text>
-                    
                 </View>
 
 
@@ -160,10 +163,23 @@ const styles = StyleSheet.create({
         textAlign: 'center',
     },
     profilePicture:{
-        width: 80,
-        height: 80,
-        borderRadius: 3000,
+        width: 90,
+        height: 90,
+        borderRadius: 100,
     },
+
+    profileEdit:{
+        backgroundColor: "#52c4eb",
+        width: 30,
+        borderRadius: 100,
+        height: 30,
+        position: 'absolute',
+        right: -3,
+        bottom: -8,
+        alignItems: 'center',
+        justifyContent: 'center',
+    },
+
     section:{
         paddingHorizontal: 24,
 
