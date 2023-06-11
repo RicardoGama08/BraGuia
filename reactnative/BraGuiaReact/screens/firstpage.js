@@ -65,7 +65,7 @@ const styles = StyleSheet.create({
     },
     image_icon:{
       width: 70,
-      height: 70,
+      height: 60,
       resizeMode: 'contain',
     },
     inputContainer: {

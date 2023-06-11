@@ -77,7 +77,7 @@ export default function SettingsScreen({ navigation }){
                     }}>
                         <View>
                             <Image
-                                source={require('../assets/images/kemal.jpg')}
+                                source={require('../assets/images/profile.png')}
                                 style={styles.profilePicture}
                             />
                             <View style={styles.profileEdit}>
