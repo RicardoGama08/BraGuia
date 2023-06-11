@@ -2,46 +2,63 @@ import React from 'react';
 import { View, Text, ScrollView } from 'react-native';
 
 export default function TrailDetails({navigation}){
-  return (
-    <View style={styles.container}>
-      <Text style={styles.header}>Header Trail</Text>
-      <Text style={styles.link}>Link Mapa</Text>
-      <Text style={styles.text}></Text>
-      <ScrollView style={styles.scrollView}>
-        <Text style={styles.trailDesc}>Pin Description</Text>
-      </ScrollView>
-    </View>
-  );
-};
+  const { trail } = navigation.params;
 
-const styles = {
+  return (
+      <View style={styles.container}>
+        <Image source={{ uri: trail.trail_img }} style={styles.trailImage} />
+        <Text style={styles.trailName}>{trail.trail_name}</Text>
+        <Text style={styles.trailDescription}>{trail.trail_desc}</Text>
+        <Text style={styles.trailDuration}>Duration: {trail.trail_duration} minutes</Text>
+        <Text style={styles.trailDifficulty}>Difficulty: {trail.trail_difficulty}</Text>
+      </View>
+    );
+  }
+
+const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 16,
+    padding: 16,
   },
-  header: {
-    width: 322,
-    alignSelf: 'center',
-    marginTop: 10,
+  trailImage: {
+    width: '100%',
+    height: 200,
+    resizeMode: 'cover',
+    marginBottom: 16,
+  },
+  trailName: {
     fontSize: 24,
     fontWeight: 'bold',
+    marginBottom: 8,
   },
-  link: {
-    width: 322,
-    alignSelf: 'center',
-    textAlign: 'center',
+  trailDescription: {
+    fontSize: 16,
+    marginBottom: 8,
   },
-  text: {
-    flex: 1,
+  trailDuration: {
+    fontSize: 16,
+    marginBottom: 8,
   },
-  scrollView: {
-    width: 345,
-    alignSelf: 'center',
-    marginTop: 10,
+  trailDifficulty: {
+    fontSize: 16,
+    marginBottom: 16,
   },
-  trailDescDesc: {
-    width: '100%',
+  sectionTitle: {
+    fontSize: 18,
+    fontWeight: 'bold',
+    marginBottom: 8,
   },
-};
-
+  edgeContainer: {
+    flexDirection: 'row',
+    alignItems: 'center',
+    marginBottom: 8,
+  },
+  edgeTransport: {
+    fontSize: 16,
+    fontWeight: 'bold',
+    marginRight: 8,
+  },
+  edgeDesc: {
+    fontSize: 16,
+  },
+});

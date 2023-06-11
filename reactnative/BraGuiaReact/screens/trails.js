@@ -30,8 +30,9 @@ export default function TrailsScreen({navigation}){
       const renderTrailItem = ({ item }) => (
         <TouchableOpacity onPress={() => handleTrailPress(item)}>
           <View style={styles.trailItem}>
-            <Text style={styles.trailName}>{item.name}</Text>
-            <Text style={styles.trailDescription}>{item.description}</Text>
+            <Text style={styles.trailName}>{item.trail_name}</Text>
+            <Text style={styles.trailDescription}>{item.trail_desc}</Text>
+            <Image source={{ uri: item.trail_img }} style={styles.trailImage} />
           </View>
         </TouchableOpacity>
       );
@@ -56,93 +57,27 @@ container: {
   paddingHorizontal: 20,
   backgroundColor: '#E6E6FA', //Pastel Lavender
 },
-title: {
-  fontFamily:'DMSans-Bold',
-  fontSize: 30,
-  fontWeight: 'bold',
-  marginBottom: 20,
-},
-title2: {
-  fontSize: 28,
-  fontWeight: 'bold',
-  marginBottom: 16,
-  fontFamily: 'Roboto',
-  color: '#333333',
-  textAlign: 'center',
-},
-logoContainer: {
-  alignItems: 'center',
-  marginBottom: 40,
-},
-image_icon:{
-  width: 70,
-  height: 70,
-  resizeMode: 'contain',
-},
-inputContainer: {
-  width: '100%',
-},
-input: {
-  borderWidth: 1,
-  borderColor: '#ccc',
-  borderRadius: 5,
-  paddingHorizontal: 10,
-  paddingVertical: 8,
-  marginBottom: 10,
-},
-description: {
-  fontSize: 14,
-  lineHeight: 20,
-  fontFamily: 'OpenSans',
-  color: '#666666',
-  textAlign: 'justify',
-},
-button: {
-  backgroundColor: '#007AFF',
-  paddingHorizontal: 20,
-  paddingVertical: 10,
-  borderRadius: 5,
-  marginHorizontal: 10,
-},
-buttonText: {
-  color: '#FFFFFF',
-  fontSize: 16,
-  fontWeight: 'bold',
-},
-card: {
-    backgroundColor: '#fff',
-        borderRadius: 8,
-        elevation: 5,
-        padding: 16,
-  },
-  innerContainer: {
-    flexDirection: 'row',
-  },
-  leftContainer: {
-    flex: 2,
-    marginTop: 12,
-  },
-  itemId: {
-    margin: 8,
-    fontSize: 16,
-    // Add other text styles if needed
-  },
-  nameTrail: {
-    margin: 8,
-    // Add text styles
-  },
-  trailItem: {
-      marginBottom: 16,
-      padding: 16,
-      backgroundColor: '#fff',
-      borderRadius: 8,
+trailItem: {
+     marginBottom: 16,
+         padding: 160,
+         backgroundColor: '#fff',
+         borderRadius: 8,
+         // Adjust the dimensions to make the trail item container larger
+         width: '100%',
+         minHeight: 100,
     },
     trailName: {
       fontSize: 16,
       fontWeight: 'bold',
+      marginBottom: 8,
     },
     trailDescription: {
       fontSize: 14,
       color: '#888',
     },
+    trailImage: {
+      width: 100, // adjust the width and height as per your requirements
+      height: 100,
+      resizeMode: 'cover', // or 'contain' depending on your preference
+    }
 });
