@@ -24,7 +24,7 @@ export default function TrailsScreen({navigation}){
         };
 
       const handleTrailPress = (trail) => {
-        navigation.navigate('SingleTrail', { trail });
+        navigation.navigate('TrailDetails', { trail: trail });
       };
 
       const renderTrailItem = ({ item }) => (

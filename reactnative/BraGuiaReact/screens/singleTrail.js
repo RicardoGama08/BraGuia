@@ -6,11 +6,11 @@ export default function TrailDetails({navigation}){
 
   return (
       <View style={styles.container}>
-        <Image source={{ uri: trail.trail_img }} style={styles.trailImage} />
         <Text style={styles.trailName}>{trail.trail_name}</Text>
         <Text style={styles.trailDescription}>{trail.trail_desc}</Text>
-        <Text style={styles.trailDuration}>Duration: {trail.trail_duration} minutes</Text>
+        <Text style={styles.trailDuration}>Duration: {trail.trail_duration} </Text>
         <Text style={styles.trailDifficulty}>Difficulty: {trail.trail_difficulty}</Text>
+        <Text style={styles.trailDesc}>Descrição: {trail.trail_desc}</Text>
       </View>
     );
   }
@@ -20,6 +20,10 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 16,
   },
+  trailDesc: {
+        fontSize: 14,
+        color: '#888',
+      },
   trailImage: {
     width: '100%',
     height: 200,
@@ -47,18 +51,5 @@ const styles = StyleSheet.create({
     fontSize: 18,
     fontWeight: 'bold',
     marginBottom: 8,
-  },
-  edgeContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginBottom: 8,
-  },
-  edgeTransport: {
-    fontSize: 16,
-    fontWeight: 'bold',
-    marginRight: 8,
-  },
-  edgeDesc: {
-    fontSize: 16,
-  },
+  }
 });
