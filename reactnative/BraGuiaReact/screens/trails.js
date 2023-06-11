@@ -3,15 +3,25 @@
 import React from 'react';
 import {StyleSheet, View,Text,Image,Button} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import { Card } from 'react-native-paper';
+
 
 export default function TrailsScreen({ navigation }){
 
-    return(
-    <SafeAreaView style={styles.container}>
-        <Text style={styles.title2}>Trails</Text>
-    </SafeAreaView>
-  );
+    return (
+        <View style={styles.container}>
+          <View style={styles.card}>
+            <View style={styles.innerContainer}>
+              <View style={styles.leftContainer}>
+                <Text style={styles.itemId}>Item ID</Text>
+                <Text style={styles.nameTrail}>Name Trail</Text>
+              </View>
+            </View>
+          </View>
+        </View>
+      );
 }
+
 
 const styles = StyleSheet.create({
 container: {
@@ -74,4 +84,26 @@ buttonText: {
   fontSize: 16,
   fontWeight: 'bold',
 },
+card: {
+    backgroundColor: '#fff',
+        borderRadius: 8,
+        elevation: 5,
+        padding: 16,
+  },
+  innerContainer: {
+    flexDirection: 'row',
+  },
+  leftContainer: {
+    flex: 2,
+    marginTop: 12,
+  },
+  itemId: {
+    margin: 8,
+    fontSize: 16,
+    // Add other text styles if needed
+  },
+  nameTrail: {
+    margin: 8,
+    // Add text styles
+  },
 });
