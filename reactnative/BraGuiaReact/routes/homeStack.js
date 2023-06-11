@@ -1,7 +1,8 @@
 import React from 'react';
 import {StyleSheet, View,Text,Image,Button} from 'react-native'
 import { withNavigation } from 'react-navigation';
-
+import TrailDetails from '../screens/singleTrail';
+import PinDetails from '../screens/singlePin';
 import { createStackNavigator } from 'react-navigation-stack';
 import { createAppContainer } from 'react-navigation';
 import Home from '../screens/home';
@@ -13,6 +14,7 @@ import PinsScreen from '../screens/pins'
 import SettingsScreen from '../screens/SettingsScreen';
 import EditProfile from '../screens/EditProfile';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import MapPin from '../screens/mapPin';
 
 const screens = {
     BraGuia: {
@@ -43,10 +45,10 @@ const screens = {
         screen: TrailsScreen
     },
     TrailDetails:{
-        screen: TrailsScreen
+        screen: TrailDetails
     },
     PinDetails:{
-        screen: PinsScreen
+        screen: PinDetails
     },
     SettingsScreen:{
         screen: SettingsScreen
@@ -54,7 +56,9 @@ const screens = {
     EditProfile:{
         screen: EditProfile
     },
-    
+    MapPin:{
+        screen: MapPin
+    },
 }
 
 const HomeStack = createStackNavigator(screens);

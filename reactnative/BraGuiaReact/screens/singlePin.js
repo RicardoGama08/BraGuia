@@ -1,7 +1,9 @@
 import React from 'react';
-import { View, Text, ScrollView } from 'react-native';
+import { View, Text,StyleSheet, ScrollView } from 'react-native';
 
-export default function PinDetails({navigation}) {
+export default function PinDetails({route}) {
+  const { pin } = route.params;
+
   return (
     <View style={styles.container}>
       <Text style={styles.header}>Header Pin</Text>
