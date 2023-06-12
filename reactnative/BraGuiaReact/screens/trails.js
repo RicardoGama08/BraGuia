@@ -58,7 +58,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     paddingVertical:10,
     paddingHorizontal: 30,
-    padding:5,
     backgroundColor: '#E6E6FA', //Pastel Lavender
   },
   trailItem: {
@@ -85,9 +84,9 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     // marginTop:5,
     // marginBottom: 5,
+    color: '#333333',
     paddingTop: 15,
     fontSize: 20,
-    fontWeight: 'bold',
     flex: 1,
   },
   trailDescription: {
