@@ -28,7 +28,7 @@ export default function FirstPage({ navigation }){
             <Text style={styles.description}>
             Bem-vindo ao BraGuia! Quer seja um local à procura de novos locais para explorar ou um visitante, esta aplicação tem tudo o que precisa para tirar o máximo partido da sua experiência em Braga. Desde locais históricos como a Sé de Braga a marcos modernos como a escadaria do Bom Jesus do Monte, nós temos tudo o que precisa. A nossa aplicação apresenta passeios a pé que o levam pelos bairros e jóias escondidas da cidade. Cada passeio é acompanhado por mapas detalhados, dicas internas e informações históricas, facilitando a navegação pela rica cultura e história da cidade. Com BraGuia, pode explorar Braga como um local e criar memórias inesquecíveis.
             </Text>
-            <Button title="Pontos de Interesse" onPress={(pins_button_handler) } />
+            <Button style={styles.button} title="Pontos de Interesse" onPress={(pins_button_handler) } />
             <Text> </Text>
             <Button title="Trilhos" onPress={(trails_button_handler) } />
 

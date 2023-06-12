@@ -33,26 +33,101 @@ const screens = {
         navigationOptions: ({ navigation }) => ({
             headerTitle: 'BraGuia',
             headerRight: () => (
-            <View style={{ marginRight: 10 }}>
-              <Button
+            <View style={{ marginRight: 25 }}>
+              {/* <Button
                 onPress={() => navigation.navigate('SettingsScreen')}
-                title="Settings"
-              />
+                // title="Settings"
+              /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+                    <Image
+                        source={require('../assets/images/gear.png')}
+                        style={{ width: 25, height: 25 }} // Adjust the size as needed
+                />
+                </TouchableOpacity>
             </View>
             ),
           }),
     },
     PinsScreen:{
-        screen: PinsScreen
+        screen: PinsScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'BraGuia',
+            headerRight: () => (
+            <View style={{ marginRight: 25 }}>
+              {/* <Button
+                onPress={() => navigation.navigate('SettingsScreen')}
+                // title="Settings"
+              /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+                    <Image
+                        source={require('../assets/images/gear.png')}
+                        style={{ width: 25, height: 25 }} // Adjust the size as needed
+                />
+                </TouchableOpacity>
+            </View>
+            ),
+          }),
     },
     TrailsScreen:{
-        screen: TrailsScreen
+        screen: TrailsScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'BraGuia',
+            headerRight: () => (
+            <View style={{ marginRight: 25 }}>
+              {/* <Button
+                onPress={() => navigation.navigate('SettingsScreen')}
+                // title="Settings"
+              /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+                    <Image
+                        source={require('../assets/images/gear.png')}
+                        style={{ width: 25, height: 25 }} // Adjust the size as needed
+                />
+                </TouchableOpacity>
+            </View>
+            ),
+          }),
     },
     TrailDetails:{
-        screen: TrailDetails
+        screen: TrailDetails,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'BraGuia',
+            headerRight: () => (
+            <View style={{ marginRight: 25 }}>
+              {/* <Button
+                onPress={() => navigation.navigate('SettingsScreen')}
+                // title="Settings"
+              /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+                    <Image
+                        source={require('../assets/images/gear.png')}
+                        style={{ width: 25, height: 25 }} // Adjust the size as needed
+                />
+                </TouchableOpacity>
+            </View>
+            ),
+          }),
+        
     },
     PinDetails:{
-        screen: PinDetails
+        screen: PinDetails,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'BraGuia',
+            headerRight: () => (
+            <View style={{ marginRight: 25 }}>
+              {/* <Button
+                onPress={() => navigation.navigate('SettingsScreen')}
+                // title="Settings"
+              /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+                    <Image
+                        source={require('../assets/images/gear.png')}
+                        style={{ width: 25, height: 25 }} // Adjust the size as needed
+                />
+                </TouchableOpacity>
+            </View>
+            ),
+          }),
     },
     SettingsScreen:{
         screen: SettingsScreen
@@ -64,10 +139,44 @@ const screens = {
         screen: MapPin
     },
     ContactUsScreen:{
-        screen: ContactUsScreen
+        screen: ContactUsScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'BraGuia',
+            headerRight: () => (
+            <View style={{ marginRight: 25 }}>
+              {/* <Button
+                onPress={() => navigation.navigate('SettingsScreen')}
+                // title="Settings"
+              /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+                    <Image
+                        source={require('../assets/images/gear.png')}
+                        style={{ width: 25, height: 25 }} // Adjust the size as needed
+                />
+                </TouchableOpacity>
+            </View>
+            ),
+          }),
     },
     ReportBugScreen:{
-        screen: ReportBugScreen
+        screen: ReportBugScreen,
+        navigationOptions: ({ navigation }) => ({
+            headerTitle: 'BraGuia',
+            headerRight: () => (
+            <View style={{ marginRight: 25 }}>
+              {/* <Button
+                onPress={() => navigation.navigate('SettingsScreen')}
+                // title="Settings"
+              /> */}
+                <TouchableOpacity onPress={() => navigation.navigate('SettingsScreen')}>
+                    <Image
+                        source={require('../assets/images/gear.png')}
+                        style={{ width: 25, height: 25 }} // Adjust the size as needed
+                />
+                </TouchableOpacity>
+            </View>
+            ),
+          }),
     },
 }
 
