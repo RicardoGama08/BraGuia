@@ -3,23 +3,61 @@ import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 
-
+import AsyncStorage from '@react-native-async-storage/async-storage';
+import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
 
 export default function LoginScreen({navigation}) {
+
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
 
   const first_page_button_handler = () => {
     navigation.navigate('FirstPage')
   }
 
-  const handleLogin = () => {
+  const handleLogin = async () => {
 
   const credentials = [{username: 'premium_user',password: 'paiduser'},
                 {username: 'standard_user',password: 'cheapuser'}];
 
   const user = credentials.find((cred) => cred.username === username && cred.password === password);
   
+  const storeToken = async (value) => {
+    try {
+      await AsyncStorage.setItem('csrftoken', value)
+      console.log("Stored csrftoken:"+value);
+    } catch (e) {
+      // saving error
+      console.error(e);
+    }
+  }
+
+  const storeSessionId = async (value) => {
+    try {
+      await AsyncStorage.setItem('sessionid', value)
+      console.log("Stored sessionid:"+value);
+    } catch (e) {
+      // saving error
+      console.error(e);
+    }
+  }
+
+  const getData = async (key) => {
+    try {
+      const value = await AsyncStorage.getItem('csrftoken')
+      if(value !== null) {
+        // value previously stored
+        console.log("get: "+value);
+      }
+    } catch(e) {
+      // error reading value
+      console.error(e);
+    }
+  }
+
 
   if (user) {
       const postUrl = "https://c5a2-193-137-92-29.eu.ngrok.io/login";
@@ -49,8 +87,12 @@ export default function LoginScreen({navigation}) {
                 const sessionIdRegex = /sessionid=([^;]+)/;
                 const sessionIdMatch = sessionIdRegex.exec(setCookieHeaders);
                 const sessionId = sessionIdMatch ? sessionIdMatch[1] : null;
-                console.log(sessionId);
 
+                
+                setIsLoggedIn(true);
+                // Store token and sessionid
+                storeToken(csrfToken);
+                storeSessionId(sessionId);
                 first_page_button_handler();
             }else console.error("Invalid response format");
         })
@@ -60,6 +102,15 @@ export default function LoginScreen({navigation}) {
   }else{
      console.log("Invalid password or username");
     }
+
+    // store tokens
+    /*try {
+      AsyncStorage.setItem("csrftoken", csrfToken);
+      AsyncStorage.setItem("sessionId", sessionId);
+    } catch (error) {
+      console.error(error);
+    }*/
+
   };
 
   return (
