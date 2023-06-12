@@ -1,5 +1,6 @@
 import React from 'react';
 import { View, StyleSheet,Text, ScrollView } from 'react-native';
+import { useRoute } from '@react-navigation/native';
 
 
 export default function TrailDetails({route,navigation}){

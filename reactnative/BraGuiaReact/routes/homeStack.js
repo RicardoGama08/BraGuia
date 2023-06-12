@@ -9,8 +9,8 @@ import Home from '../screens/home';
 import LoginScreen from '../screens/login';
 import RegisterScreen from '../screens/register';
 import FirstPage from '../screens/firstpage'; //pagina depois do login/registo
-import TrailsScreen from '../screens/trails'
-import PinsScreen from '../screens/pins'
+import TrailsScreen from '../screens/trails';
+import PinsScreen from '../screens/pins';
 import SettingsScreen from '../screens/SettingsScreen';
 import EditProfile from '../screens/EditProfile';
 import ContactUsScreen from '../screens/contactUsScreen';
