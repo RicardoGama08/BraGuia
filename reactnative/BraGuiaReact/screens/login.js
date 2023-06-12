@@ -23,15 +23,23 @@ export default function LoginScreen({navigation}) {
         password: user.password
       };
     axios.post("https://c5a2-193-137-92-29.eu.ngrok.io/login",data,{
-         withCredentials: true,
+        withCredentials: true,
         headers: {
-            "Content-Type": "application/json",},})
+            "Content-Type": "application/json",
+            "X-CSRFToken": 'x-csrftoken'}          // não sei se é preciso
+        ,})
         .then((response) => {
-            console.log(response.data);
-            const sessionid = response.headers['set-cookie'][0].split(';')[0];
-            const csrftoken = response.headers['set-cookie'][1].split(';')[0];
-            first_page_button_handler();
-            })
+            if(response && response.data){
+                console.log(response.data);
+                const sessionid = response.headers['set-cookie'][0].split(';')[0];
+                const csrftoken = response.headers['set-cookie'][1].split(';')[0];
+
+                //const csrfToken = response.headers['x-csrftoken'];
+                //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+
+                first_page_button_handler();
+            }else console.error("Invalid response format");
+        })
         .catch((error) => {
             console.error(error.response.data);
         });
@@ -67,7 +75,7 @@ export default function LoginScreen({navigation}) {
         />
     </View>
     {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
-    <Button title="Go" onPress={(handleLogin)} />
+    <Button title="Go" onPress={handleLogin} />
   </SafeAreaView>
   );
 }
