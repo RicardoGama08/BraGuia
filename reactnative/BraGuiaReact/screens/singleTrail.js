@@ -3,8 +3,13 @@ import { View, StyleSheet,Text, ScrollView } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 
 
-export default function TrailDetails({route,navigation}){
-  const { trail } = route.params;
+export default function TrailDetails({navigation}){
+
+
+  //console.log(navigation);
+  //const params = navigation
+  //console.log(params);
+  const trail = navigation.getParam('trail', null);
 
   return (
       <View style={styles.container}>

@@ -3,11 +3,12 @@
 import { Card } from 'react-native-paper';
 import React, { useEffect, useState } from 'react';
 import {StyleSheet,Text,Image,Button,View, FlatList,TouchableOpacity, ScrollView} from 'react-native';
-import { useNavigation } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import axios from 'axios';
 import TrailDetails from '../screens/singleTrail';
 
-export default function TrailsScreen({navigation,route}){
+export default function TrailsScreen({navigation}){
+
     //const navigation = useNavigation();
     const [trails, setTrails] = useState([]);
 
