@@ -13,6 +13,8 @@ import TrailsScreen from '../screens/trails'
 import PinsScreen from '../screens/pins'
 import SettingsScreen from '../screens/SettingsScreen';
 import EditProfile from '../screens/EditProfile';
+import ContactUsScreen from '../screens/contactUsScreen';
+import ReportBugScreen from '../screens/reportBugScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MapPin from '../screens/mapPin';
 
@@ -58,6 +60,12 @@ const screens = {
     },
     MapPin:{
         screen: MapPin
+    },
+    ContactUsScreen:{
+        screen: ContactUsScreen
+    },
+    ReportBugScreen:{
+        screen: ReportBugScreen
     },
 }
 
