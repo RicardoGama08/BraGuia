@@ -1,8 +1,8 @@
 import React from 'react';
 import { View, Text,StyleSheet, ScrollView } from 'react-native';
 
-export default function PinDetails({route}) {
-  const { pin } = route.params;
+export default function PinDetails({navigation}) {
+  const pin = navigation.getParam('pin', null);
 
   return (
     <View style={styles.container}>
