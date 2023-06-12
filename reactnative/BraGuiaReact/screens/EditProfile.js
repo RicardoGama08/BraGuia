@@ -21,7 +21,7 @@ export default function EditProfile({ navigation }){
                     }}>
                         <View>
                             <Image
-                                source={require('../assets/images/kemal.jpg')}
+                                source={require('../assets/images/profile.png')}
                                 style={styles.profilePicture}
                             />
                                 <View style={styles.profileCamera}>

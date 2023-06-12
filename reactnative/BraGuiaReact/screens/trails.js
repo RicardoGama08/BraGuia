@@ -5,8 +5,9 @@ import React, { useEffect, useState } from 'react';
 import {StyleSheet,Text,Image,Button,View, FlatList,TouchableOpacity, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
+import TrailDetails from '../screens/singleTrail';
 
-export default function TrailsScreen({navigation}){
+export default function TrailsScreen({navigation,route}){
     //const navigation = useNavigation();
     const [trails, setTrails] = useState([]);
 
@@ -23,8 +24,8 @@ export default function TrailsScreen({navigation}){
           }
         };
 
-      const handleTrailPress = (trail) => {
-        navigation.navigate('TrailDetails', { trail: trail });
+      const handleTrailPress = (item) => {
+        navigation.navigate('TrailDetails', { trail: item });
       };
 
       const renderTrailItem = ({ item }) => (

@@ -1,7 +1,8 @@
 import React from 'react';
 import { View, StyleSheet,Text, ScrollView } from 'react-native';
 
-export default function TrailDetails({route}){
+
+export default function TrailDetails({route,navigation}){
   const { trail } = route.params;
 
   return (
