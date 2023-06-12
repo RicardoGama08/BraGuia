@@ -3,6 +3,8 @@ import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 
+
+
 export default function LoginScreen({navigation}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -12,30 +14,42 @@ export default function LoginScreen({navigation}) {
   }
 
   const handleLogin = () => {
+
   const credentials = [{username: 'premium_user',password: 'paiduser'},
                 {username: 'standard_user',password: 'cheapuser'}];
 
   const user = credentials.find((cred) => cred.username === username && cred.password === password);
+  
 
   if (user) {
+      const postUrl = "https://c5a2-193-137-92-29.eu.ngrok.io/login";
       const data = {
         username: user.username,
         password: user.password
       };
-    axios.post("https://c5a2-193-137-92-29.eu.ngrok.io/login",data,{
-        withCredentials: true,
+
+      let json_body = JSON.stringify({ username, password });
+
+    axios.post(postUrl, json_body, { withCredentials: false,
         headers: {
-            "Content-Type": "application/json",
-            "X-CSRFToken": 'x-csrftoken'}          // não sei se é preciso
-        ,})
+          "Content-Type" : "application/json",
+        },
+      })
         .then((response) => {
             if(response && response.data){
-                console.log(response.data);
-                const sessionid = response.headers['set-cookie'][0].split(';')[0];
-                const csrftoken = response.headers['set-cookie'][1].split(';')[0];
+                const setCookieHeaders = response.headers["set-cookie"];
+                //const csrfToken = response.headers["set-cookie"][0].split(";")[0].split("=")[1];
 
-                //const csrfToken = response.headers['x-csrftoken'];
-                //axios.defaults.headers.common['X-CSRFToken'] = csrfToken;
+                // Extract CSRF token using regex
+                const csrfTokenRegex = /csrftoken=([^;]+)/;
+                const csrfTokenMatch = csrfTokenRegex.exec(setCookieHeaders);
+                const csrfToken = csrfTokenMatch ? csrfTokenMatch[1] : null;
+
+                // Extract SessionID token using regex
+                const sessionIdRegex = /sessionid=([^;]+)/;
+                const sessionIdMatch = sessionIdRegex.exec(setCookieHeaders);
+                const sessionId = sessionIdMatch ? sessionIdMatch[1] : null;
+                console.log(sessionId);
 
                 first_page_button_handler();
             }else console.error("Invalid response format");
