@@ -53,6 +53,12 @@ const SECTIONS = [
         { icon: 'download', color: '#fd2d54', label: 'Downloads', type: 'link' },
       ],
     },
+    {
+      header: 'Logout',
+      icon: 'align-center',
+      items: [
+        {icon: 'log-out', color: '#fd2d54', label: 'Logout', type: 'link'}],
+    }
   ];
 
 export default function SettingsScreen({ navigation }){
@@ -64,6 +70,9 @@ export default function SettingsScreen({ navigation }){
                 break;
             case "Report Bug":
                 navigation.navigate("ReportBugScreen")
+                break;
+            case "Logout":
+                navigation.navigate("LoginScreen")
                 break;
             default:
                 break;
