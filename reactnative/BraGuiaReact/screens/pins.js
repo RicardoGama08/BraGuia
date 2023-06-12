@@ -5,6 +5,7 @@ import {StyleSheet, View,Text,Image,Button,FlatList,TouchableOpacity} from 'reac
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { ScrollView } from 'react-native-gesture-handler';
 
 
 export default function PinsScreen({ navigation }){
@@ -72,7 +73,10 @@ export default function PinsScreen({ navigation }){
            <TouchableOpacity onPress={() => handlePinPress(item)}>
              <View style={styles.pinItem}>
                <Text style={styles.pinName}>{item.pin_name}</Text>
-               <Text style={styles.pinDescription}>{item.pin_desc}</Text>
+               <ScrollView styles={styles.pinDescription}>
+               {/* <ScrollView> */}
+                  <Text style={styles.pinDescription}>{item.pin_desc}</Text>
+               </ScrollView>
              </View>
            </TouchableOpacity>
          );
@@ -100,9 +104,9 @@ export default function PinsScreen({ navigation }){
     },
     pinItem: {
       marginBottom: 1,
-      padding: 70,
+      padding: 20,
       backgroundColor: '#fff',
-      borderRadius: 3,
+      borderRadius: 70,
       // Adjust the dimensions to make the trail item container larger
       width: '100%',
       height: 300,
@@ -117,18 +121,28 @@ export default function PinsScreen({ navigation }){
       borderRadius: 5,
     },
     pinName: {
-      alignSelf: 'center',
       fontSize: 20,
       fontWeight: 'bold',
-       //marginTop:5,
-      // marginBottom: 5,
-      paddingTop: 15,
-      fontSize: 20,
-      fontWeight: 'bold',
-      flex: 1,
+      marginBottom: 16,
+      fontFamily: 'Roboto',
+      color: '#333333',
+      textAlign: 'center',
     },
-    pinDescription: {
-      fontSize: 10,
+/*     pinSection: {
+      height: 150,
+      width: 250,
+      justifyContent: 'center',
+    },
+ */   
+      pinDescription: {
+      // marginTop:5,
+      padding: 5,
+      height: 400,
+      // width: 250,
+      fontSize: 10.5,
       color: '#888',
-    }
+      // justifyContent:'center',
+      // alignSelf: 'center',
+      // flex: 1,
+    },
   });
