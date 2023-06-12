@@ -4,6 +4,8 @@ import React from 'react';
 import {StyleSheet, View,Text,Image,Button, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export default function FirstPage({ navigation }){
 
     const pins_button_handler = () => {

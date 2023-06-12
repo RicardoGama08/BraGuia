@@ -31,7 +31,7 @@ export default function PinsScreen({ navigation }){
      }
    };
 
-         useEffect(() => {
+         useEffect(() => {     
            fetchPins();
          }, []);
 
@@ -39,6 +39,8 @@ export default function PinsScreen({ navigation }){
              try {
                const sessionid = await getSessionId();
                const csrftoken = await getCsrfToken();
+               //console.log(csrftoken);
+               //console.log(sessionid);
                    if (!sessionid || !csrftoken) {
                         console.error('Session ID or CSRF token not found in storage');
                         return;
@@ -48,9 +50,14 @@ export default function PinsScreen({ navigation }){
                          Cookie: `${sessionid}; ${csrftoken}`,
                          'X-CSRFToken': csrftoken
                        }});
-               if(response && response.data)
-                    setPins(response.data);
-               else console.error('Invalid responde: ', response);
+                // possivel dar problemas no futuro
+               if(response && response.data){
+                //console.log(response.data);
+                setPins(response.data);
+                //console.log(pins);
+
+               }else
+                console.error('Invalid response: ', response);
              } catch (error) {
                console.error(error);
              }
@@ -60,11 +67,12 @@ export default function PinsScreen({ navigation }){
            navigation.navigate('SinglePin', { pin });
          };
 
+
          const renderPinItem = ({ item }) => (
            <TouchableOpacity onPress={() => handlePinPress(item)}>
              <View style={styles.pinItem}>
-               <Text style={styles.pinName}>{item.name}</Text>
-               <Text style={styles.pinDescription}>{item.description}</Text>
+               <Text style={styles.pinName}>{item.pin_name}</Text>
+               <Text style={styles.pinDescription}>{item.pin_desc}</Text>
              </View>
            </TouchableOpacity>
          );
