@@ -5,11 +5,11 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 export default function Home({ navigation }){
 
     const login_button_handler = () => {
-      navigation.navigate('LoginScreen')
+      navigation.navigate('Login')
     } 
 
     const register_button_handler = () => {
-      navigation.navigate('RegisterScreen')
+      navigation.navigate('Register')
     }
 
 

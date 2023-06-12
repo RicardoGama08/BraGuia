@@ -22,11 +22,11 @@ const screens = {
     BraGuia: {
         screen: Home,
     },
-    LoginScreen: {
+    Login: {
         screen: LoginScreen
     },
-    RegisterScreen: {
-        screen: RegisterScreen
+    Register: {
+        screen: RegisterScreen,
     },
     FirstPage:{
         screen: FirstPage,
