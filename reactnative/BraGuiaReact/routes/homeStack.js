@@ -33,10 +33,12 @@ const screens = {
         navigationOptions: ({ navigation }) => ({
             headerTitle: 'BraGuia',
             headerRight: () => (
+            <View style={{ marginRight: 10 }}>
               <Button
                 onPress={() => navigation.navigate('SettingsScreen')}
                 title="Settings"
               />
+            </View>
             ),
           }),
     },

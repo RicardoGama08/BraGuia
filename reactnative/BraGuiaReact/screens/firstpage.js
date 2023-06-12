@@ -29,6 +29,7 @@ export default function FirstPage({ navigation }){
             Bem-vindo ao BraGuia! Quer seja um local à procura de novos locais para explorar ou um visitante, esta aplicação tem tudo o que precisa para tirar o máximo partido da sua experiência em Braga. Desde locais históricos como a Sé de Braga a marcos modernos como a escadaria do Bom Jesus do Monte, nós temos tudo o que precisa. A nossa aplicação apresenta passeios a pé que o levam pelos bairros e jóias escondidas da cidade. Cada passeio é acompanhado por mapas detalhados, dicas internas e informações históricas, facilitando a navegação pela rica cultura e história da cidade. Com BraGuia, pode explorar Braga como um local e criar memórias inesquecíveis.
             </Text>
             <Button title="Pontos de Interesse" onPress={(pins_button_handler) } />
+            <Text> </Text>
             <Button title="Trilhos" onPress={(trails_button_handler) } />
 
 
@@ -69,6 +70,7 @@ const styles = StyleSheet.create({
       width: 70,
       height: 60,
       resizeMode: 'contain',
+      marginBottom: 10,
     },
     inputContainer: {
       width: '100%',
@@ -87,6 +89,7 @@ const styles = StyleSheet.create({
       fontFamily: 'OpenSans',
       color: '#666666',
       textAlign: 'justify',
+      marginBottom: 20,
     },
     button: {
       backgroundColor: '#007AFF',
@@ -94,6 +97,7 @@ const styles = StyleSheet.create({
       paddingVertical: 10,
       borderRadius: 5,
       marginHorizontal: 10,
+      marginBottom: 20,
     },
     buttonText: {
       color: '#FFFFFF',
