@@ -2,7 +2,7 @@
 
 import { Card } from 'react-native-paper';
 import React, { useEffect, useState } from 'react';
-import {StyleSheet,Text,Image,Button,View, FlatList,TouchableOpacity} from 'react-native';
+import {StyleSheet,Text,Image,Button,View, FlatList,TouchableOpacity, ScrollView} from 'react-native';
 import { useNavigation } from '@react-navigation/native';
 import axios from 'axios';
 
@@ -28,56 +28,78 @@ export default function TrailsScreen({navigation}){
       };
 
       const renderTrailItem = ({ item }) => (
-        <TouchableOpacity onPress={() => handleTrailPress(item)}>
+        <TouchableOpacity style={styles.button} onPress={() => handleTrailPress(item)}>
           <View style={styles.trailItem}>
             <Text style={styles.trailName}>{item.trail_name}</Text>
-            <Text style={styles.trailDescription}>{item.trail_desc}</Text>
+            {/* <Text style={styles.trailDescription}>{item.trail_desc}</Text> */}
             <Image source={{ uri: item.trail_img }} style={styles.trailImage} />
           </View>
         </TouchableOpacity>
       );
 
+
       return (
         <View style={styles.container}>
-          <FlatList
-            data={trails}
-            renderItem={renderTrailItem}
-            keyExtractor={(item) => item.id.toString()}
-          />
+            <FlatList
+              data={trails}
+              renderItem={renderTrailItem}
+              keyExtractor={(item) => item.id.toString()}
+            />
         </View>
       );
 }
 
 
 const styles = StyleSheet.create({
-container: {
-  flex: 1,
-  justifyContent: 'center',
-  alignItems: 'center',
-  paddingHorizontal: 20,
-  backgroundColor: '#E6E6FA', //Pastel Lavender
-},
-trailItem: {
-     marginBottom: 16,
-         padding: 160,
-         backgroundColor: '#fff',
-         borderRadius: 8,
-         // Adjust the dimensions to make the trail item container larger
-         width: '100%',
-         minHeight: 100,
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    paddingVertical:10,
+    paddingHorizontal: 30,
+    padding:5,
+    backgroundColor: '#E6E6FA', //Pastel Lavender
+  },
+  trailItem: {
+    marginBottom: 1,
+    padding: 70,
+    backgroundColor: '#fff',
+    borderRadius: 3,
+    // Adjust the dimensions to make the trail item container larger
+    width: '100%',
+    height: 300,
+    alignSelf: 'center'
     },
-    trailName: {
-      fontSize: 16,
-      fontWeight: 'bold',
-      marginBottom: 8,
-    },
-    trailDescription: {
-      fontSize: 14,
-      color: '#888',
-    },
-    trailImage: {
-      width: 100, // adjust the width and height as per your requirements
-      height: 100,
-      resizeMode: 'cover', // or 'contain' depending on your preference
-    }
+  button: {
+    backgroundColor: '#B2D8B2',
+    // paddingHorizontal: 10,
+    // paddingVertical: 10,
+    padding: 5,
+    marginBottom:10,
+    borderRadius: 5,
+  },
+  trailName: {
+    alignSelf: 'center',
+    fontSize: 20,
+    fontWeight: 'bold',
+    // marginTop:5,
+    // marginBottom: 5,
+    paddingTop: 15,
+    fontSize: 20,
+    fontWeight: 'bold',
+    flex: 1,
+  },
+  trailDescription: {
+    fontSize: 14,
+    color: '#888',
+  },
+  trailImage: {
+    flexDirection: 'row',
+    justifyContent: 'flex-start',
+    // alignSelf: 'flex-start',
+    alignSelf: 'center',
+    // width: '50%',
+    height: 100,
+    // marginTop:5,
+    width: 100, // adjust the width and height as per your requirements
+  }
 });
