@@ -5,7 +5,6 @@ import { SafeAreaView } from 'react-native-safe-area-context';
 
 import FeatherIcon from 'react-native-vector-icons/Feather'
 
-
 const SECTIONS = [
     {
       header: 'Preferences',
@@ -58,6 +57,19 @@ const SECTIONS = [
 
 export default function SettingsScreen({ navigation }){
 
+    const settings_button_handler = (label) => {
+        switch (label) {
+            case "Contact Us":
+                navigation.navigate("ContactUsScreen")
+                break;
+            case "Report Bug":
+                navigation.navigate("ReportBugScreen")
+                break;
+            default:
+                break;
+        }
+    } 
+
     const [form, setForm] = useState({
         darkMode: true,
         wifi: false,
@@ -95,32 +107,30 @@ export default function SettingsScreen({ navigation }){
                         <Text style={styles.sectionHeader}>{header}</Text>
 
                         {items.map(({label, type, icon, color}) => (
-                            <TouchableOpacity 
-                            key={icon}
-                            onPress={() =>{
-                                // handle press
-                            }}> 
+                            <TouchableOpacity
+                                key={icon}
+                                onPress={() => {
+                                    // handle press
+                                    settings_button_handler(label);
+                                } }>
                                 <View style={styles.row}>
-                                    <View style={[styles.rowIcon, {backgroundColor:color}]}>
+                                    <View style={[styles.rowIcon, { backgroundColor: color }]}>
                                         <FeatherIcon name={icon} color="#fff" size={18}></FeatherIcon>
                                     </View>
 
                                     <Text style={styles.rowLabel}>{label}</Text>
-                                    {type === 'boolean' && 
-                                        <Switch 
+                                    {type === 'boolean' &&
+                                        <Switch
                                             value={form[label]}
-                                            onValueChange={value => setForm({...form, [label]: value})  }
-                                        />
-                                    }
+                                            onValueChange={value => setForm({ ...form, [label]: value })} />}
 
 
                                     {type === 'link' && (
                                         <FeatherIcon
                                             color="#0c0c0c"
                                             name="chevron-right"
-                                            size={22}
-                                        />
-                                    )}  
+                                            size={22} />
+                                    )}
 
                                 </View>
                             </TouchableOpacity>
