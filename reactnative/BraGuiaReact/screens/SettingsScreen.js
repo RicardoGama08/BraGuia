@@ -2,6 +2,7 @@ import React,{useState} from 'react';
 import {StyleSheet, View,Text,Image,Button, TouchableOpacity} from 'react-native';
 import { ScrollView, Switch } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
 import FeatherIcon from 'react-native-vector-icons/Feather'
 
@@ -61,6 +62,16 @@ const SECTIONS = [
     }
   ];
 
+const removeUser = async (navigation) => {
+    try {
+      await AsyncStorage.removeItem('csrftoken');
+      await AsyncStorage.removeItem('sessionid');
+      navigation.navigate("LoginScreen");
+    } catch (error) {
+      console.log(error);
+    }
+  };
+
 export default function SettingsScreen({ navigation }){
 
     const settings_button_handler = (label) => {
@@ -72,7 +83,7 @@ export default function SettingsScreen({ navigation }){
                 navigation.navigate("ReportBugScreen")
                 break;
             case "Logout":
-                navigation.navigate("LoginScreen")
+                removeUser(navigation);
                 break;
             default:
                 break;
