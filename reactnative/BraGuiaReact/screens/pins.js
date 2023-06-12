@@ -64,7 +64,7 @@ export default function PinsScreen({ navigation }){
            };
 
          const handlePinPress = (pin) => {
-           navigation.navigate('SinglePin', { pin });
+           navigation.navigate('PinDetails', { pin });
          };
 
 
@@ -89,101 +89,46 @@ export default function PinsScreen({ navigation }){
 
 }
 
-const styles = StyleSheet.create({
+  const styles = StyleSheet.create({
     container: {
       flex: 1,
       justifyContent: 'center',
-      alignItems: 'center',
-      paddingHorizontal: 20,
+      paddingVertical:10,
+      paddingHorizontal: 30,
+      padding:5,
       backgroundColor: '#E6E6FA', //Pastel Lavender
     },
-    title: {
-      fontFamily:'DMSans-Bold',
-      fontSize: 30,
-      fontWeight: 'bold',
-      marginBottom: 20,
-    },
-    title2: {
-      fontSize: 28,
-      fontWeight: 'bold',
-      marginBottom: 16,
-      fontFamily: 'Roboto',
-      color: '#333333',
-      textAlign: 'center',
-    },
-    logoContainer: {
-      alignItems: 'center',
-      marginBottom: 40,
-    },
-    image_icon:{
-      width: 70,
-      height: 70,
-      resizeMode: 'contain',
-    },
-    inputContainer: {
+    pinItem: {
+      marginBottom: 1,
+      padding: 70,
+      backgroundColor: '#fff',
+      borderRadius: 3,
+      // Adjust the dimensions to make the trail item container larger
       width: '100%',
-    },
-    input: {
-      borderWidth: 1,
-      borderColor: '#ccc',
-      borderRadius: 5,
-      paddingHorizontal: 10,
-      paddingVertical: 8,
-      marginBottom: 10,
-    },
-    description: {
-      fontSize: 14,
-      lineHeight: 20,
-      fontFamily: 'OpenSans',
-      color: '#666666',
-      textAlign: 'justify',
-    },
+      height: 300,
+      alignSelf: 'center'
+      },
     button: {
-      backgroundColor: '#007AFF',
-      paddingHorizontal: 20,
-      paddingVertical: 10,
+      backgroundColor: '#B2D8B2',
+      // paddingHorizontal: 10,
+      // paddingVertical: 10,
+      padding: 5,
+      marginBottom:10,
       borderRadius: 5,
-      marginHorizontal: 10,
     },
-    buttonText: {
-      color: '#FFFFFF',
-      fontSize: 16,
+    pinName: {
+      alignSelf: 'center',
+      fontSize: 20,
       fontWeight: 'bold',
+       //marginTop:5,
+      // marginBottom: 5,
+      paddingTop: 15,
+      fontSize: 20,
+      fontWeight: 'bold',
+      flex: 1,
     },
-    card: {
-        backgroundColor: '#fff',
-            borderRadius: 8,
-            elevation: 5,
-            padding: 16,
-      },
-      innerContainer: {
-        flexDirection: 'row',
-      },
-      leftContainer: {
-        flex: 2,
-        marginTop: 12,
-      },
-      itemId: {
-        margin: 8,
-        fontSize: 16,
-        // Add other text styles if needed
-      },
-      namePin: {
-        margin: 8,
-        // Add text styles
-      },
-      pinItemItem: {
-            marginBottom: 16,
-            padding: 16,
-            backgroundColor: '#fff',
-            borderRadius: 8,
-          },
-          pinNameName: {
-            fontSize: 16,
-            fontWeight: 'bold',
-          },
-          pinDescription: {
-            fontSize: 14,
-            color: '#888',
-          },
+    pinDescription: {
+      fontSize: 10,
+      color: '#888',
+    }
   });
