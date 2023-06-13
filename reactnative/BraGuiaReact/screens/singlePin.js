@@ -1,7 +1,11 @@
-import React, { useEffect } from 'react';
-import { View, Text,StyleSheet, ScrollView, Image, Button, TouchableOpacity } from 'react-native';
+import React, { useEffect, useState } from 'react';
+import { View, Text,StyleSheet, ScrollView, Image, Button, TouchableOpacity,Audio } from 'react-native';
 import { Linking } from 'react-native';
 import { PermissionsAndroid } from 'react-native';
+import Video from 'react-native-video';
+import Sound from 'react-native-sound';
+
+
 
 export default function PinDetails({navigation}) {
   const pin = navigation.getParam('pin', null);
@@ -24,6 +28,65 @@ export default function PinDetails({navigation}) {
 
   }
 */
+
+  const midia = pin.media;
+
+  const mediaInfo = midia.map(mediaItem => {
+      return {
+        id: mediaItem.id,
+        media_file: mediaItem.media_file,
+        media_type: mediaItem.media_type,
+        media_pin: mediaItem.media_pin
+      };
+    });
+
+   const MediaSection = ({ mediaInfo }) => {
+      return (
+        <View>
+          {mediaInfo.map(mediaItem => {
+            if (mediaItem.media_type === 'I') {
+              return (
+                <Image
+                  key={mediaItem.id}
+                  source={{ uri: mediaItem.media_file }}
+                  style={{ width: 200, height: 200 }}
+                />
+              );
+            } else if (mediaItem.media_type === 'V') {
+              return (
+                <Video
+                              key={mediaItem.id}
+                              source={{ uri: mediaItem.media_file }}
+                              style={{ width: 200, height: 200 }}
+                              controls={true}
+                            />
+              );
+            } else if (mediaItem.media_type === 'R') {
+              const sound = new Sound(mediaItem.media_file, '', error => {
+                          if (error) {
+                            console.log('Failed to load sound', error);
+                          }
+                        });
+
+                        return (
+                          <TouchableOpacity
+                            key={mediaItem.id}
+                            onPress={() => sound.play()}
+                          >
+                            <Image
+                              source={require('../assets/images/play_button.jpg')}
+                              style={{ width: 50, height: 50 }}
+                            />
+                          </TouchableOpacity>
+                        );
+                      } else {
+                        return null; // Handle other media types if needed
+                      }
+          })}
+        </View>
+      );
+    };
+
 
   const openGoogleMaps = () => {
       const latitude = pin.pin_lat;
@@ -52,6 +115,7 @@ export default function PinDetails({navigation}) {
         />
       </TouchableOpacity>
       {/* <Button title=" Ver Ponto de Interesse" style={styles.button} onPress={openGoogleMaps}/> */}
+      <MediaSection mediaInfo={mediaInfo} />
     </ScrollView>
 
   );
