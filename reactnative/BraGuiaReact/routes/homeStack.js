@@ -42,12 +42,12 @@ const screens = {
         headerTitle: 'Historico',
         headerRight: () => (
         <View style={{ marginRight: 25 }}>
-          <Button
-            title = "CLEAR"
-            onPress={() => {
-              clearTrails();
-            }}
-          />
+          <TouchableOpacity onPress={() => clearTrails()}>
+            <Image
+              source={require('../assets/images/bin.png')}
+              style={{ marginRight:10, width: 25, height: 25 }} // Adjust the size as needed
+            />
+          </TouchableOpacity>
         </View>
         ),
       }),
@@ -69,7 +69,7 @@ const screens = {
                     <Image
                         source={require('../assets/images/gear.png')}
                         style={{ width: 25, height: 25 }} // Adjust the size as needed
-                />
+                    />
                 </TouchableOpacity>
             </View>
             ),
