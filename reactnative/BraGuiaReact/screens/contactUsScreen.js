@@ -1,5 +1,5 @@
 import React from 'react';
-import {StyleSheet, View,Text,TextInput,Image,Button, Linking} from 'react-native';
+import {StyleSheet, View,Text,TextInput,Image,Button, Linking, TouchableOpacity} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ContactUsScreen({navigation}) {
@@ -28,9 +28,20 @@ export default function ContactUsScreen({navigation}) {
             <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Medical Emergency Service:</Text>
             <Text>112@gmail.com</Text>
           </View>
-          <Button title="Customer Support" onPress={() => handleMakePhoneCall('924567891')} />
-          <Button title="Medical Emergency Service" onPress={() => handleMakePhoneCall('112')} />
-        {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
+          <TouchableOpacity onPress={() => handleMakePhoneCall('924567891')}>
+                <Image style={styles.image2}
+                  source={require('../assets/images/help-desk.png')}
+                  // style={{width: 40, height: 40 }} // Adjust the size as needed
+                />
+          </TouchableOpacity>
+          <Text>Direct call for Support Services</Text>
+          <TouchableOpacity onPress={() => handleMakePhoneCall('112')}>
+                <Image style={styles.image2}
+                  source={require('../assets/images/emergency-call.png')}
+                  // style={{width: 40, height: 40 }} // Adjust the size as needed
+                />
+          </TouchableOpacity>
+          <Text>Direct call for Emergency Services</Text>
       </SafeAreaView>
 
     );
@@ -76,5 +87,12 @@ const styles = StyleSheet.create({
       paddingHorizontal: 10,
       paddingVertical: 8,
       marginBottom: 10,
+    },
+    image2: {
+      width: 60,
+      height: 60,
+      marginTop: 20,
+      // marginLeft:100,
+      marginBottom: 5,
     },
   });
