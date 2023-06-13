@@ -1,9 +1,32 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 
+import {database} from '../databases';
+import {userModel} from '../databases/models/userModel';
+
 export default function RegisterScreen({navigation}) {
+
+  const [username, setUsername] = useState('');
+  const [password, setPassword] = useState('');
+  const [email, setEmail] = useState('');
+  const [name, setName] = useState('');
+  const [surname, setSurname] = useState('');
+
+
+  async function handleRegister(){
+    console.log("You pressed me");
+    await database.write(async() => {
+      await database.get('users').create(data => {
+        data.username = username,
+        data.password = password,
+        data.email = email,
+        data.name = name,
+        data.surname = surname
+      })
+    })
+  }
 
   const first_page_button_handler = () => {
     navigation.navigate('FirstPage')
@@ -24,27 +47,39 @@ export default function RegisterScreen({navigation}) {
             <TextInput
               style={styles.input}
               placeholder="Username"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Name"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Surname"
-            />
-            <TextInput
-              style={styles.input}
-              placeholder="Email"
+              value={username}
+              onChangeText={text => setUsername(text)}
             />
             <TextInput
               style={styles.input}
               placeholder="Password"
+              value={password}
+              onChangeText={text => setPassword(text)}
               secureTextEntry
             />
+            <TextInput
+              style={styles.input}
+              placeholder="Email"
+              value={email}
+              onChangeText={text => setEmail(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Name"
+              value={name}
+              onChangeText={text => setName(text)}
+            />
+            <TextInput
+              style={styles.input}
+              placeholder="Surname"
+              value={surname}
+              onChangeText={text => setSurname(text)}
+            />
           </View>
-        {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
+        {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}   
+        <Button title="Register" onPress={(handleRegister)} /> 
         <Button title="Go" onPress={(first_page_button_handler)} />
+        
       </SafeAreaView>
 );
 

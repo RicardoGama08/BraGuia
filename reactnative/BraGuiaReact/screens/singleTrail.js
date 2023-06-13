@@ -5,10 +5,6 @@ import { useRoute } from '@react-navigation/native';
 
 export default function TrailDetails({navigation}){
 
-
-  //console.log(navigation);
-  //const params = navigation
-  //console.log(params);
   const trail = navigation.getParam('trail', null);
 
   return (

@@ -1,10 +1,14 @@
-import React, {useState} from 'react';
+import React, {useState, useEffect} from 'react';
 import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import axios from 'axios';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import { get } from 'react-native/Libraries/TurboModule/TurboModuleRegistry';
+
+import { Q } from '@nozbe/watermelondb'
+import {database} from '../databases';
+import {userModel} from '../databases/models/userModel';
 
 export default function LoginScreen({navigation}) {
 
@@ -13,18 +17,39 @@ export default function LoginScreen({navigation}) {
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
 
+  // ;(
+  async function fetchUser() {
+    const userCollection = database.get('users');
+    try {
+      const foundUser = await userCollection.query(Q.where('username', username),
+                                                   Q.where('password', password)).fetch();
 
-  const first_page_button_handler = () => {
-    navigation.navigate('FirstPage')
+      console.log(foundUser);      
+      if(foundUser){
+        
+        const fuser = foundUser[0]._raw.username;
+        const fpass = foundUser[0]._raw.password;
+        if(fuser)
+          await AsyncStorage.setItem('currUsername', fuser);
+        setUsername(fuser);
+        setPassword(fpass);
+
+        console.log("Utilizador encontrado");
+        return true;
+      }
+      
+    } catch (error) {
+      console.log(error);
+      console.log("Utilizador nao existe");
+      return false;
+    }
   }
-
-  const handleLogin = async () => {
-
-  const credentials = [{username: 'premium_user',password: 'paiduser'},
-                {username: 'standard_user',password: 'cheapuser'}];
-
-  const user = credentials.find((cred) => cred.username === username && cred.password === password);
   
+  /* boa maneira de fazer fetches
+  useEffect(() => {
+    fetchUser();
+  },[]);*/
+
   const storeToken = async (value) => {
     try {
       await AsyncStorage.setItem('csrftoken', value)
@@ -45,28 +70,27 @@ export default function LoginScreen({navigation}) {
     }
   }
 
-  const getData = async (key) => {
-    try {
-      const value = await AsyncStorage.getItem('csrftoken')
-      if(value !== null) {
-        // value previously stored
-        console.log("get: "+value);
-      }
-    } catch(e) {
-      // error reading value
-      console.error(e);
-    }
+
+  const handleLogin = async () => {
+
+  const credentials = [{username: 'premium_user',password: 'paiduser'},
+              {username: 'standard_user',password: 'cheapuser'}];
+
+  const user = credentials.find((cred) => cred.username === username && cred.password === password);
+
+  if(!user){
+    fetchUser();
   }
 
 
   if (user) {
       const postUrl = "https://c5a2-193-137-92-29.eu.ngrok.io/login";
       const data = {
-        username: user.username,
-        password: user.password
+        username: username,
+        password: password
       };
 
-      let json_body = JSON.stringify({ username, password });
+    let json_body = JSON.stringify({ username, password });
 
     axios.post(postUrl, json_body, { withCredentials: false,
         headers: {
@@ -89,11 +113,11 @@ export default function LoginScreen({navigation}) {
                 const sessionId = sessionIdMatch ? sessionIdMatch[1] : null;
 
                 
-                setIsLoggedIn(true);
+                
                 // Store token and sessionid
                 storeToken(csrfToken);
                 storeSessionId(sessionId);
-                first_page_button_handler();
+                navigation.navigate("FirstPage")
             }else console.error("Invalid response format");
         })
         .catch((error) => {
@@ -102,14 +126,6 @@ export default function LoginScreen({navigation}) {
   }else{
      console.log("Invalid password or username");
     }
-
-    // store tokens
-    /*try {
-      AsyncStorage.setItem("csrftoken", csrfToken);
-      AsyncStorage.setItem("sessionId", sessionId);
-    } catch (error) {
-      console.error(error);
-    }*/
 
   };
 
