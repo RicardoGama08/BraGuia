@@ -1,8 +1,17 @@
 import React from 'react';
 import { View, Text,StyleSheet, ScrollView, Image } from 'react-native';
+import { Linking } from 'react-native';
 
 export default function PinDetails({navigation}) {
   const pin = navigation.getParam('pin', null);
+
+  const openGoogleMaps = () => {
+      const latitude = pin.pin_lat;
+      const longitude = pin.pin_lng;
+      const altitude = pin.pin_alt;
+      const url = `https://www.google.com/maps/search/?api=1&query=${latitude},${longitude}&z=${altitude}`;
+      Linking.openURL(url);
+    };
 
   return (
 
@@ -12,8 +21,9 @@ export default function PinDetails({navigation}) {
           source={require('../assets/images/placeholder.png')}
           style={styles.image}
         />
-      <Text style={styles.link}>Link Mapa</Text>
-
+      <Text style={styles.link} onPress={openGoogleMaps}>
+              Mapa
+        </Text>
       <Text style={styles.text}></Text>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.pinDesc}>{pin.pin_desc}</Text>

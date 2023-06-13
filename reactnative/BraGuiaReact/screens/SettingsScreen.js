@@ -66,7 +66,7 @@ const removeUser = async (navigation) => {
     try {
       await AsyncStorage.removeItem('csrftoken');
       await AsyncStorage.removeItem('sessionid');
-      navigation.navigate("LoginScreen");
+      navigation.navigate("Login");
     } catch (error) {
       console.log(error);
     }

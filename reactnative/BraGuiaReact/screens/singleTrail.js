@@ -1,6 +1,7 @@
 import React from 'react';
-import { View, StyleSheet,Text, ScrollView, Image } from 'react-native';
+import { View, StyleSheet,Text, ScrollView, Image, Dimensions, Linking, Button } from 'react-native';
 import { useRoute } from '@react-navigation/native';
+import MapView, { Marker, Polyline } from 'react-native-maps';
 
 
 export default function TrailDetails({navigation}){
@@ -11,6 +12,72 @@ export default function TrailDetails({navigation}){
   //console.log(params);
   const trail = navigation.getParam('trail', null);
 
+    const edges = trail.edges;
+
+    const handleOpenGoogleMaps = () => {
+      const coordinates = edges.map((edge) => `${edge.edge_start.pin_lat},${edge.edge_start.pin_lng}`);
+      const lastEdge = edges[edges.length - 1];
+      coordinates.push(`${lastEdge.edge_end.pin_lat},${lastEdge.edge_end.pin_lng}`);
+      const googleMapsUrl = `https://www.google.com/maps/dir/${coordinates.join('/')}`;
+      Linking.openURL(googleMapsUrl);
+    };
+
+    const renderMarkers = () => {
+      const markers = edges.map((edge) => (
+        <Marker
+          key={`start_${edge.id}`}
+          coordinate={{
+            latitude: edge.edge_start.pin_lat,
+            longitude: edge.edge_start.pin_lng,
+          }}
+          title={edge.edge_start.pin_name}
+          description={edge.edge_start.pin_desc}
+        />
+      ));
+
+      const lastEdge = edges[edges.length - 1];
+      markers.push(
+        <Marker
+          key={`end_${lastEdge.id}`}
+          coordinate={{
+            latitude: lastEdge.edge_end.pin_lat,
+            longitude: lastEdge.edge_end.pin_lng,
+          }}
+          title={lastEdge.edge_end.pin_name}
+          description={lastEdge.edge_end.pin_desc}
+        />
+      );
+
+      return markers;
+    };
+
+    const renderPolylines = () => {
+      return edges.map((edge) => (
+        <Polyline
+          key={edge.id}
+          coordinates={[
+            {
+              latitude: edge.edge_start.pin_lat,
+              longitude: edge.edge_start.pin_lng,
+            },
+            {
+              latitude: edge.edge_end.pin_lat,
+              longitude: edge.edge_end.pin_lng,
+            },
+          ]}
+          strokeColor="#F00"
+          strokeWidth={3}
+        />
+      ));
+    };
+
+    const initialRegion = {
+      latitude: edges[0].edge_start.pin_lat,
+      longitude: edges[0].edge_start.pin_lng,
+      latitudeDelta: 0.01,
+      longitudeDelta: 0.01,
+    };
+
   return (
       <ScrollView style={styles.container}>
         <Text style={styles.trailName}>{trail.trail_name}</Text>
@@ -18,6 +85,9 @@ export default function TrailDetails({navigation}){
           source={require('../assets/images/map.png')}
           style={styles.image}
         />
+        <Text style={styles.link} onPress={handleOpenGoogleMaps}>
+                      Mapa
+                </Text>
         <Text style={styles.trailDescription}>{trail.trail_desc}</Text>
         <View style={styles.infoContainer}>
           <View style={styles.infoItem}>
@@ -28,6 +98,10 @@ export default function TrailDetails({navigation}){
             <Text style={styles.infoLabel}>Difficulty:</Text>
             <Text style={styles.infoText}>{trail.trail_difficulty}</Text>
           </View>
+          <MapView style={styles.map} initialRegion={initialRegion}>
+                  {renderMarkers()}
+                  {renderPolylines()}
+          </MapView>
         </View>
       </ScrollView>
     );
@@ -104,4 +178,8 @@ const styles = StyleSheet.create({
     height: 60,
     marginLeft: 10,
   },
-});
+  map: {
+      width: Dimensions.get('window').width,
+      height: Dimensions.get('window').height,
+    },
+  });
