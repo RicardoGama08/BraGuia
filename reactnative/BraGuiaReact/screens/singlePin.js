@@ -42,14 +42,15 @@ export default function PinDetails({navigation}) {
 
    const MediaSection = ({ mediaInfo }) => {
       return (
-        <View>
+        <View style={styles.infoContainer}>
+        {/* <View> */}
           {mediaInfo.map(mediaItem => {
             if (mediaItem.media_type === 'I') {
               return (
                 <Image
                   key={mediaItem.id}
                   source={{ uri: mediaItem.media_file }}
-                  style={{ width: 200, height: 200 }}
+                  style={{ width: 200, height: 300 }}
                 />
               );
             } else if (mediaItem.media_type === 'V') {
@@ -74,7 +75,7 @@ export default function PinDetails({navigation}) {
                             onPress={() => sound.play()}
                           >
                             <Image
-                              source={require('../assets/images/play_button.jpg')}
+                              source={require('../assets/images/play2.png')}
                               style={{ width: 50, height: 50 }}
                             />
                           </TouchableOpacity>
@@ -115,14 +116,13 @@ export default function PinDetails({navigation}) {
         />
       </TouchableOpacity>
       {/* <Button title=" Ver Ponto de Interesse" style={styles.button} onPress={openGoogleMaps}/> */}
-      <MediaSection mediaInfo={mediaInfo} />
+      <View>
+        <MediaSection mediaInfo={mediaInfo} />
+      </View>
     </ScrollView>
 
   );
 };
-
-
-
 
 const styles = StyleSheet.create({
   container: {
@@ -136,7 +136,9 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flexDirection: 'column',
-    height: 170,
+    marginLeft: 25,
+    height: 400,
+    width: 500,
     // flexDirection: 'row',
     // justifyContent: 'space-between',
   },
