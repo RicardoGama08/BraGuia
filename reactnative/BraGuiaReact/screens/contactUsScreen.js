@@ -1,9 +1,12 @@
 import React from 'react';
-import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
+import {StyleSheet, View,Text,TextInput,Image,Button, Linking} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 export default function ContactUsScreen({navigation}) {
 
+    const handleMakePhoneCall = (phoneNumber) => {
+      Linking.openURL(`tel:${phoneNumber}`);
+    };
 
     return(
 
@@ -25,6 +28,8 @@ export default function ContactUsScreen({navigation}) {
             <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Ricardo Gama:</Text>
             <Text>pg50709@alunos.uminho.pt</Text> 
           </View>
+          <Button title="Customer Support" onPress={() => handleMakePhoneCall('924567891')} />
+          <Button title="Medical Emergency Service" onPress={() => handleMakePhoneCall('112')} />
         {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}    
       </SafeAreaView>
 

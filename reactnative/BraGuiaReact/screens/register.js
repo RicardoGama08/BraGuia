@@ -28,10 +28,6 @@ export default function RegisterScreen({navigation}) {
     navigation.navigate('Login');
   }
 
-  const first_page_button_handler = () => {
-    navigation.navigate('FirstPage')
-  }
-
   return (
         <SafeAreaView style={styles.container}>
           <Text style={styles.title2}>Register</Text>
@@ -78,8 +74,7 @@ export default function RegisterScreen({navigation}) {
           </View>
         {/* <Text style={{ fontSize: 22, fontWeight: 'bold', marginTop: 36 }}>User</Text> */}   
         <Button title="Register" onPress={(handleRegister)} /> 
-        <Button title="Go" onPress={(first_page_button_handler)} />
-        
+
       </SafeAreaView>
 );
 
