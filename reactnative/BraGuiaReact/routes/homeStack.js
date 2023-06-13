@@ -16,7 +16,6 @@ import EditProfile from '../screens/EditProfile';
 import ContactUsScreen from '../screens/contactUsScreen';
 import ReportBugScreen from '../screens/reportBugScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
-import MapPin from '../screens/mapPin';
 import HistoricoTrails from '../screens/HistoricoTrails';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
@@ -161,9 +160,6 @@ const screens = {
     },
     EditProfile:{
         screen: EditProfile
-    },
-    MapPin:{
-        screen: MapPin
     },
     ContactUsScreen:{
         screen: ContactUsScreen,
