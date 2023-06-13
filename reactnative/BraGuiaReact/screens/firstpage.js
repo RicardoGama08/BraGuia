@@ -35,7 +35,8 @@ export default function FirstPage({ navigation }){
             <Button style={styles.button} title="Pontos de Interesse" onPress={(pins_button_handler) } />
             <Text> </Text>
             <Button title="Trilhos" onPress={(trails_button_handler) } />
-            <Button title="Historico" onPress={(historico_button_handler) } />
+            <Text/>
+            <Button title="Histórico" onPress={(historico_button_handler) } />
 
 
 
