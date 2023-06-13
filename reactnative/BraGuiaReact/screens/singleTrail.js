@@ -4,19 +4,43 @@ import { useRoute } from '@react-navigation/native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 
 export default function TrailDetails({navigation}){
 
   const trail = navigation.getParam('trail', null);
 
+  const storeTrail = async () => {
+    const trailToBeSaved = trail;
+    const existingTrails = await AsyncStorage.getItem("trails");
+    let newTrail = JSON.parse(existingTrails);
+
+    if( !newTrail ){
+      newTrail = []
+    }
+
+    newTrail.push( trailToBeSaved );
+
+    await AsyncStorage.setItem("trails", JSON.stringify(newTrail) )
+    .then( ()=>{
+      console.log("It was saved successfully")
+    } )
+    .catch( ()=>{
+      console.log("There was an error saving the product")
+    } )
+  }
+
     const edges = trail.edges;
 
     const handleOpenGoogleMaps = () => {
+      storeTrail();
       const coordinates = edges.map((edge) => `${edge.edge_start.pin_lat},${edge.edge_start.pin_lng}`);
       const lastEdge = edges[edges.length - 1];
       coordinates.push(`${lastEdge.edge_end.pin_lat},${lastEdge.edge_end.pin_lng}`);
       const googleMapsUrl = `https://www.google.com/maps/dir/${coordinates.join('/')}`;
       Linking.openURL(googleMapsUrl);
+      
     };
 
     const renderMarkers = () => {

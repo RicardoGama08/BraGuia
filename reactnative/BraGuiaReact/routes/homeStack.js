@@ -17,6 +17,13 @@ import ContactUsScreen from '../screens/contactUsScreen';
 import ReportBugScreen from '../screens/reportBugScreen';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import MapPin from '../screens/mapPin';
+import HistoricoTrails from '../screens/HistoricoTrails';
+
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
+const clearTrails = async () => {
+  await AsyncStorage.removeItem("trails");
+}
 
 const screens = {
     BraGuia: {
@@ -28,6 +35,26 @@ const screens = {
     Register: {
         screen: RegisterScreen,
     },
+
+    HistoricoTrails: {
+      screen: HistoricoTrails,
+      navigationOptions: ({ navigation }) => ({
+        headerTitle: 'Historico',
+        headerRight: () => (
+        <View style={{ marginRight: 25 }}>
+          <Button
+            title = "CLEAR"
+            onPress={() => {
+              clearTrails();
+            }}
+          />
+        </View>
+        ),
+      }),
+    },
+
+    //<Button title="CLEAR" onPress={(historico_button_handler) } />
+
     FirstPage:{
         screen: FirstPage,
         navigationOptions: ({ navigation }) => ({

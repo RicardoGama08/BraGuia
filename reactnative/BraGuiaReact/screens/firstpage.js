@@ -9,10 +9,14 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function FirstPage({ navigation }){
 
     const pins_button_handler = () => {
-      navigation.navigate('PinsScreen')
+      navigation.navigate('PinsScreen');
     }
     const trails_button_handler = () => {
-      navigation.navigate('TrailsScreen')
+      navigation.navigate('TrailsScreen');
+    }
+
+    const historico_button_handler = () => {
+      navigation.navigate('HistoricoTrails');
     }
 
     return(
@@ -31,6 +35,7 @@ export default function FirstPage({ navigation }){
             <Button style={styles.button} title="Pontos de Interesse" onPress={(pins_button_handler) } />
             <Text> </Text>
             <Button title="Trilhos" onPress={(trails_button_handler) } />
+            <Button title="Historico" onPress={(historico_button_handler) } />
 
 
 
