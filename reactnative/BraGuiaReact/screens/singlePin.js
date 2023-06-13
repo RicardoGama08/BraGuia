@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text,StyleSheet, ScrollView, Image } from 'react-native';
+import { View, Text,StyleSheet, ScrollView, Image, Button } from 'react-native';
 import { Linking } from 'react-native';
 
 export default function PinDetails({navigation}) {
@@ -21,13 +21,12 @@ export default function PinDetails({navigation}) {
           source={require('../assets/images/placeholder.png')}
           style={styles.image}
         />
-      <Text style={styles.link} onPress={openGoogleMaps}>
-              Mapa
-        </Text>
       <Text style={styles.text}></Text>
       <ScrollView style={styles.scrollView}>
         <Text style={styles.pinDesc}>{pin.pin_desc}</Text>
       </ScrollView>
+      <Text></Text>
+      <Button title=" Ver Ponto de Interesse" style={styles.button} onPress={openGoogleMaps}/>
     </ScrollView>
 
   );
@@ -108,6 +107,14 @@ const styles = StyleSheet.create({
     marginLeft: 10,
     marginTop: 15,
   },
+  button: {
+        backgroundColor: '#B2D8B2',
+        // paddingHorizontal: 10,
+        // paddingVertical: 10,
+        padding: 5,
+        marginBottom:10,
+        borderRadius: 5,
+      },
 });
 
 

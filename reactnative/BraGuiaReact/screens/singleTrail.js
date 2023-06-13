@@ -81,9 +81,6 @@ export default function TrailDetails({navigation}){
           source={require('../assets/images/map.png')}
           style={styles.image}
         />
-        <Text style={styles.link} onPress={handleOpenGoogleMaps}>
-                      Mapa
-                </Text>
         <Text style={styles.trailDescription}>{trail.trail_desc}</Text>
         <View style={styles.infoContainer}>
           <View style={styles.infoItem}>
@@ -94,6 +91,8 @@ export default function TrailDetails({navigation}){
             <Text style={styles.infoLabel}>Difficulty:</Text>
             <Text style={styles.infoText}>{trail.trail_difficulty}</Text>
           </View>
+          <Button title="Iniciar Trail" style={styles.button} onPress={handleOpenGoogleMaps}/>
+          <Text></Text>
           <MapView style={styles.map} initialRegion={initialRegion}>
                   {renderMarkers()}
                   {renderPolylines()}
@@ -178,4 +177,12 @@ const styles = StyleSheet.create({
       width: Dimensions.get('window').width,
       height: Dimensions.get('window').height,
     },
+    button: {
+          backgroundColor: '#B2D8B2',
+          // paddingHorizontal: 10,
+          // paddingVertical: 10,
+          padding: 5,
+          marginBottom:10,
+          borderRadius: 5,
+        },
   });
