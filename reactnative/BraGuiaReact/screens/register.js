@@ -1,12 +1,47 @@
 import React, {useState} from 'react';
-import {StyleSheet, View,Text,TextInput,Image,Button} from 'react-native';
+import {StyleSheet, View,Text,TextInput,Image,Button,Modal,Alert} from 'react-native';
 import { SafeAreaView } from 'react-native-safe-area-context';
+import PushNotification from 'react-native-push-notification';
+
 
 
 import {database} from '../databases';
 import {userModel} from '../databases/models/userModel';
 
 export default function RegisterScreen({navigation}) {
+
+PushNotification.configure({
+onRegister: function (token) {
+    console.log('TOKEN:', token);
+  },
+
+  // (required) Called when a remote or local notification is opened or received
+  onNotification: function (notification) {
+    console.log('NOTIFICATION:', notification);
+  },
+
+  // (optional) Called when the user fails to register for remote notifications. Usually occurs when APNS is having issues, or the device is a simulator.
+  onRegistrationError: function (err) {
+    console.error(err.message, err);
+  },
+
+  // Android only: GCM or FCM Sender ID
+  senderID: 'YOUR_GCM_SENDER_ID',
+
+  // IOS ONLY (optional): default: all - Permissions to register.
+  permissions: {
+    alert: true,
+    badge: true,
+    sound: true,
+  },
+
+  // Should the initial notification be popped automatically
+  // default: true
+  popInitialNotification: true,
+
+  // (optional) default: true - Specifies whether to request notification permissions before displaying the notification
+  requestPermissions: true,
+});
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
@@ -26,6 +61,12 @@ export default function RegisterScreen({navigation}) {
         data.surname = surname
       })
     })
+    PushNotification.localNotification({
+      title: 'My Notification Title',
+      message: 'Hello, this is a notification!',
+    });
+    Alert.alert('Success', 'Registration successful');
+    navigation.navigate('Login');
   }
 
   const first_page_button_handler = () => {
