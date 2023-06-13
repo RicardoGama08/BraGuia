@@ -90,11 +90,11 @@ export default function TrailDetails({navigation}){
             return (
               <View key={key}>
                 <Image
-                  key={key}
+                  
                   source={{ uri: mediaItem.media_file }}
                   style={{ marginLeft:20, width: 200, height: 200 }}
                 />
-              <TouchableOpacity key={key} onPress={() => checkPermission(mediaItem.media_file)}>
+              <TouchableOpacity onPress={() => checkPermission(mediaItem.media_file)}>
                 <Image
                   source={require('../assets/images/download1.png')}
                   style={{ marginTop: 20, marginBottom: 10, marginLeft: 10, width: 50, height: 50 }}
