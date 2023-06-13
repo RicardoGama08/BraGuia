@@ -86,7 +86,7 @@ export default function SettingsScreen({ navigation }){
           })*/
     
           //navigation.replace('LoginScreen');
-          navigation.navigate("LoginScreen");
+          navigation.navigate("Login");
         } catch (error) {
           console.log(error);
         }
