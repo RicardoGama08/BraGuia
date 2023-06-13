@@ -43,7 +43,6 @@ export default function PinDetails({navigation}) {
    const MediaSection = ({ mediaInfo }) => {
       return (
         <View style={styles.infoContainer}>
-        {/* <View> */}
           {mediaInfo.map(mediaItem => {
             if (mediaItem.media_type === 'I') {
               return (
@@ -56,11 +55,11 @@ export default function PinDetails({navigation}) {
             } else if (mediaItem.media_type === 'V') {
               return (
                 <Video
-                              key={mediaItem.id}
-                              source={{ uri: mediaItem.media_file }}
-                              style={{ width: 200, height: 200 }}
-                              controls={true}
-                            />
+                  key={mediaItem.id}
+                  source={{ uri: mediaItem.media_file }}
+                  style={{ width: 200, height: 200 }}
+                  controls={true}
+                />
               );
             } else if (mediaItem.media_type === 'R') {
               const sound = new Sound(mediaItem.media_file, '', error => {

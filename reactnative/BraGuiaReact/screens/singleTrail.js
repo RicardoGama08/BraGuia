@@ -17,7 +17,7 @@ export default function TrailDetails({navigation}){
 
   const MediaSection = ({ mediaInfo }) => {
     return (
-      <View>
+      <View style={styles.infoContainer}>
         {mediaInfo.map((mediaItem, index) => {
           let key;
           if (mediaItem.media_type === 'I') {
@@ -26,7 +26,7 @@ export default function TrailDetails({navigation}){
               <Image
                 key={key}
                 source={{ uri: mediaItem.media_file }}
-                style={{ width: 200, height: 200 }}
+                style={{ marginLeft:20, width: 200, height: 200 }}
               />
             );
           } else if (mediaItem.media_type === 'V') {
@@ -35,7 +35,7 @@ export default function TrailDetails({navigation}){
               <Video
                 key={key}
                 source={{ uri: mediaItem.media_file }}
-                style={{ width: 200, height: 200 }}
+                style={{ marginTop: 20, marginLeft:20, width: 200, height: 200 }}
                 controls={true}
               />
             );
@@ -49,8 +49,8 @@ export default function TrailDetails({navigation}){
             return (
               <TouchableOpacity key={key} onPress={() => sound.play()}>
                 <Image
-                  source={require('../assets/images/play_button.jpg')}
-                  style={{ width: 50, height: 50 }}
+                  source={require('../assets/images/play2.png')}
+                  style={{ marginLeft: 25, width: 50, height: 50 }}
                 />
               </TouchableOpacity>
             );
@@ -199,7 +199,8 @@ export default function TrailDetails({navigation}){
           </View>
           
         </View>
-        <MediaSection mediaInfo={mediaInfo} />
+          <MediaSection mediaInfo={mediaInfo} 
+        />
 
       </ScrollView>
     );
@@ -217,7 +218,7 @@ const styles = StyleSheet.create({
   },
   infoContainer: {
     flexDirection: 'column',
-    height: 600,
+    height: 870,
     // flexDirection: 'row',
     // justifyContent: 'space-between',
   },
