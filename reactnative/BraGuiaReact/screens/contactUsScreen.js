@@ -21,12 +21,12 @@ export default function ContactUsScreen({navigation}) {
           </View>    
           {/* <Text style={{ fontSize: 24, fontWeight: 'bold', marginTop: 10 }}>Register</Text> */}
           <View style={styles.inputContainer}>
-            <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Francisco Andrade:</Text>
-            <Text>pg47185@alunos.uminho.pt</Text> 
-            <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Gonçalo Medeiros:</Text>
-            <Text>pg50399@alunos.uminho.pt</Text> 
-            <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Ricardo Gama:</Text>
-            <Text>pg50709@alunos.uminho.pt</Text> 
+            <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>University of Minho:</Text>
+            <Text>alunos@uminho.pt</Text>
+            <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Customer Support:</Text>
+            <Text>braguia@support.com</Text>
+            <Text style = {{ fontSize: 20, fontWeight: 'bold', marginTop: 10 }}>Medical Emergency Service:</Text>
+            <Text>112@gmail.com</Text>
           </View>
           <Button title="Customer Support" onPress={() => handleMakePhoneCall('924567891')} />
           <Button title="Medical Emergency Service" onPress={() => handleMakePhoneCall('112')} />
