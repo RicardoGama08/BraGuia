@@ -1,12 +1,16 @@
 import React from 'react';
-import { View, StyleSheet,Text, ScrollView, Image, Dimensions, Linking, Button } from 'react-native';
+import { View, StyleSheet,Text, ScrollView, Image, Dimensions, Linking, 
+  Button, PermissionsAndroid, Platform, Alert } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { TouchableOpacity } from 'react-native-gesture-handler';
 import Video from 'react-native-video';
 import Sound from 'react-native-sound';
 
+import RNFetchBlob from 'rn-fetch-blob';
+
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import { config } from 'rxjs';
 
 
 export default function TrailDetails({navigation}){
@@ -14,6 +18,67 @@ export default function TrailDetails({navigation}){
   const trail = navigation.getParam('trail', null);
 
   const edges = trail.edges;
+
+
+
+  const checkPermission = async (url) => {
+    if(Platform.OS === 'ios'){
+      console.log("Nos proximos episodios");
+    }else{
+      try {
+        const granted = await PermissionsAndroid.request(
+          PermissionsAndroid.PERMISSIONS.WRITE_EXTERNAL_STORAGE,
+          {
+            title: 'Storage Permission Request',
+            message: 'App needs access to your storage to download Photos'
+          }
+        )
+
+        if(granted === PermissionsAndroid.RESULTS.GRANTED){
+          console.log('Storage Permission Granted.');
+          downloadImage(url);
+        }else{
+          alert("Storage Permission not Granted");
+        }
+      } catch (error) {
+        console.warn(error);
+      }
+    }
+  }
+
+  const downloadImage = (url) => {
+
+    let date = new Date();
+    let image_URL = url;
+    let ext = getExtention(image_URL);
+    ext = '.' + ext[0];
+    // get config and fs from RNFetchBlob
+    const {config, fs} = RNFetchBlob;
+    let PictureDir = fs.dirs.PictureDir;
+    let options = {
+      fileCache: true,
+      addAndroidDownloads: {
+        // Related to Android only
+        useDownloadManager: true,
+        notification: true,
+        path:  PictureDir + '/image_' +
+        Math.floor(date.getTime() + date.getSeconds() /2 ) + ext,
+        description: 'Image'  
+      } 
+    }
+
+    config(options)
+    .fetch('GET', image_URL)
+    .then(res => {
+      // Showing alert after success
+      console.log('res -> ', JSON.stringify(res));
+      alert('Image Downloaded Successfully')
+    })
+  }
+
+  const getExtention = filename => {
+    return /[.]/.exec(filename) ? /[^.]+$/.exec(filename) : undefined
+  }
 
   const MediaSection = ({ mediaInfo }) => {
     return (
@@ -23,11 +88,15 @@ export default function TrailDetails({navigation}){
           if (mediaItem.media_type === 'I') {
             key = `image_${mediaItem.id}_${index}`;
             return (
-              <Image
-                key={key}
-                source={{ uri: mediaItem.media_file }}
-                style={{ marginLeft:20, width: 200, height: 200 }}
-              />
+              <View key={key}>
+                <Image
+                  key={key}
+                  source={{ uri: mediaItem.media_file }}
+                  style={{ marginLeft:20, width: 200, height: 200 }}
+                />
+              <Button title="Download" onPress={() => checkPermission(mediaItem.media_file)}/>
+              </View>
+              
             );
           } else if (mediaItem.media_type === 'V') {
             key = `video_${mediaItem.id}_${index}`;
@@ -38,6 +107,7 @@ export default function TrailDetails({navigation}){
                 style={{ marginTop: 20, marginLeft:20, width: 200, height: 200 }}
                 controls={true}
               />
+
             );
           } else if (mediaItem.media_type === 'R') {
             const sound = new Sound(mediaItem.media_file, '', error => {
