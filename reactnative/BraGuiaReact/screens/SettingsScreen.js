@@ -10,6 +10,7 @@ import rootReducer from '../redux/root-reducer';
 
 import FeatherIcon from 'react-native-vector-icons/Feather'
 
+
 const SECTIONS = [
     {
       header: 'Preferences',
@@ -66,20 +67,32 @@ const SECTIONS = [
     }
   ];
 
-const removeUser = async (navigation) => {
-    try {
-      await AsyncStorage.removeItem('csrftoken');
-      await AsyncStorage.removeItem('sessionid');
-      navigation.navigate("Login");
-    } catch (error) {
-      console.log(error);
-    }
-  };
+
+
+
 
 export default function SettingsScreen({ navigation }){
-
-
+    const dispatch = useDispatch();
     const {currentUser} = useSelector((rootReducer) => rootReducer.userReducer);
+
+    const removeUser = async (navigation) => {
+        try {
+          await AsyncStorage.removeItem('csrftoken');
+          await AsyncStorage.removeItem('sessionid');
+    
+          // set user global state
+          /*dispatch({
+            type: 'user/logout',
+          })*/
+    
+          //navigation.replace('LoginScreen');
+          navigation.navigate("LoginScreen");
+        } catch (error) {
+          console.log(error);
+        }
+      };
+
+    
 
 
     const settings_button_handler = (label) => {
@@ -125,7 +138,9 @@ export default function SettingsScreen({ navigation }){
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <Text style={styles.profileName}>{currentUser.username}</Text>
+                    <Text style={styles.profileName}>
+                        {currentUser.username}
+                    </Text>
                     <Text style={styles.profileEmail}>
                         {currentUser.email ? currentUser.email : `${currentUser.username}@gmail.com`}
                     </Text>
