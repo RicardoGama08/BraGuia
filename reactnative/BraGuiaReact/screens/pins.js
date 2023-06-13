@@ -139,7 +139,7 @@ export default function PinsScreen({ navigation }){
       padding: 5,
       height: 400,
       // width: 250,
-      fontSize: 10.5,
+      fontSize: 10.75,
       color: '#888',
       // justifyContent:'center',
       // alignSelf: 'center',

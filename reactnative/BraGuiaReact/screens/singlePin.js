@@ -1,9 +1,29 @@
-import React from 'react';
-import { View, Text,StyleSheet, ScrollView, Image, Button } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text,StyleSheet, ScrollView, Image, Button, TouchableOpacity } from 'react-native';
 import { Linking } from 'react-native';
+import { PermissionsAndroid } from 'react-native';
 
 export default function PinDetails({navigation}) {
   const pin = navigation.getParam('pin', null);
+
+  /*useEffect(() => {
+      const requestLocationPermission = async () => {
+         try {
+            const granted = await PermissionsAndroid.request(
+            PermissionsAndroid.PERMISSIONS.ACCESS_BACKGROUND_LOCATION,
+                  {
+                    title: 'Background Location Permission',
+                    message: 'We need access to your location to send notifications.',
+                    buttonNeutral: 'Ask Me Later',
+                    buttonNegative: 'Cancel',
+                    buttonPositive: 'OK',
+                  },
+                );
+                if (granted === PermissionsAndroid.RESULTS.GRANTED) {
+                }
+
+  }
+*/
 
   const openGoogleMaps = () => {
       const latitude = pin.pin_lat;
@@ -25,8 +45,13 @@ export default function PinDetails({navigation}) {
       <ScrollView style={styles.scrollView}>
         <Text style={styles.pinDesc}>{pin.pin_desc}</Text>
       </ScrollView>
-      <Text></Text>
-      <Button title=" Ver Ponto de Interesse" style={styles.button} onPress={openGoogleMaps}/>
+      <TouchableOpacity onPress={openGoogleMaps}>
+        <Image style={styles.image2}
+          source={require('../assets/images/start.png')}
+          // style={{width: 40, height: 40 }} // Adjust the size as needed
+        />
+      </TouchableOpacity>
+      {/* <Button title=" Ver Ponto de Interesse" style={styles.button} onPress={openGoogleMaps}/> */}
     </ScrollView>
 
   );
@@ -102,10 +127,17 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   image: {
-    width: 60,
-    height: 60,
+    width: 40,
+    height: 40,
     marginLeft: 10,
     marginTop: 15,
+  },
+  image2: {
+    width: 70,
+    height: 70,
+    marginTop: 20,
+    marginLeft:100,
+    marginBottom: 10,
   },
   button: {
         backgroundColor: '#B2D8B2',
@@ -116,38 +148,3 @@ const styles = StyleSheet.create({
         borderRadius: 5,
       },
 });
-
-
-
-/* const styles = {
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffff',
-    paddingHorizontal: 16,
-  },
-  header: {
-    width: 322,
-    alignSelf: 'center',
-    marginTop: 10,
-    fontSize: 24,
-    fontWeight: 'bold',
-  },
-  link: {
-    width: 322,
-    alignSelf: 'center',
-    textAlign: 'center',
-  },
-  text: {
-    flex: 1,
-  },
-  scrollView: {
-    width: 345,
-    alignSelf: 'center',
-    marginTop: 10,
-  },
-  pinDesc: {
-    width: '100%',
-  },
-};
-
- */

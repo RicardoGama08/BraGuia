@@ -2,6 +2,7 @@ import React from 'react';
 import { View, StyleSheet,Text, ScrollView, Image, Dimensions, Linking, Button } from 'react-native';
 import { useRoute } from '@react-navigation/native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
+import { TouchableOpacity } from 'react-native-gesture-handler';
 
 
 export default function TrailDetails({navigation}){
@@ -70,8 +71,8 @@ export default function TrailDetails({navigation}){
     const initialRegion = {
       latitude: edges[0].edge_start.pin_lat,
       longitude: edges[0].edge_start.pin_lng,
-      latitudeDelta: 0.01,
-      longitudeDelta: 0.01,
+      latitudeDelta: 0.009,
+      longitudeDelta: 0.004,
     };
 
   return (
@@ -91,12 +92,20 @@ export default function TrailDetails({navigation}){
             <Text style={styles.infoLabel}>Difficulty:</Text>
             <Text style={styles.infoText}>{trail.trail_difficulty}</Text>
           </View>
-          <Button title="Iniciar Trail" style={styles.button} onPress={handleOpenGoogleMaps}/>
-          <Text></Text>
-          <MapView style={styles.map} initialRegion={initialRegion}>
-                  {renderMarkers()}
-                  {renderPolylines()}
-          </MapView>
+          <View style={styles.infoContainer}>
+              <TouchableOpacity onPress={handleOpenGoogleMaps}>
+                <Image style={styles.image2}
+                  source={require('../assets/images/start.png')}
+                  // style={{width: 40, height: 40 }} // Adjust the size as needed
+                />
+              </TouchableOpacity>  
+              <MapView style={styles.map} initialRegion={initialRegion}>
+                {renderMarkers()}
+                {renderPolylines()}
+              </MapView>
+              
+          </View>
+          
         </View>
       </ScrollView>
     );
@@ -108,13 +117,13 @@ const styles = StyleSheet.create({
     // padding: 70,
     paddingVertical: 20,
     paddingHorizontal: 60,
-    height: 200,
+    height: 300,
     marginBottom: 20,
     // backgroundColor: '#FFFFFF',
   },
   infoContainer: {
     flexDirection: 'column',
-    height: 170,
+    height: 600,
     // flexDirection: 'row',
     // justifyContent: 'space-between',
   },
@@ -169,13 +178,20 @@ const styles = StyleSheet.create({
     marginBottom: 8,
   },
   image: {
+    width: 40,
+    height: 40,
+  },
+  image2: {
     width: 60,
     height: 60,
-    marginLeft: 10,
+    marginTop: 20,
+    marginLeft:100,
+    marginBottom: 5,
   },
   map: {
-      width: Dimensions.get('window').width,
+      // width: Dimensions.get('window').width,
       height: Dimensions.get('window').height,
+      width: 500,
     },
     button: {
           backgroundColor: '#B2D8B2',
