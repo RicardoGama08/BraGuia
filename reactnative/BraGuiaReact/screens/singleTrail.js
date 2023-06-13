@@ -3,6 +3,8 @@ import { View, StyleSheet,Text, ScrollView, Image, Dimensions, Linking, Button }
 import { useRoute } from '@react-navigation/native';
 import MapView, { Marker, Polyline } from 'react-native-maps';
 import { TouchableOpacity } from 'react-native-gesture-handler';
+import Video from 'react-native-video';
+import Sound from 'react-native-sound';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -10,6 +12,74 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 export default function TrailDetails({navigation}){
 
   const trail = navigation.getParam('trail', null);
+
+  const edges = trail.edges;
+
+  const MediaSection = ({ mediaInfo }) => {
+    return (
+      <View>
+        {mediaInfo.map((mediaItem, index) => {
+          let key;
+          if (mediaItem.media_type === 'I') {
+            key = `image_${mediaItem.id}_${index}`;
+            return (
+              <Image
+                key={key}
+                source={{ uri: mediaItem.media_file }}
+                style={{ width: 200, height: 200 }}
+              />
+            );
+          } else if (mediaItem.media_type === 'V') {
+            key = `video_${mediaItem.id}_${index}`;
+            return (
+              <Video
+                key={key}
+                source={{ uri: mediaItem.media_file }}
+                style={{ width: 200, height: 200 }}
+                controls={true}
+              />
+            );
+          } else if (mediaItem.media_type === 'R') {
+            const sound = new Sound(mediaItem.media_file, '', error => {
+              if (error) {
+                console.log('Failed to load sound', error);
+              }
+            });
+            key = `audio_${mediaItem.id}_${index}`;
+            return (
+              <TouchableOpacity key={key} onPress={() => sound.play()}>
+                <Image
+                  source={require('../assets/images/play_button.jpg')}
+                  style={{ width: 50, height: 50 }}
+                />
+              </TouchableOpacity>
+            );
+          } else {
+            return null; // Handle other media types if needed
+          }
+        })}
+      </View>
+    );
+  };
+
+ const mediaInfo = edges.flatMap((edge, index) => {
+   const currentEdge = edge;
+       const nextEdge = edges[index + 1];
+
+       let mediaItems = currentEdge.edge_start.media;
+
+       if (nextEdge && currentEdge.edge_end.pin_lat === nextEdge.edge_start.pin_lat && currentEdge.edge_end.pin_lng === nextEdge.edge_start.pin_lng) {
+         mediaItems = mediaItems.filter((mediaItem) => {
+           const foundInNextEdge = nextEdge.edge_start.media.find(
+             (nextMediaItem) => nextMediaItem.id === mediaItem.id
+           );
+           return !foundInNextEdge;
+         });
+       }
+
+       return mediaItems;
+ });
+
 
   const storeTrail = async () => {
     const trailToBeSaved = trail;
@@ -30,8 +100,6 @@ export default function TrailDetails({navigation}){
       console.log("There was an error saving the product")
     } )
   }
-
-    const edges = trail.edges;
 
     const handleOpenGoogleMaps = () => {
       storeTrail();
@@ -131,6 +199,8 @@ export default function TrailDetails({navigation}){
           </View>
           
         </View>
+        <MediaSection mediaInfo={mediaInfo} />
+
       </ScrollView>
     );
   }
