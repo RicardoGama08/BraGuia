@@ -4,6 +4,10 @@ import { ScrollView, Switch } from 'react-native-gesture-handler';
 import { SafeAreaView } from 'react-native-safe-area-context';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
+
+import { useDispatch, useSelector } from 'react-redux';
+import rootReducer from '../redux/root-reducer';
+
 import FeatherIcon from 'react-native-vector-icons/Feather'
 
 const SECTIONS = [
@@ -74,6 +78,10 @@ const removeUser = async (navigation) => {
 
 export default function SettingsScreen({ navigation }){
 
+
+    const {currentUser} = useSelector((rootReducer) => rootReducer.userReducer);
+
+
     const settings_button_handler = (label) => {
         switch (label) {
             case "Contact Us":
@@ -117,8 +125,10 @@ export default function SettingsScreen({ navigation }){
                             </View>
                         </View>
                     </TouchableOpacity>
-                    <Text style={styles.profileName}>Username</Text>
-                    <Text style={styles.profileEmail}>username@gmail.com</Text>
+                    <Text style={styles.profileName}>{currentUser.username}</Text>
+                    <Text style={styles.profileEmail}>
+                        {currentUser.email ? currentUser.email : `${currentUser.username}@gmail.com`}
+                    </Text>
                 </View>
 
 

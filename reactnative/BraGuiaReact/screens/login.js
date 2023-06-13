@@ -10,12 +10,22 @@ import { Q } from '@nozbe/watermelondb'
 import {database} from '../databases';
 import {userModel} from '../databases/models/userModel';
 
+import { useDispatch, useSelector } from 'react-redux';
+import rootReducer from '../redux/root-reducer';
+
 export default function LoginScreen({navigation}) {
+
+  /*const {currentUser} = useSelector((rootReducer) => rootReducer.userReducer);
+  console.log({currentUser});*/
+
+  const dispatch = useDispatch();
 
   const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const [username, setUsername] = useState('');
   const [password, setPassword] = useState('');
+
+
 
   // ;(
   async function fetchUser() {
@@ -23,8 +33,7 @@ export default function LoginScreen({navigation}) {
     try {
       const foundUser = await userCollection.query(Q.where('username', username),
                                                    Q.where('password', password)).fetch();
-
-      console.log(foundUser);      
+     
       if(foundUser){
         
         const fuser = foundUser[0]._raw.username;
@@ -45,10 +54,6 @@ export default function LoginScreen({navigation}) {
     }
   }
   
-  /* boa maneira de fazer fetches
-  useEffect(() => {
-    fetchUser();
-  },[]);*/
 
   const storeToken = async (value) => {
     try {
@@ -73,60 +78,65 @@ export default function LoginScreen({navigation}) {
 
   const handleLogin = async () => {
 
-  const credentials = [{username: 'premium_user',password: 'paiduser'},
-              {username: 'standard_user',password: 'cheapuser'}];
+    
+    const credentials = [{username: 'premium_user',password: 'paiduser'},
+                {username: 'standard_user',password: 'cheapuser'}];
 
-  const user = credentials.find((cred) => cred.username === username && cred.password === password);
-
-  if(!user){
-    fetchUser();
-  }
+    const user = credentials.find((cred) => cred.username === username && cred.password === password);
 
 
-  if (user) {
-      const postUrl = "https://c5a2-193-137-92-29.eu.ngrok.io/login";
-      const data = {
-        username: username,
-        password: password
-      };
+    const foundUser = await fetchUser();
 
-    let json_body = JSON.stringify({ username, password });
+    if(user || foundUser){
 
-    axios.post(postUrl, json_body, { withCredentials: false,
-        headers: {
-          "Content-Type" : "application/json",
-        },
+      // set user global state
+      dispatch({
+        type: 'user/login',
+        payload: {username: username, password: password},
       })
-        .then((response) => {
-            if(response && response.data){
-                const setCookieHeaders = response.headers["set-cookie"];
-                //const csrfToken = response.headers["set-cookie"][0].split(";")[0].split("=")[1];
 
-                // Extract CSRF token using regex
-                const csrfTokenRegex = /csrftoken=([^;]+)/;
-                const csrfTokenMatch = csrfTokenRegex.exec(setCookieHeaders);
-                const csrfToken = csrfTokenMatch ? csrfTokenMatch[1] : null;
 
-                // Extract SessionID token using regex
-                const sessionIdRegex = /sessionid=([^;]+)/;
-                const sessionIdMatch = sessionIdRegex.exec(setCookieHeaders);
-                const sessionId = sessionIdMatch ? sessionIdMatch[1] : null;
+      const postUrl = "https://c5a2-193-137-92-29.eu.ngrok.io/login";
 
-                
-                
-                // Store token and sessionid
-                storeToken(csrfToken);
-                storeSessionId(sessionId);
-                navigation.navigate("FirstPage")
-            }else console.error("Invalid response format");
+      let json_body = JSON.stringify({ username:'standard_user', password:'cheapuser'});
+
+      axios.post(postUrl, json_body, { withCredentials: false,
+          headers: {
+            "Content-Type" : "application/json",
+          },
         })
-        .catch((error) => {
-            console.error(error.response.data);
-        });
-  }else{
-     console.log("Invalid password or username");
+          .then((response) => {
+              if(response && response.data){
+                  const setCookieHeaders = response.headers["set-cookie"];
+                  //const csrfToken = response.headers["set-cookie"][0].split(";")[0].split("=")[1];
+
+                  // Extract CSRF token using regex
+                  const csrfTokenRegex = /csrftoken=([^;]+)/;
+                  const csrfTokenMatch = csrfTokenRegex.exec(setCookieHeaders);
+                  const csrfToken = csrfTokenMatch ? csrfTokenMatch[1] : null;
+
+                  // Extract SessionID token using regex
+                  const sessionIdRegex = /sessionid=([^;]+)/;
+                  const sessionIdMatch = sessionIdRegex.exec(setCookieHeaders);
+                  const sessionId = sessionIdMatch ? sessionIdMatch[1] : null;
+
+                  
+                  
+                  // Store token and sessionid
+                  storeToken(csrfToken);
+                  storeSessionId(sessionId);
+                  navigation.navigate("FirstPage")
+              }else console.error("Invalid response format");
+          })
+          .catch((error) => {
+              console.error(error.response.data);
+          });
+
+    }else{
+      console.log("Email/password errados");
     }
 
+      
   };
 
   return (
