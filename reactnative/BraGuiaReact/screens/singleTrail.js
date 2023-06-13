@@ -94,7 +94,13 @@ export default function TrailDetails({navigation}){
                   source={{ uri: mediaItem.media_file }}
                   style={{ marginLeft:20, width: 200, height: 200 }}
                 />
-              <Button title="Download" onPress={() => checkPermission(mediaItem.media_file)}/>
+              <TouchableOpacity key={key} onPress={() => checkPermission(mediaItem.media_file)}>
+                <Image
+                  source={require('../assets/images/download1.png')}
+                  style={{ marginTop: 20, marginBottom: 10, marginLeft: 10, width: 50, height: 50 }}
+                />
+                <Text>click to download</Text>
+              </TouchableOpacity>
               </View>
               
             );
@@ -120,8 +126,9 @@ export default function TrailDetails({navigation}){
               <TouchableOpacity key={key} onPress={() => sound.play()}>
                 <Image
                   source={require('../assets/images/play2.png')}
-                  style={{ marginLeft: 25, width: 50, height: 50 }}
+                  style={{ marginTop: 20, marginBottom: 10, marginLeft: 10, width: 50, height: 50 }}
                 />
+                <Text>click to listen</Text>
               </TouchableOpacity>
             );
           } else {
