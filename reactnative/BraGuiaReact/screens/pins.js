@@ -48,7 +48,7 @@ export default function PinsScreen({ navigation }){
                       }
                const response = await axios.get('https://c5a2-193-137-92-29.eu.ngrok.io/pins',{
                headers: {
-                         Cookie: `${sessionid}; ${csrftoken}`,
+                         Cookie: `sessionid:${sessionid}; csrftoken:${csrftoken}`,
                          'X-CSRFToken': csrftoken
                        }});
                 // possivel dar problemas no futuro
